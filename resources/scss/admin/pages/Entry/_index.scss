@@ -1,0 +1,1055 @@
+.wpf_payment_view {
+
+    .payment_head_info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+
+        .wpf_entry_title {
+            display: flex;
+            align-items: center;
+
+            .wpf_entries_url {
+
+                a {
+                    text-decoration: none;
+
+                    span {
+                        color: #696778;
+                        font-family: $wpf-font-family;
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: 16px;
+                    }
+                }
+            }
+
+            .payhead_back_icon {
+                padding: 0 10px;
+            }
+
+            .payhead_title {
+                color: $wpf-system-dark;
+                font-family: $wpf-font-family;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 16px;
+            }
+        }
+
+        .wpf_header_actions {
+            .el-button {
+                display: flex;
+                padding: 8px 16px;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+                border-radius: $--border-radius-base !important;
+                background: $wpf-background;
+                margin: 0 2px;
+
+                span {
+                    display: flex;
+                    gap: 8px;
+                }
+            }
+        }
+    }
+
+    .wpf_payment_status_action {
+        display: flex;
+        justify-content: space-between;
+        border-radius: 8px;
+        background: $wpf-background;
+        padding: 16px;
+        align-items: center;
+
+        .wpf_form_title {
+            color: $wpf-system-dark;
+            font-family: $wpf-font-family;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 28px;
+        }
+
+        .wpf_entry_action {
+            display: flex;
+            align-items: center;
+
+            .wpf_entry_export {
+                display: flex;
+                padding: 8px 16px;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+
+                .el-button {
+
+                    span {
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                        background: $wpf-background;
+                        color: $--text-color;
+                        font-size: 13px;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: 20px;
+                    }
+                }
+            }
+
+            .wpf_meta_info {
+                span {
+                    padding-left: 5px;
+                }
+            }
+        }
+    }
+
+
+    .wpf_entry_layout {
+        display: flex;
+
+        .wpf_entry_left {
+            width: 75%;
+
+            .wpf_payment_details {
+
+                .payment_header {
+                    background-color: $wpf-background;
+                    border-radius: $--border-radius-base;
+
+                    .payment_head_top {
+                        display: flex;
+                        justify-content: space-between;
+                        padding: 20px;
+                        border-bottom: $--border-color-secondary;
+
+                        .payment_header_left {
+                            display: flex;
+
+                            .payment_icon {
+                                background: $wpf-background;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                border: $--border-base;
+                                border-radius: 8px;
+                                height: 50px;
+                                width: 50px;
+                            }
+
+                            .payment_amount_detail {
+                                padding: 0 15px;
+
+                                .head_payment_amount {
+                                    display: flex;
+                                    align-items: center;
+
+                                    .pay_amount {
+                                        color: $wpf-system-dark;
+                                        font-family: $wpf-font-family;
+                                        font-size: 24px;
+                                        font-style: normal;
+                                        font-weight: 600;
+                                        line-height: 34px;
+                                        margin-right: 10px;
+                                    }
+
+                                    .wpf_pay_status_pending {
+                                        display: flex;
+                                        align-items: center;
+                                        gap: 5px;
+                                        background: #FFF9F3;
+                                        color: $wpf-warning-600;
+                                        text-align: center;
+                                        font-family: $wpf-font-family;
+                                        font-size: 12px;
+                                        font-style: normal;
+                                        font-weight: 500;
+                                        line-height: 16px;
+                                        padding: 6px 12px;
+                                        border-radius: 6px;
+                                        width: fit-content;
+                                        height: 15px;
+                                    }
+                                }
+                            }
+                        }
+
+                        .payment_header_right {
+                            display: flex;
+                            align-items: center;
+                            gap: 15px;
+
+                            .wpf_payment_status {
+
+                                span {
+                                    cursor: pointer;
+                                    text-decoration-line: underline;
+                                }
+                            }
+
+                            .wpf_payment_vendor {
+                                font-weight: 700;
+                                font-size: 12px;
+
+                                .wpf_pay_method {
+                                
+                                    &_stripe {
+                                        color: #fff;
+                                        background: #5f5fee;
+                                        border-radius: 5px;
+                                        border: 2px solid #5f5fee;
+                                    }
+                                
+                                    &_paypal {
+                                        color: #071a5d;
+                                        background: #f0ca46;
+                                        border-radius: 5px;
+                                        border: 2px solid #f0ca46;
+                                    }
+                                
+                                    &_offline {
+                                        color: #fff;
+                                        background: #cfcfcf;
+                                        border-radius: 5px;
+                                        border: 2px solid #cfcfcf;
+                                    }
+                                
+                                    &_mollie {
+                                        color: #fff;
+                                        background: #1B2338;
+                                        border-radius: 5px;
+                                        border: 2px solid #1B2328;
+                                    }
+                                
+                                    &_razorpay {
+                                        color: #fff;
+                                        background: #4e8eef;
+                                        border-radius: 5px;
+                                        border: 2px solid #4e8eef;
+                                    }
+                                
+                                    &_paystack {
+                                        color: #fff;
+                                        background: #489dcf;
+                                        border-radius: 5px;
+                                        border: 2px solid #489dcf;
+                                    }
+                                
+                                    &_payrexx {
+                                        color: #4ca7e3;
+                                        background: #FFF;
+                                        border-radius: 5px;
+                                        border: 2px solid #4ca7e3;
+                                    }
+                                
+                                    &_sslcommerz {
+                                        color: #FFF;
+                                        background: #3458a0;
+                                        border-radius: 5px;
+                                        border: 2px solid #3458a0;
+                                    }
+                                
+                                    &_square {
+                                        color: #1B2328;
+                                        background: #FFF;
+                                        border-radius: 5px;
+                                        border: 2px solid #1B2328;
+                                    }
+
+                                    &_vivawallet {
+                                        background: #0BCADB;
+                                        color: $wpf-background;
+                                        border-radius: 5px;
+                                        border: 2px solid #0BCADB;
+                                    }
+
+                                    &_xendit {
+                                        background: #5470DE;
+                                        color: $wpf-background;
+                                        border-radius: 5px;
+                                        border: 2px solid #5470DE;
+                                    }
+
+                                    &_Billplz {
+                                        background: #3784F4;
+                                        color: $wpf-background;
+                                        border-radius: 5px;
+                                        border: 2px solid #3784F4;
+                                    }
+
+                                    &_flutterwave {
+                                        background: #FF5805;
+                                        color: $wpf-background;
+                                        border-radius: 5px;
+                                        border: 2px solid #FF5805;
+                                    }
+
+                                    &_moneris {
+                                        background: #0C0C0C;
+                                        color: $wpf-background;
+                                        border-radius: 5px;
+                                        border: 2px solid #0C0C0C;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .payment_head_bottom {
+                        padding: 20px;
+                        display: grid;
+                        grid-template-columns: repeat(auto-fill, minmax(192px, 1fr));
+                        gap: 30px;
+
+                        .info_block {
+                           word-break: break-word;
+
+                            .info_header {
+                                padding-bottom: 6px;
+                            }
+
+                            .info_value {
+                                span {
+                                    a {
+                                        color: #323DA5;
+                                        font-family: $wpf-font-family;
+                                        font-size: 14px;
+                                        font-style: normal;
+                                        font-weight: 500;
+                                        line-height: 20px;
+                                        text-decoration-line: underline;
+                                    }
+                                }
+                            }
+
+                            .wpf_pay_mode {
+                                font-weight: 500;
+                                text-transform: capitalize;
+                                border-radius: 20px;
+                                padding: 2px;
+
+                                &_test {
+                                    color: #db4f16;
+                                }
+                            
+                                &_live {
+                                    color: #3da20b;
+                                }
+                            }
+                        }
+                    }
+
+                    .wpf_payment_info {
+                        display: flex;
+                        justify-content: space-between;
+                        padding: 20px;
+                        align-items: center;
+                        border-radius: 8px 8px 0px 0px;
+                        border-bottom: $--border-color-secondary;
+                        background: $wpf-background;
+                        overflow-x: scroll;
+
+                        .payment_header_title {
+                            color: $wpf-system-dark;
+                            font-family: $wpf-font-family;
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: 600;
+                            line-height: 22px;
+                        }
+                    }
+                }
+            }
+
+            .wpf_submisson_body {
+
+                .entry_input_data {
+                    background: $wpf-background;
+                    margin-top: 20px;
+                    border-radius: 8px;
+                    // padding: 20px;
+
+                    .entry_info_header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        border-radius: 8px 8px 0 0;
+                        border-bottom: $--border-color-secondary;
+                        padding: 20px;
+
+
+                        .info_box_header {
+                            color: $wpf-system-dark;
+                            font-family: $wpf-font-family;
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: 600;
+                            line-height: 22px;
+                        }
+
+                        .info_box_header_actions {
+                            color: $wpf-system-dark;
+                            font-family: $wpf-font-family;
+                            font-size: 12px;
+                            font-style: normal;
+                            font-weight: 500;
+                            line-height: 16px;
+                        }
+                    }
+
+                    .wpf_entry_details {
+                        padding: 20px;
+
+                        .wpf_each_entry {
+                            display: grid;
+                            grid-template-columns: 200px auto;
+                            padding: 8px 0;
+
+                            .wpf_entry_label {
+                                color: #565865;
+                                font-family: $wpf-font-family;
+                                font-size: 14px;
+                                font-style: normal;
+                                font-weight: 500;
+                                line-height: 20px;
+                            }
+
+                            .wpf_entry_value {
+                                color: $wpf-system-dark;
+                                font-family: $wpf-font-family;
+                                font-size: 13px;
+                                font-style: normal;
+                                font-weight: 400;
+                                line-height: 20px;
+                            }
+                        }
+                    }
+                }
+
+                .entry_order_items {
+                    background: $wpf-background;
+                    margin-top: 20px;
+                    border-radius: 8px;
+                    // padding: 20px;
+
+                    .entry_info_header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 20px;
+
+
+                        .info_box_header {
+                            color: $wpf-system-dark;
+                            font-family: $wpf-font-family;
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: 600;
+                            line-height: 22px;
+                        }
+
+                        .info_box_header_actions {
+                            color: $wpf-system-dark;
+                            font-family: $wpf-font-family;
+                            font-size: 12px;
+                            font-style: normal;
+                            font-weight: 500;
+                            line-height: 16px;
+                        }
+                    }
+
+                    .wpf_entry_details {
+                        display: flex;
+                        gap: 50px;
+                        flex-wrap: wrap;
+                        padding-top: 20px;
+
+                        .wpf_entry_label {
+                            color: $wpf-system-mid;
+                            font-family: $wpf-font-family;
+                            font-size: 12px;
+                            font-style: normal;
+                            font-weight: 500;
+                            line-height: 16px;
+                            padding-bottom: 8px;
+                        }
+
+                        .wpf_entry_value {
+                            color: $wpf-system-dark;
+                            font-family: $wpf-font-family;
+                            font-size: 14px;
+                            font-style: normal;
+                            font-weight: 500;
+                            line-height: 20px;
+                        }
+                    }
+                }
+
+                .entry_info_box.entry_discounts {
+                    background: #fff;
+                    // padding: 20px;
+                    margin: 20px 0;
+                    border-radius: 8px;
+
+                    .info_box_header {
+                        padding: 20px;
+                        color: $wpf-system-dark;
+                        font-family: $wpf-font-family;
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: 22px;
+                    }
+                }
+
+                // .entry_transactions {
+                //     background: $wpf-background;
+                //     border-radius: 8px;
+                //     // padding: 20px;
+                //     margin-top: 20px;
+                // }
+
+                .entry_gift_aid {
+                    background: $wpf-background;
+                    margin-top: 20px;
+                    border-radius: 8px;
+
+                    .entry_info_header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        border-radius: 8px 8px 0 0;
+                        border-bottom: $--border-color-secondary;
+                        padding: 20px;
+
+                        .info_box_header {
+                            color: $wpf-system-dark;
+                            font-family: $wpf-font-family;
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: 600;
+                            line-height: 22px;
+                        }
+
+                        .wpf_gift_aid_opted_in {
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 5px;
+                            padding: 4px 12px;
+                            border-radius: 6px;
+                            background: $wpf-success-50;
+                            color: $wpf-success-600;
+                            font-family: $wpf-font-family;
+                            font-size: 12px;
+                            font-weight: 600;
+                            line-height: 16px;
+                        }
+                    }
+
+                    .entry_info_body {
+                        .wpf_entry_details {
+                            padding: 20px;
+
+                            .wpf_each_entry {
+                                display: grid;
+                                grid-template-columns: 200px auto;
+                                padding: 8px 0;
+                                border-bottom: $--border-color-secondary;
+
+                                &:last-child {
+                                    border-bottom: none;
+                                }
+
+                                .wpf_entry_label {
+                                    color: $wpf-system-mid;
+                                    font-family: $wpf-font-family;
+                                    font-size: 14px;
+                                    font-style: normal;
+                                    font-weight: 500;
+                                    line-height: 20px;
+                                }
+
+                                .wpf_entry_value {
+                                    color: $wpf-system-dark;
+                                    font-family: $wpf-font-family;
+                                    font-size: 14px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: 20px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        .wpf_entrty_right {
+            width: 25%;
+
+            .entry_actions {
+                background: $wpf-background;
+                margin: 0 0 20px 20px;
+                border-radius: 8px;
+
+                .wpf_entry_header {
+                    color: $wpf-system-dark;
+                    font-family: $wpf-font-family;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 20px;
+                    padding-bottom: 14px;
+                    border-bottom: $--border-color-secondary;
+                    padding: 14px 20px;
+                }
+
+                .wpf_entry_body {
+                    padding: 20px;
+                    color: #323DA5;
+                    font-family: $wpf-font-family;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 20px;
+
+                    .wpf_entry_print {
+                        display: flex;
+                        gap: 8px;
+
+                        span {
+                            cursor: pointer;
+                            font-size: small;
+                        }
+
+                        .el-dialog__wrapper .el-dialog .el-dialog__header .el-dialog__title {
+                            font-size: 14px !important;
+                        }
+
+                        .wpf_print_body {
+                            border-bottom: $--border-color-secondary;
+                            .el-checkbox-group {
+                                display: grid;
+                                grid-template-columns: 50% 50%;
+                            }
+                        }
+                    }
+
+                    .wpf_entry_export {
+                        display: flex;
+                        gap: 12px;
+                        padding: 10px 0;
+
+                        span {
+                            cursor: pointer;
+                        }
+                    }
+
+                    .wpf_entry_mail {
+                        display: flex;
+                        gap: 8px;
+                    }
+                }
+
+                .entry_info_body {
+                    padding: 20px;
+
+                    ul {
+                        margin: 0;
+                    
+                        li {
+                            margin: 0;
+                    
+                            a {
+                                display: flex;
+                                align-items: center;
+                                color: $wpf-system-mid;
+                                font-family: $wpf-font-family;
+                                font-size: 14px;
+                                font-weight: 500;
+                                line-height: 20px;
+                                text-decoration: none;
+                    
+                                &:focus {
+                                    box-shadow: none;
+                                }
+                    
+                                .dashicons {
+                                    display: flex;
+                                    align-items: center;
+                                    font-size: 16px !important;
+                                    color: $wpf-system-mid;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .wpf_meta_info_wrapper {
+                background: $wpf-background;
+                margin-left: 20px;
+                border-radius: 8px;
+
+                .entry_info_header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 15px 20px;
+                    gap: 10px;
+                    border-bottom: $--border-color-secondary;
+                    background: $wpf-background;
+
+
+                    .info_box_header {
+                        color: $wpf-system-dark;
+                        font-family: $wpf-font-family;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: 20px;
+                    }
+                }
+
+                .wpf_meta_info ul {
+                    margin: 0;
+                    padding: 20px;
+                    list-style: none;
+
+                    li {
+                        padding: 2px 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.wp-list-table {
+    border: none !important;
+    border-radius: 8px;
+
+    & thead th,
+    & tbody th,
+    & tbody td,
+    & tfoot th,
+    & tfoot td {
+        padding: 14px 20px;
+    }
+
+    tbody td {
+        border-bottom: $--border-color-secondary;
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    & tfoot td,
+    & tfoot th {
+        // border-top: $--border-base;
+        border-bottom: none;
+        color: #2c3338;
+        background: #F9FAFB;
+    }
+
+    & tfoot tr:last-child th {
+        border-radius: 8px;
+    }
+}
+
+.widefat thead td,
+.widefat thead th {
+    border-top: $--border-color-secondary !important;
+    border-bottom: $--border-color-secondary !important;
+    background: #F5F6F7;
+    padding: 14px 20px;
+}
+
+.striped>tbody> :nth-child(2n+1) {
+    background-color: $wpf-background !important;
+}
+
+.widefat tfoot th,
+tfoot td {
+    border-top: none !important;
+    border-bottom: none !important;
+}
+
+
+.entry_transactions {
+    background: $wpf-background;
+    border-radius: 8px;
+    margin-top: 20px;
+    .entry_info_header {
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        border-bottom: $--border-color-secondary;
+
+        .info_box_header {
+            color: $wpf-system-dark;
+            font-family: $wpf-font-family;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 22px;
+        }
+        .wpf_payment_refund {
+            .wpf_refund_btn {
+                span {
+                    display: flex;
+                    gap: 4px;
+                    align-items: center;
+                }
+                .icon {
+                    display: flex !important;
+                    align-items: center;
+                }
+            }
+        }
+    }
+
+    .entry_info_body {
+        padding: 10px 20px;
+        .wpf_entry_transaction {
+            ul li {
+                border-top: $--border-color-secondary;
+                border-left: $--border-color-secondary;
+                border-right: $--border-color-secondary;
+                display: flex;
+                justify-content: space-between;
+                padding: 12px 20px;
+                margin: 0;
+
+                &:first-child {
+                    border-radius: 8px 8px 0 0;
+                }
+
+                &:last-child {
+                    border-bottom: $--border-color-secondary;
+                    border-radius: 0 0 8px 8px;
+                }
+
+                .wpf_list_value {
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+
+                    svg {
+                        height: 16px;
+                    }
+
+                    .wpf_card_badge {
+
+                        svg {
+                            height: 18px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.refund_container {
+    .refund_amount_input {
+        .el-input__prefix {
+            left: 15px !important;
+            font-size: 15px !important;
+            color: #606266 !important;
+        }
+    }
+    .subscription_checkbox {
+        padding-top: 10px;
+        .el-checkbox__label {
+            color: #606266 !important;
+        }
+    }
+    .wpf_refund_submit_btn {
+        margin-bottom: 0 !important;
+        padding-top: 10px;
+        text-align: end;
+    }
+}
+
+.entry_submission_activity {
+    background: $wpf-background;
+    margin-top: 20px;
+    border-radius: 8px;
+
+    .entry_info_header {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: $--border-color-secondary;
+        align-items: center;
+        padding: 20px;
+
+        .info_box_header {
+            color: $wpf-system-dark;
+            font-family: $wpf-font-family;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 22px;
+        }
+    }
+
+    .wpf_each_entry {
+        position: relative;
+        padding: 16px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: none;
+
+        &::after {
+            content: "";
+            width: 92%;
+            border-bottom: 1px solid #80808021;
+            position: absolute;
+            bottom: 0;
+            margin: 0 38px 0 33px;
+        }
+
+        .wpf_entry_activity {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+
+            .wpf_entry_label {
+
+                .wpf_activity_time {
+                    overflow: hidden;
+                    color: #696778;
+                    text-overflow: ellipsis;
+                    font-family: $wpf-font-family;
+                    font-size: 12px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 16px;
+                }
+
+                .wpf_activity_status {
+                    display: flex;
+                    align-items: center;
+                    padding: 7px 0;
+
+                    .wpf_activity_creator {
+                        color: $wpf-system-dark;
+                        font-family: $wpf-font-family;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: 20px;
+                        padding-right: 10px;
+                    }
+
+                    .wpf_tag {
+                        display: flex;
+                        padding: 3px 8px;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 5px;
+                        border-radius: 6px;
+                        background: $wpf-gray-50;
+                    }
+                }
+
+                .wpf_entry_value {
+                    color: $wpf-system-mid;
+                    font-family: $wpf-font-family;
+                    font-size: 13px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 20px;
+                }
+            }
+        }
+    }
+
+    .info_box_header_actions {
+        padding: 20px;
+
+        .wpf_activity_note {
+            display: flex;
+            align-items: center;
+            width: 90px;
+            gap: 4px;
+            color: $wpf-system-dark;
+            font-family: $wpf-font-family;
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px;
+            text-decoration-line: underline;
+            cursor: pointer;
+        }
+    }
+
+    .wpf_add_note_box {
+        padding: 0 20px 20px 20px;
+        text-align: right;
+    
+        .wpf_add_note {
+            margin-top: 15px;
+        }
+    }
+}
+
+
+.remove-btn {
+    cursor: pointer;
+}
+
+
+.wpf_activity_icon {
+    position: relative;
+    display: flex;
+    width: 16px;
+    height: 16px;
+    padding: 2px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 24px;
+    border: 1px solid $wpf-success-100;
+    background: $wpf-success-500;
+
+    &::before {
+        content: "";
+        position: absolute;
+        height: 80px;
+        width: 1px;
+        border-right: 1px dashed #B4B9C1;
+        top: 30px;
+    }
+}
+
+.wpf_each_entry:last-child .wpf_activity_icon::before {
+    border-right: none;
+}
+
+.wpf_email_notification {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .el-radio-group {
+       gap: 0;
+
+       .el-radio-button {
+            .el-radio-button__inner {
+                height: 38px;
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+}

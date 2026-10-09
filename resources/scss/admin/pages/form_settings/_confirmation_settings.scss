@@ -1,0 +1,95 @@
+.no_shadow.payform_section {
+
+    .app-card .app-card-body {
+        padding: 0;
+        position: relative;
+    }
+
+    .wpf_confirmations_tab {
+        width: 100%;
+
+        .el-form {
+            .el-form-item {
+                margin: 0;
+                padding: 20px 20px 0 20px;
+            }
+        }
+    }
+
+    .el-tabs--card > .el-tabs__header {
+        border-bottom: none !important;
+        margin: 0 !important;
+
+        .el-tabs__item {
+            border-left: none !important;
+            padding: 0;
+            margin: 0 20px;
+            color: #637083;
+            font-family: $wpf-font-family;
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 26px;
+
+            &.is-active {
+                border-bottom: 2px solid $wpf-primary-600;
+            }
+        }
+
+        .el-tabs__nav {
+            border: none !important;
+            border-bottom: $--border-color-secondary !important;
+            width: 100%;
+            padding-top: 12px;
+        }
+    }
+
+    .wpf_receipt_settings {
+        p {
+            padding: 0 20px;
+            color: $wpf-system-light;
+            font-family: $wpf-font-family;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 16px;
+        }
+
+        .el-form .el-form-item {
+            padding: 20px 20px 0 20px;
+        }
+    }
+
+    .recaptcha_settings {
+        p {
+            padding: 20px 20px 0 20px;
+            margin: 0;
+        }
+    }
+
+     .turnstile_settings {
+        p {
+            padding: 20px 20px 0 20px;
+            margin: 0;
+        }
+    }
+
+    .conditional-items {
+        .el-form-item__content {
+            p {
+                padding-left: 0;
+            }
+        }
+    }
+
+    .wpf_custom_redirect_url {
+        padding: 2px 0;
+    }
+
+     
+    // .el-form-item.wpf_form_payment_method {
+    //     .el-form-item__content {
+    //         margin-left: 210px !important;
+    //     }
+    // }
+}

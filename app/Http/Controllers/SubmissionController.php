@@ -1,0 +1,579 @@
+<?php
+
+namespace WPPayForm\App\Http\Controllers;
+
+use WPPayForm\Framework\Support\Arr;
+use WPPayForm\App\Models\Form;
+use WPPayForm\App\Models\Submission;
+use WPPayForm\App\Models\SubmissionActivity;
+use WPPayForm\App\Models\Transaction;
+use WPPayForm\App\Services\GeneralSettings;
+use WPPayForm\App\Services\AccessControl;
+use WPPayForm\App\Models\Subscription;
+
+class SubmissionController extends Controller
+{
+    public function index($formId = false)
+    {
+        $formId = absint($formId);
+        return (new Submission())->index($formId, $this->request->all());
+    }
+
+    public static function reports($formId)
+    {
+        $formId = absint($formId);
+        $paymentStatuses = GeneralSettings::getPaymentStatuses();
+        $submission = new Submission();
+
+        $searchString = sanitize_text_field(Arr::get($_REQUEST, 'search_string', ''));
+        
+        $startDate = sanitize_text_field(Arr::get($_REQUEST, 'start_date', ''));
+        $endDate = sanitize_text_field(Arr::get($_REQUEST, 'end_date', ''));
+        
+        $reports = [];
+        $reports['total'] = [
+            'label' => 'All',
+            'submission_count' => $submission->getTotalCount($formId, null, $searchString, $startDate, $endDate),
+            //issue on that line
+            'payment_total' => $submission->paymentTotal($formId, null, $searchString, $startDate, $endDate)
+        ];
+
+        foreach ($paymentStatuses as $status => $statusName) {
+            $reports[$status] = [
+                'label' => $statusName,
+                'submission_count' => $submission->getTotalCount($formId, $status,  $searchString, $startDate, $endDate),
+                'payment_total' => $submission->paymentTotal($formId, $status,  $searchString, $startDate, $endDate)
+            ];
+        }
+
+        wp_send_json_success([
+            'reports'                   => $reports,
+            'currencySettings'          => Form::getCurrencyAndLocale($formId),
+            'is_payment_form'           => Form::hasPaymentFields($formId),
+            'has_gift_aid_declarations' => (defined('WPPAYFORMHASPRO') && WPPAYFORMHASPRO)
+                ? \WPPayForm\App\Services\GiftAidExporter::hasDeclarations($formId)
+                : false,
+        ], 200);
+    }
+
+    public function getSubmissionPrepared($formId, $submissionId = false)
+    {
+        $formId = absint($formId);
+        $submissionId = $submissionId ? absint($submissionId) : $submissionId;
+        $submissionModel = new Submission();
+        $submission = $submissionModel->getSubmission($submissionId, array('transactions', 'order_items', 'tax_items', 'activities', 'refunds', 'discount'));
+        if (!$submission) {
+            return $this->sendError(['message' => __('Submission not found.', 'wp-payment-form')], 404);
+        }
+        if ($submission->status == 'new') {
+            $submissionModel->where('form_id', $submission->form_id)
+                ->where('id', $submission->id)
+                ->update(['status' => 'read']);
+            $submission->status = 'read';
+        }
+
+        $currencySetting = GeneralSettings::getGlobalCurrencySettings($formId);
+        $currencySetting['currency_sign'] = GeneralSettings::getCurrencySymbol($submission->currency);
+        $submission->currencySetting = $currencySetting;
+
+        if ($submission->user_id) {
+            $user = get_user_by('ID', $submission->user_id);
+            if ($user) {
+                $submission->user = [
+                    'display_name' => $user->display_name,
+                    'email' => $user->user_email,
+                    'profile_url' => get_edit_user_link($user->ID)
+                ];
+            }
+        }
+
+        $submission = apply_filters('wppayform/form_entry_recurring_info', $submission);
+        
+        $parsedEntry = $submissionModel->getParsedSubmission($submission);
+
+        $submission['widgets'] = apply_filters('wppayform_single_entry_widgets', [], array('submission' => $submission));
+
+        $giftAidData = null;
+        if (defined('WPPAYFORMHASPRO') && WPPAYFORMHASPRO) {
+            $giftAidOpt  = (new \WPPayForm\App\Models\Meta())
+                ->where('meta_group', 'wpf_submissions')
+                ->where('option_id', $submission->id)
+                ->where('form_id', $formId)
+                ->where('meta_key', 'gift_aid_opted_in')
+                ->first();
+
+            if ($giftAidOpt && $giftAidOpt->meta_value === '1') {
+                $getMeta = function ($key) use ($submission, $formId) {
+                    $row = (new \WPPayForm\App\Models\Meta())
+                        ->where('meta_group', 'wpf_submissions')
+                        ->where('option_id', $submission->id)
+                        ->where('form_id', $formId)
+                        ->where('meta_key', $key)
+                        ->first();
+                    return $row ? (string) $row->meta_value : '';
+                };
+                $giftAidData = [
+                    'opted_in'      => true,
+                    'address'       => $getMeta('gift_aid_address'),
+                    'address_line2' => $getMeta('gift_aid_address_line2'),
+                    'city'          => $getMeta('gift_aid_city'),
+                    'postcode'      => $getMeta('gift_aid_postcode'),
+                ];
+            }
+        }
+
+        return array(
+            'submission' => $submission,
+            'entry'      => (object) $parsedEntry,
+            'gift_aid'   => $giftAidData,
+        );
+    }
+    public function getSubmission($formId, $submissionId = false)
+    {
+        $formId = absint($formId);
+        $submissionId = $submissionId ? absint($submissionId) : $submissionId;
+        $submission = $this->getSubmissionPrepared($formId, $submissionId);
+        if (!is_array($submission)) {
+            return $submission;
+        }
+        $this->assertOwnsSubmission($submission['submission']);
+        wp_send_json_success($submission, 200);
+    }
+
+    public function addSubmissionNote($formId, $submissionId)
+    {
+        $formId = absint($formId);
+        $submissionId = absint($submissionId);
+
+        $content = esc_html($this->request->note);
+        $userId = get_current_user_id();
+        $user = get_user_by('ID', $userId);
+
+        $note = array(
+            'form_id' => $formId,
+            'submission_id' => $submissionId,
+            'type' => 'custom_note',
+            'content' => $content,
+            'created_by' => $user->display_name,
+            'created_by_user_id' => $userId
+        );
+
+        $note = apply_filters('wppayform/add_note_by_user', $note, $formId, $submissionId);
+        do_action('wppayform/before_create_note_by_user', $note);
+        SubmissionActivity::createActivity($note);
+        do_action('wppayform/after_create_note_by_user', $note);
+
+        return array(
+            'message' => __('Note successfully added', 'wp-payment-form'),
+            'activities' => SubmissionActivity::getSubmissionActivity($submissionId)
+        );
+    }
+
+    public function deleteNote($formId, $entryId, $noteId)
+    {
+        $formId = absint($formId);
+        $entryId = absint($entryId);
+        $noteId = absint($noteId);
+
+        $result = SubmissionActivity::deleteActivity($formId, $entryId, $noteId);
+        do_action('wppayform/after_delete_note_by_user', $entryId, $noteId);
+        return $result;
+    }
+
+    public function changeEntryStatus($formId, $entryId)
+    {
+        $formId = absint($formId);
+        $entryId = absint($entryId);
+        $newStatus = sanitize_text_field($this->request->status);
+        $submissionModel = new Submission();
+        $newStatus = $submissionModel->changeEntryStatus($formId, $entryId, $newStatus);
+        return array(
+            'message' => __('Item has been marked as ', 'wp-payment-form') . $newStatus,
+            'status' => $newStatus
+        );
+    }
+
+    public function getNextPrevSubmission($formId = false, $currentSubmissionId = null)
+    {
+        $formId = absint($formId);
+        $currentSubmissionId = absint($currentSubmissionId);
+        $queryType = sanitize_text_field($this->request->type);
+
+        $whereOperator = '<';
+        $orderBy = 'DESC';
+        // find the next / previous form id
+        if ($queryType == 'next') {
+            $whereOperator = '>';
+            $orderBy = 'ASC';
+        }
+
+        $submissionQuery = Submission::orderBy('id', $orderBy)
+            ->where('id', $whereOperator, $currentSubmissionId);
+
+        if ($formId) {
+            $submissionQuery->where('form_id', $formId);
+        }
+
+        $submission = $submissionQuery->first();
+
+        if (!$submission) {
+            wp_send_json_error(
+                array(
+                    'message' => __('Sorry, No Submission found', 'wp-payment-form')
+                ),
+                423
+            );
+        }
+        $this->getSubmission($formId, $submission->id);
+    }
+
+    public function paymentStatus($submissionId)
+    {
+        $submissionId = absint($submissionId);
+        $newStatus = sanitize_text_field($this->request->new_payment_status);
+        $submissionModel = new Submission();
+        $submission = $submissionModel->getSubmission($submissionId);
+        if (!$submission) {
+            wp_send_json_error(
+                array(
+                    'message' => __('Submission not found.', 'wp-payment-form')
+                ),
+                404
+            );
+        }
+        if ($submission->payment_status == $newStatus) {
+            wp_send_json_error(
+                array(
+                    'message' => __('The submission have the same status', 'wp-payment-form')
+                ),
+                423
+            );
+        }
+
+        do_action('wppayform/before_payment_status_change_manually', $submission, $newStatus, $submission->payment_status);
+
+        $submissionModel->updateSubmission(
+            $submissionId,
+            array(
+                'payment_status' => $newStatus
+            )
+        );
+
+        Transaction::where('submission_id', $submissionId)
+            ->where('transaction_type', '!=', 'subscription')
+            ->update(
+                array(
+                    'status' => $newStatus,
+                    'updated_at' => current_time('mysql')
+                )
+            );
+
+        $transaction = Transaction::where('submission_id', $submissionId)->first();
+
+        do_action('wppayform/form_submission_activity_start', $submission->form_id);
+        
+        do_action('wppayform/after_payment_status_change_manually', $submissionId, $newStatus, $submission->payment_status);
+
+        do_action('wppayform/after_payment_status_change', $submissionId, $newStatus);
+
+        $activityContent = 'Payment status changed from <b>' . $submission->payment_status . '</b> to <b>' . $newStatus . '</b>';
+
+        if ('paid' == $newStatus) {
+            do_action('wppayform/form_payment_success', $submission, $transaction, $submission->form_id, false);
+        }
+        if ('failed' == $newStatus) {
+            do_action('wppayform/form_payment_failed', $submission, $submission->form_id, $transaction, 'manual');
+        }
+
+        if ($changeNote = $this->request->get('status_change_note', false)) {
+            $note = wp_kses_post($changeNote);
+            $activityContent .= '<br />Note: ' . $note;
+        }
+
+        $userId = get_current_user_id();
+        $user = get_user_by('ID', $userId);
+        SubmissionActivity::createActivity(
+            array(
+                'form_id' => $submission->form_id,
+                'submission_id' => $submission->id,
+                'type' => 'info',
+                'created_by' => $user->display_name,
+                'created_by_user_id' => $userId,
+                'content' => $activityContent
+            )
+        );
+
+        return array(
+            'message' => __('Payment status successfully changed', 'wp-payment-form')
+        );
+    }
+
+    public function remove()
+    {
+        $submissionId = $this->request->get('submission_id', []);
+        $submissionId = array_map('absint', $submissionId);
+        $formId = $this->request->get('form_id', '');
+        $formId = absint($formId);
+        do_action('wppayform/before_delete_submission', $submissionId, $formId);
+        $submissionModel = new Submission();
+        $submissionModel->deleteSubmission($submissionId);
+        do_action('wppayform/after_delete_submission', $submissionId, $formId);
+        return array(
+            'message' => __('Selected submission successfully deleted', 'wp-payment-form')
+        );
+    }
+
+    public function captureAuthorizedAmount($formId, $submissionId)
+    {
+        $formId = absint($formId);
+        $submissionId = absint($submissionId);
+        $paymentMethod = sanitize_text_field($this->request->payment_method);
+        $amountToCapture = floatval($this->request->amount_to_be_captured);
+        if ($amountToCapture <= 0) {
+            wp_send_json_error(
+                array(
+                    'message' => __('Invalid capture amount. Amount must be a positive integer in minor units (cents).', 'wp-payment-form')
+                ),
+                400
+            );
+        }
+        if ('stripe' === $paymentMethod) {
+            // $this->captureStripeAuthorizedAmount($formId, $submissionId);
+            do_action('wppayform/capture_authorized_amount_' . $paymentMethod, $formId, $submissionId, $amountToCapture);
+        } else {
+            wp_send_json_error(
+                array(
+                    'message' => __('Payment method not supported', 'wp-payment-form')
+                ),
+                423
+            );
+        }
+    }
+
+    public function syncSubscription($formId, $submissionId)
+    {
+        $formId = absint($formId);
+        $submissionId = absint($submissionId);
+        $submissionModel = new Submission();
+        $entry = $submissionModel->getSubmission($submissionId);
+        if (!$entry) {
+            wp_send_json_error(
+                array(
+                    'message' => __('Submission not found.', 'wp-payment-form')
+                ),
+                404
+            );
+        }
+        if (empty($entry->payment_method)) {
+            wp_send_json_error(
+                array(
+                    'message' => __('No payment method on record for this entry.', 'wp-payment-form')
+                ),
+                422
+            );
+        }
+        do_action('wppayform/subscription_settings_sync_' . $entry->payment_method, $formId, $submissionId);
+    }
+
+    public function syncOfflineSubscription($formId, $submissionId)
+    {
+        $formId = absint($formId);
+        $submissionId = absint($submissionId);
+        $subscriptions = $this->request->subscriptions;
+        $submissionModel = new Submission();
+        $submission = $submissionModel->getSubmission($submissionId);
+
+        if (!$submission) {
+            wp_send_json_error(
+                array(
+                    'message' => __("Can't sync the subscription at this moment. Please try again", 'wp-payment-form'),
+                ),
+                423
+            );
+        }
+
+        do_action('wppayform/offline_action_subcr_sync', $submission, $submissionId, $subscriptions, $formId);
+    }
+
+    public function changeOfflineSubscriptionStatus($formId, $submissionId)
+    {
+        $formId = absint($formId);
+        $submissionId = absint($submissionId);
+        $submissionModel = new Submission();
+        $submission = $submissionModel->getSubmission($submissionId);
+        if (!$submission) {
+            wp_send_json_error(
+                array(
+                    'message' => __('Submission not found.', 'wp-payment-form')
+                ),
+                404
+            );
+        }
+        $subscription = $this->request->subscription;
+        $newStatusRaw = $this->request->newStatus;
+
+        if (!is_array($newStatusRaw)) {
+            wp_send_json_error(
+                array(
+                    'message' => __('Invalid status data.', 'wp-payment-form')
+                ),
+                422
+            );
+        }
+
+        $status = sanitize_text_field(Arr::get($newStatusRaw, 'status', ''));
+        $note   = sanitize_textarea_field(Arr::get($newStatusRaw, 'note', ''));
+
+        if (!is_array($subscription) || empty($subscription['id']) || !is_numeric($subscription['id'])) {
+            wp_send_json_error(
+                array(
+                    'message' => __('Invalid subscription data.', 'wp-payment-form')
+                ),
+                422
+            );
+        }
+
+        if ('offline' != $submission->payment_method) {
+            wp_send_json_error(
+                array(
+                    'message' => __("Can't cancel the subscription at this moment. Please try again", 'wp-payment-form'),
+                ),
+                423
+            );
+        }
+
+        $allowedSubscriptionStatuses = ['active', 'failing', 'trialing', 'cancelled', 'pending'];
+        if (!in_array($status, $allowedSubscriptionStatuses, true)) {
+            wp_send_json_error(
+                array(
+                    'message' => __('Invalid subscription status.', 'wp-payment-form')
+                ),
+                422
+            );
+        }
+
+        do_action('wppayform/offline_action_subcr_status_change', $submission, $subscription, $status, $note);
+    }
+
+    public function changeOfflineSubscriptionPaymentStatus($formId, $submissionId)
+    {
+        $formId = absint($formId);
+        $submissionId = absint($submissionId);
+        $submissionModel = new Submission();
+        $submission = $submissionModel->getSubmission($submissionId);
+        if (!$submission) {
+            wp_send_json_error(
+                array(
+                    'message' => __('Submission not found.', 'wp-payment-form')
+                ),
+                404
+            );
+        }
+
+        $subscription_payment = $this->request->subscription_payment;
+
+        if (!is_array($subscription_payment) || empty($subscription_payment['id']) || !is_numeric($subscription_payment['id'])) {
+            wp_send_json_error(
+                array(
+                    'message' => __('Invalid subscription payment data.', 'wp-payment-form')
+                ),
+                422
+            );
+        }
+
+        $newStatus = $this->request->newStatus;
+        $statusTobeUpdated = Arr::get($newStatus, 'status');
+        $note = sanitize_textarea_field(Arr::get($newStatus, 'note', ''));
+        $transactionId = Arr::get($subscription_payment, 'id');
+
+
+        if (Arr::get($subscription_payment, 'status') == $statusTobeUpdated) {
+            wp_send_json_error(
+                array(
+                    'message' => __("Changing status is same as current status", 'wp-payment-form'),
+                ),
+                423
+            );
+        }
+
+        do_action('wppayform/offline_action_subcr_payment_status_change', $submission, $transactionId, $statusTobeUpdated, $note);
+
+    }
+
+    public function cancelSubscription($formId, $submissionId)
+    {
+        $formId = absint($formId);
+        $submissionId = absint($submissionId);
+        $submissionModel = new Submission();
+        $submission = $submissionModel->getSubmission($submissionId);
+        if (!$submission) {
+            wp_send_json_error(
+                array(
+                    'message' => __('Submission not found.', 'wp-payment-form')
+                ),
+                404
+            );
+        }
+        $subscription = $this->request->subscription;
+
+        // HIGH-01: Enforce ownership for non-admin dashboard users
+        $this->assertOwnsSubmission($submission);
+
+        if (empty($submission->payment_method)) {
+            wp_send_json_error(
+                array(
+                    'message' => __("Can't cancel the subscription at this moment. Please try again", 'wp-payment-form'),
+                ),
+                423
+            );
+        }
+
+        do_action('wppayform/subscription_settings_cancel_' . $submission->payment_method, $formId, $submission, $subscription);
+
+    }
+
+    /**
+     * HIGH-01: Reject horizontal access — non-admin users may only access their own submissions.
+     *
+     * @param object|array $submission Submission object or array with user_id field.
+     */
+    private function assertOwnsSubmission($submission)
+    {
+        if (AccessControl::hasGrandAccess()) {
+            return;
+        }
+
+        $currentUserId = get_current_user_id();
+        if (!$currentUserId) {
+            wp_send_json_error(
+                ['message' => __('You do not have permission to access this submission.', 'wp-payment-form')],
+                403
+            );
+        }
+
+        $ownerId = is_object($submission)
+            ? absint(isset($submission->user_id) ? $submission->user_id : 0)
+            : absint(isset($submission['user_id']) ? $submission['user_id'] : 0);
+
+        if ($ownerId === $currentUserId) {
+            return;
+        }
+
+        // Mirror ownershipFilter / validateAjaxRequest: email-matched guest submission.
+        if ($ownerId === 0) {
+            $submissionEmail  = is_object($submission)
+                ? sanitize_email($submission->customer_email ?? '')
+                : sanitize_email($submission['customer_email'] ?? '');
+            $currentUserEmail = sanitize_email(wp_get_current_user()->user_email);
+            if ($submissionEmail && $currentUserEmail && $submissionEmail === $currentUserEmail) {
+                return;
+            }
+        }
+
+        wp_send_json_error(
+            ['message' => __('You do not have permission to access this submission.', 'wp-payment-form')],
+            403
+        );
+    }
+
+}

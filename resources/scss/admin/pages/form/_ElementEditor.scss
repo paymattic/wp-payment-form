@@ -1,0 +1,270 @@
+
+.wpf_editor_tabs {
+    .wpf_tabs_header {
+        border-bottom: $--border-base !important;
+        background: $wpf-background !important;
+        font-family: $wpf-font-family;
+        font-size: 0;
+        font-style: normal;
+        line-height: 24px;
+        border-radius: 0 0 0 8px;
+    
+        .wpf_tab {
+            background: #FAFAFA;
+            color: $--text-color;
+            display: inline-block;
+            padding: 12px 24px;
+            cursor: pointer;
+            font-size: 15px;
+            border-bottom: 2px solid #FAFAFA;
+    
+            &.general_tab {
+                border-radius: 8px 0px 0px 8px;
+            }
+    
+            &.wpf_tab_active {
+                border-bottom: 2px solid $--color-primary !important;
+                background: $wpf-primary-50 !important;
+                color: $wpf-active !important;
+                font-weight: 500 !important;
+            }
+        }
+    }
+    
+    .wpf_tab_body {
+        background: #FFF;
+        border-bottom-left-radius: 7px;
+        border-bottom-right-radius: 7px;
+    
+        .wpf_showing_general {
+            .wpf_item_group_general {
+                .wp-editor-tools {
+                    padding-left: 210px;
+                    width: 76%;
+                }
+                .html_placeholder_instruction {
+                    padding-left: 210px;
+                }
+            }
+    
+    
+            .wpf_item_group_advanced {
+                display: none;
+            }
+        }
+    
+        .wpf_showing_advanced {
+            .wpf_item_group_general {
+                display: none;
+            }
+        }
+    
+        .address_fields_wrapper {
+            table {
+                input {
+                    height: 28px;
+                    line-height: 28px;
+                }
+    
+                .el-select {
+                    width: 100%;
+                }
+    
+                .wp_vue_editor {
+                    min-height: 0;
+                }
+            }
+            .wpf_address_field_label {
+                .label_editor-width {
+                    width: calc(100% - 10px) !important;
+                }
+            }
+        }
+    
+        .mask_input_wrapper {
+            .mask_input_field {
+                .el-select {
+                    width: 100%;
+                }
+            }
+        }
+
+        .el-form-item {
+            margin: 0;
+            padding: 25px 0 0 0;
+        
+            .el-form-item__label {
+                text-align: left;
+                line-height: 20px;
+                box-sizing: border-box;
+                color: #2F3448;
+                font-family: $wpf-font-family;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                padding-bottom: 8px !important;
+                min-width: 210px !important;
+        
+                &.wpf_item_group_advanced {
+                    min-width: 210px !important;
+                  }
+            }
+        
+            .el-form-item__content{
+        
+                .input_customize {
+                    width: 78%;
+                }
+                p {
+                    padding-left: 210px;
+                }
+        
+                .el-tooltip.el-icon-info.item {
+                    display: inline-block;
+                    vertical-align: top;
+                }
+            }
+        
+            &.key_pair_field_customize {
+                .key_pair_table_wrapper {
+                    display: flex;
+                    flex-direction: column;
+        
+                    table.ninja_filter_table {
+                        width: 100%;
+                    }
+                }
+            }
+        
+            &.wpf_upload_image {
+                display: flex;
+            }
+        
+            .imageUpload {
+                border-radius: 5px;
+                cursor: pointer;
+
+                .wpf_photo_card {
+                    .wpf_photo_holder {
+                        height: fit-content;
+                        width: fit-content;
+                        .single_default_image {
+                            width: 75px;
+                            height: 70px;
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                border-radius: 4px;
+                            }
+                        }
+                    }
+                    .upload-btn {
+                        margin-bottom: 0;
+                        width: 75px;
+                        height: 70px;
+                    }
+                }
+            }
+        
+            .el-form-item__content {
+                line-height: 20px;
+        
+                .el-input__inner {
+                    height: 38px;
+                    color: $wpf-system-dark;
+                    font-family: $wpf-font-family;
+                    font-size: 15px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 24px;
+                    border: $--border-base;
+                    border-radius: $--border-radius-base;
+                }
+        
+                .el-button--text {
+                    color: $--text-color !important;
+                }
+        
+                .el-button--medium {
+                    padding: 8px 0;
+                }
+            }
+        
+            .el-checkbox-group {
+                display: flex;
+                flex-wrap: wrap;
+              
+                .el-checkbox {
+                    padding: 3px 0px;
+              
+                  .el-checkbox__label {
+                      padding: 3px 0px 3px 8px;
+                  }
+                }
+              }
+        }
+    }
+}
+
+.wp_vue_editor_wrapper{
+    .el-input {
+        .el-input__inner {
+            height: 40px !important;
+            border: $--border-base !important;
+        }
+    }
+
+    .el-button--text {
+        color: $--text-color !important;
+    }
+}
+
+.interval_selection {
+	display: flex;
+	gap: 5px;
+}
+
+.select_default_amount {
+    .el-select {
+        width: 130px;
+    }
+}
+
+.raising_amount {
+	display: flex;
+	align-items: center;
+	padding-top: 10px;
+
+    .initial_amount {
+        width: 210px;
+    }
+    .el-input {
+        width: 25%;
+
+        .el-input__inner {
+            border: $--border-base !important;
+        }
+    }
+}
+
+.recurring_max_bill {
+	display: flex;
+	gap: 5px;
+}
+
+.item_full_width{
+    .el-select__tags {
+        .el-select__input {
+            margin-left: 55px;
+            border: none !important;
+        }
+    }
+}
+
+.wpf_form_title_editor {
+    .el-form-item__label {
+        min-width: 160px !important;
+    }
+}

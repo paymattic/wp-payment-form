@@ -1,0 +1,228 @@
+.wpf-easy-donation-template-wrapper {
+    .wpf-easy-donation-template {
+        .position_customize, .key_pair_table_wrapper {
+            padding-left: 0px;
+            a {
+                // padding: 6px 10px;
+                font-size: 14px;
+                padding-bottom: 3px;
+                background: #fff;
+            }
+            text-decoration: underline;
+            .el-button {
+                padding: 4px 6px;
+                height: 32px;
+                width: 32px;
+            }
+        }
+        .el-input-number--small {
+            line-height: 24px;
+        }
+        .el-input--mini .el-input__inner, .el-input__inner {
+            border: 1px solid $--border-gray;
+            border-radius: 8px;
+        }
+        .dashicons {
+            color: $wpf-gray-shades-500;
+        }
+        // background-color: $wpf-background;
+        .editor_container{
+            max-width: 770px;
+            margin: 0 auto;
+            .editor_header {
+                display: flex;
+                justify-content: space-between;
+                gap: 30px;
+                border-radius: 8px;
+                align-items: center;
+                padding-top: 20px;
+                .header {
+                    @include h4;
+                    padding: 0px !important;
+                }
+                .title-editor {
+                    padding: 0px !important;
+                }
+                code {
+                    cursor: copy;
+                }
+                
+            }
+            .form-element-container {
+                margin: 20px 0;
+                .app-card-header {
+
+                    .editable-lable, span {
+                        @include h6; 
+                    }
+                    span {
+                        font-weight: 400 !important;
+                    }
+                    .wpf-label-editor {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        padding-bottom: 0px !important;
+                        .input-wrapper {
+                            min-width: 350px;
+                        }
+                    }
+                }
+                &.padding-y-0 {
+                    .app-card-header {
+                        padding: 0px 20px;
+                    }
+                }
+                .app-card-body {
+                    .gap-2 {
+                        margin: 20px 0px;
+                        h6 {
+                            margin-bottom: 10px;
+                        }
+                    }
+                    .donation-settings {
+                        display: flex;
+                        gap: 10px;
+                        flex-wrap: wrap;
+                        .switch-group {
+                            display: flex;
+                            align-items: center;
+                            border: 1px dashed #e0e0e0;
+                            padding: 8px 12px;
+                            border-radius: 8px;
+                            gap: 6px;
+                            label {
+                                color: var(--System-Dark, #2F3448);
+                                font-family: Inter;
+                                font-size: 14px;
+                                font-style: normal;
+                                font-weight: 500;
+                                line-height: 20px;
+                            }
+                            .el-switch {
+                                padding: 0px !important;
+                            }
+                        }
+                        .setting-item {
+                            display: flex;
+                            align-items: center;
+                            i {
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                    .image-upload {
+                        .image-preview {
+                            width: 174px;
+                            overflow: hidden;
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 8px;
+                                // object-fit: cover;
+                            }
+                        }
+                        .el-button--text {
+                            @include p;
+                            font-weight: 500;
+                            color: $wpf-system-dark !important;
+                            text-decoration-line: underline;
+                        }
+                    }
+                    .predefined-amounts {
+                        .pricing_options_length_customize {
+                            width: 100%;
+                        }
+                        .select_default_amount {
+                            margin-bottom: 20px;
+                            .el-select {
+                                width: 100%;
+                                max-width: 400px;
+                                .el-input__inner {
+                                    padding-left: 30px;
+                                }   
+                            }
+                            &.custom-select {
+                                position: relative;
+                                .prefix-icon {
+                                    position: absolute;
+                                    font-size: 18px;
+                                    left: 10px;
+                                    bottom: 12px;
+                                    color: $wpf-gray-shades-500;
+                                }
+                            }
+                        }
+                        .el-button {
+                            padding: 4px 6px;
+                            height: 32px;
+                            width: 32px;
+                        }
+                    }
+                    .recurring-donation {
+                        .bold-p {
+                            font-weight: 500;
+                            font-size: 14px;
+                            line-height: 20px;
+                            color: var(--System-Dark, #2F3448);
+                        }
+                    }
+                }
+                &:hover {
+                    .label-edit-wrap {
+                        opacity: 1;
+                        // margin-top: -16px;
+                    }
+                }
+            }
+        }
+        .wpf-donation-choose-payment-method {
+            // .el-checkbox-group {
+            //     display: grid;
+            //     grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            //     gap: 10px;
+            //     margin-top: 10px;
+            //     .el-checkbox {
+            //         padding: 0px !important;
+            //         width: calc(100% / 3 - 28px);
+            //     }
+            // }
+
+            .el-checkbox-group {
+                display: grid;
+                gap: 15px;
+                margin-top: 10px;
+
+                .el-checkbox {
+                    padding: 0px !important;
+                    width: calc(100% / 3 - 28px);
+                }
+              }
+              
+              @media (min-width: 1200px) {
+                .el-checkbox-group {
+                  grid-template-columns: repeat(4, 1fr);
+                }
+              }
+              
+              @media (min-width: 900px) and (max-width: 1199px) {
+                .el-checkbox-group {
+                  grid-template-columns: repeat(3, 1fr);
+                }
+              }
+              
+              @media (min-width: 600px) and (max-width: 899px) {
+                .el-checkbox-group {
+                  grid-template-columns: repeat(2, 1fr);
+                }
+              }
+              
+              @media (max-width: 599px) {
+                .el-checkbox-group {
+                  grid-template-columns: 1fr;
+                }
+              }
+              
+        }
+    }
+}

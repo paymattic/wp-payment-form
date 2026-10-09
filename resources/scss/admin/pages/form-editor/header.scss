@@ -1,0 +1,127 @@
+.wppayform_editor {
+    .wpf-settings_header {
+        background-color: #fff;
+        display: flex;
+        margin-left: -20px;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: -9px;
+        margin-right: -19px;
+        .wpf-back-button {
+            border-right: 1px solid #EAECF0;
+            padding: 16px;
+            cursor: pointer;
+            a {
+                text-decoration: none;
+                 p {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 8px;
+                }
+            }
+            p {
+                @include p;
+                font-size: 13px;
+                font-weight: 500;
+                color: #565865;
+                i {
+                    font-size: 14px;
+                    font-weight: 600;
+                }
+                &:hover {
+                    color: $wpf-active;
+                }
+            }
+        }
+        ul {
+            display: flex;
+            align-items: center;
+            border-right: none;
+            li {
+                // background-color: #fff !important;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0 12px;
+                margin: 0 !important;
+                gap: 10px;
+                border-bottom: 1.5px solid $wpf-background;
+                p {
+                    margin: 6px 0px !important;
+                    color: $wpf-text-color;
+                    color: #565865;
+                    font-size: 13px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 20px;
+                }
+                img, svg {
+                    width: 18px;
+                    height: 18px
+                }
+                &:hover, &.is-active {
+                    background: #fff;
+                    svg, p {
+                        color: $wpf-active;
+                    }
+                }
+                &.is-active {
+                    background: rgba(255, 127, 92, 0.06);
+                    border-bottom: 1.5px solid $wpf-active;
+                }
+            }
+        }
+        .settings_right {
+            padding-right: 16px;
+            .wpf-undo-redo-btn-group {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                padding: 9px 0px;
+                .preview-icon-btn {
+                    padding: 9px 20px;
+                    color: rgb(86, 88, 101);
+                    border: 1px solid gar;
+                    border: $--border-base;
+                    border-radius: 8px;
+                }
+                .el-button--mini {
+                    font-size: 14px;
+                    padding: 8px 16px;
+                }
+                i {
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: #565865;
+                }
+                &.first {
+                    border-left: 1px solid #EAECF0;
+                    border-right: 1px solid #EAECF0;
+                    padding: 9px;
+                    .disabled {
+                        // Add your CSS here
+                        i {
+                            opacity: 0.4;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .wpf_form_settings_banner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    
+        .wpf_form_editor_path {
+            a {
+                color: #3c434a;
+                &:focus {
+                    box-shadow: none;
+                    outline: none;
+                }
+            }
+        }
+    }
+}

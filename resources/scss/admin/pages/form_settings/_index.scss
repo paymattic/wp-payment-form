@@ -1,0 +1,85 @@
+@import './confirmation_settings';
+@import './payment_settings';
+@import './currency_settings';
+@import './layout_design';
+@import './custom_css_js';
+@import './pdf';
+
+.wpf_form_settings_breadcumb {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	padding: 30px 0px 20px 0px;
+
+    .wpf_form_editor_path a {
+        text-decoration: navajowhite;
+    }
+}
+
+.wpf_form_settings_wrapper {
+    display: flex;
+    gap: 20px;
+
+    .wpf_form_settings_sidebar {
+        .el-menu {
+            border: none;
+    
+            .el-menu-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-radius: 8px;
+                padding: 8px 12px;
+                height: auto;
+                padding-left: 12px !important;
+        
+                &.is-active {
+                    background: $--color-primary !important;
+                    color: $wpf-background;
+    
+                    img {
+                        filter: grayscale(100%) brightness(0) invert(1);
+                    }
+    
+                    p {
+                        color: $wpf-background !important;
+                    }
+                }
+        
+                span {
+                    display: flex;
+                    gap: 10px;
+                    p {
+                        color: $--text-color;
+                        font-family: $wpf-font-family;
+                        font-size: 15px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: 24px;
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    
+    }
+}
+
+.wpf_form_setting_btn {
+    display: flex;
+    justify-content: flex-end;
+    &.customize_btn {
+        margin: 20px;
+    }
+}
+
+.sub_section_header h3 {
+	color: $wpf-system-dark;
+	font-family: $wpf-font-family;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 20px;
+}
+
+

@@ -1,0 +1,257 @@
+.wpf_content_wrapper_parent_v2{
+    &.wpf-customer-profile {
+        padding: 12px 20px 0 0;
+        .app-card-header {
+            h3 {
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 16px;
+                color: #2F3448;
+            }
+        }
+        .header {
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 16px;
+            color: #696778;
+            .el-icon-arrow-right {
+                font-size: 10px;
+                color: #696778;
+            }
+            .customers {
+                cursor: pointer;
+            }
+            .customer-email {
+                color: #2F3448;
+                font-weight: 600;
+            }
+        }
+        .profile-section {
+            display: flex;
+            gap: 20px;
+            .subscription_section{
+                width: calc(100% - 350px);
+                .app-card {
+                    border: $--border-color-secondary;
+                    .app-card-header {
+                        border-bottom: $--border-color-secondary;
+                    }
+                    .app-card-body {
+                        padding: 0px;
+                        .wpf_customer_subscription_item {
+                            border: 0px;
+                            border-bottom: 1px solid #f0eeee;
+                            border-radius: none;
+                            display: flex;
+                            gap: 20px;
+                            justify-content: space-between;
+                            padding: 20px;
+                            padding-bottom: 0px;
+                            &:first-child {
+                                padding-top: 20px;
+                            }
+                            .payment_header_left{
+                                max-width: calc(100% - 268px);
+                                .subscription_status {
+                                    display: flex;
+                                    align-items: flex-start;
+                                    gap: 10px;
+                                    .wpf_paystatus_badge {
+                                        svg {
+                                            width: 10px;
+                                            height: 10px;
+                                            margin-right: 2px;
+                                        }
+                                    }                          
+                                }
+                            }
+                            .head_payment_amount {
+                                display: block;
+                                .payment_date {
+                                    margin-bottom: 20px;
+                                }
+                            }
+                            .view-entries-btn {
+                                display: block;
+                                margin-top: 10px;
+                                a {
+                                    color: #2F3448;
+                                    font-size: 14px;
+                                    font-weight: 500;
+                                    line-height: 20px;
+                                    text-decoration: none;
+                                    &:hover {
+                                        text-decoration: underline;
+                                    }
+                                }
+                            
+                            }
+                        }
+                    }
+                }
+            }
+            .engagement {
+                .app-card {
+                    padding-bottom: 10px;
+                }
+            }
+            .activity-section {
+                .app-card {
+                    padding-bottom: 10px ;
+                }
+                .app-card-header {
+                    padding: 10px 20px !important;
+                }
+                .wpf_modules_forms {
+                    .el-input {
+                        height: 40px;
+                        input {
+                            height: 100%;
+                            border: $--border-base;
+                            border-radius: 8px;
+                        }
+                    }
+                }
+            }
+            .profile-info{
+                min-width: 350px;
+                .wpf_customer_profile_wrapper {
+                    position: sticky;
+                    top: 40px;
+                    .app-card {
+                        border: 1px solid #EAECF0;
+                        .app-card-header  {
+                            padding: 14px 20px !important;
+                            border-bottom: 1px solid #EAECF0;
+                            .wpf_customer_profile_title {
+                                color: var(--System-Dark, #2F3448);
+                                font-size: 14px;
+                                font-weight: 600;
+                            }
+                        }
+                        .app-card-body {
+                            .profile {
+                                display: flex;
+                                align-items: center;
+                                gap: 10px;
+                                .wpf_customer_profile_avatar {
+                                    img {
+                                        width: 56px;
+                                        height: 56px;
+                                        border-radius: 50%;
+                                    }
+                                }
+                                .wpf_customer_profile_name {
+                                    .customer_name {
+                                        color: var(--System-Dark, #2F3448);
+                                        font-family: Inter;
+                                        font-size: 16px;
+                                        font-style: normal;
+                                        font-weight: 500;
+                                        line-height: 24px; /* 150% */
+                                        margin-bottom: 5px;
+                                        text-align: left;
+                                    }
+                                    .customer_email {
+                                        a {
+                                            font-style: normal;
+                                        }
+                                    }
+                                }
+                            }
+                            .sub-title {
+                                .title {
+                                    @include text($color: #565865, $size: 12px, $weight: 500, $lineHeight: 16px);
+                                    margin-top: 16px;
+                                    margin-bottom: 4px;
+                                }
+                                span {
+                                    @include text($color: #2F3448, $size: 14px, $weight: 500, $lineHeight: 20px);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .has_site_access {
+                .user_roles {
+                    padding: 4px 8px;
+                    border-radius: 25px;
+                    border: $--border-base;
+                    margin-right: 8px;
+                }
+            }
+        }
+        .customer_data_wrapper {
+            padding: 20px 0px;
+        }
+        .wpf_customer_engagement_table {
+            table {
+                width: 100% !important;
+            }
+
+            thead {
+                tr {
+                    th {
+                        background-color: #FAFAFA;
+                        color: #2F3448;
+                        font-size: 14px;
+                        font-weight: 500;
+                        text-align: left;
+                        border-radius: 0px;
+                        height: 34px !important;
+                        &:first-child {
+                            padding-left: 12px;
+                        }
+                    }
+                }
+            }
+            tbody {
+                tr {
+                    td:first-child {
+                        padding-left: 12px;
+                    }
+                }
+            }
+            .view-entry-btn {
+                a {
+                    text-decoration: none;
+                    color: #2F3448;
+                    font-size: 14px;
+                    font-weight: 500;
+                    line-height: 20px;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+    .wpf_revenue_item {
+        padding: 0px !important;
+        .app-card {
+            border: none;
+        }
+        .app-card-header {
+            padding: 10px 20px !important;
+            .wpf_rev_currency_toggler {
+             align-items: center;
+            }
+         }
+         .app-card-body {
+            padding: 20px !important;
+         }
+    }
+}
+
+.wpf_modules_forms_select {
+    .el-input {
+        height: 40px;
+        input {
+            height: 100%;
+            border: $--border-base;
+            border-radius: 8px;
+        }
+    }
+}

@@ -1,0 +1,11 @@
+
+.el-switch.primary.is-checked .el-switch__core {
+    border-color: $--border-base !important;
+    background-color: $--color-primary !important;
+}
+
+.el-switch.secondary.is-checked .el-switch__core {
+    border-color: $--el-color-secondary !important;
+    background-color: $--el-color-secondary !important;
+}
+

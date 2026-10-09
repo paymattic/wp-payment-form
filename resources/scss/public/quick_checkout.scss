@@ -1,0 +1,850 @@
+@import '../../../node_modules/pikaday/css/pikaday.css';
+@import "dropzone";
+@import "./variables.scss";
+@import "../admin/pages/form-editor/choose_payment_method/choose_payment_method.scss";
+
+.wpf_form_preview_wrapper {
+  font-family: 'Nato Sans', sans-serif;
+  padding: 30px;
+  max-width: 60%;
+  background: white;
+  padding: 23px;
+  margin: auto;
+  border-radius: 8px;
+}
+@media (min-width: 768px) {
+  .wpf_simple_donation_form_wrapper {
+    max-width: 30%;
+  }
+}
+.wpf_donation_wrapper {
+  max-width: 400px;
+}
+.wpf_form_notices {
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+
+  p, ul {
+    padding: 0;
+    margin: 0;
+  }
+  .wpf_alert_heading {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  ul.wpf_alert_ietms {
+    margin-left: 30px;
+    list-style: disc;
+  }
+
+  &.wpf_form_notice_error {
+    color: rgb(114, 28, 36);
+    background-color: rgb(248, 215, 218);
+    border-color: rgb(245, 198, 203);
+  }
+
+  &.wpf_form_notice_success {
+    color: rgb(21, 87, 36);
+    background-color: rgb(212, 237, 218);
+    border-color: rgb(195, 230, 203);
+  }
+  &.wpf_form_notice_info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+  }
+}
+
+.wpf_strip_default_style {
+
+  .wpf_card-errors {
+    color: #fa755a;
+  }
+
+  .StripeElement {
+    background-color: white;
+    height: 40px;
+    padding: 10px 12px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+  }
+
+  .StripeElement--focus {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+  }
+
+  .StripeElement--invalid {
+    border-color: #fa755a;
+  }
+
+  .StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+  }
+
+  .subscription_custom_amount_block {
+    margin-top: 10px;
+  }
+
+}
+/**donation field css*/
+.wpf_donation_status {
+  align-items: center;
+  background: $wpf-success-400;
+  border-radius: 8px 8px 0px 0px;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  font-weight: 600;
+  justify-content: center;
+  width: 100%;
+  .raised_amount, .goal_amount, .count_amount {
+    margin-top: 10px;
+  }
+  .raised_amount{
+    margin-left: 10px;
+    border-radius: 8px 0px 0px 8px;
+  }
+  .goal_amount{
+    margin-right: 10px;
+    border-radius: 0px 8px 8px 0px;
+  }
+  div {
+    align-items: center;
+    border-color: #f2f2f2;
+    background-color: $wpf-success-600;
+    border-width: 1px 0;
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: column;
+    padding: 4px;
+  }
+  .number {
+    font-weight: bold;
+    font-size: 19px;
+  }
+}
+.wpf_donation_fields_wrapper {
+  padding: 23px 0px;
+  min-height: 150px;
+}
+.wpf_donation_photo img {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.wpf_donation_bar_wrapper {
+  padding:10px;
+  background: $wpf-success-400;
+  border-radius: 0px 0px 8px 8px;
+  .wpf_donation_fields_bar {
+    border-radius: 11px;
+    background: $wpf-success-50;
+    width: 100%;
+  .wpf_bar{
+    height: 16px;
+    line-height: 1.2;
+    background: $wpf-success-600;
+    border-radius: 11px;
+    font-size: 12px;
+    color: white;
+    font-style: italic;
+    text-align: center;
+    max-width: 100%;
+  }
+}
+}
+
+
+.wpf_item_donation_item {
+    // border: 1px solid #e8ebed;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    // padding-bottom: 12px;
+    .wpf_donation_controls_custom {
+      .wpf_input-group-text-prepend {
+        border: $--border-base;
+        border-right: none;
+      }
+      // max-width:250px;
+    }
+}
+
+.wpf_donation_controls_radio {
+  min-height: 42px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  .form-check {
+    // display: block;
+    // float:left;
+    // margin: 0px 6px 6px 0px;
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+  .form-check:first-of-type { margin-left: 0; }
+
+  input {
+    display: none;
+  }
+  label{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    font-weight: 300;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    min-width: 114px;
+    padding: 6px 8px;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 600;
+    // background: #FF7519;
+    // color: white;
+    border-radius: 8px;
+  }
+.wpf_input_label{
+  label {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 30px;
+    color: #2F3448;
+  }
+}
+
+  input:checked + label {
+    background: #EAF0F5;
+    border: $--border-base;
+  }
+}
+
+.wpf_donation_interval_button {
+  display: flex;
+  border: $--border-base;
+  border-radius: 8px;
+  padding: 5px 10px;
+  gap: 5px;
+}
+
+.wpf_donation_interval_button,
+.wpf_donation_interval_button * {
+  cursor: pointer;
+}
+
+.wpf_multi_form_controls {
+  .form-check {
+    label {
+      display: initial;
+    }
+  }
+}
+
+.wpf_input_content.wpf_donation_recurring_infos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: $wpf-system-dark;
+  font-family: $wpf-font-family;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  .donation_recurring_interval {
+    cursor: pointer;
+    margin: 0;
+  }
+}
+.wpf_form_wrapper {
+  font-family: 'Nato Sans', sans-serif;;
+  form.wpf_submitting_form {
+    span.wpf_txt_normal {
+      display: none !important;
+    }
+
+    span.wpf_txt_loading {
+      display: block !important;
+    }
+  }
+
+  form.wpf_label_top {
+    .wpf_form_group {
+      display: inline-block;
+      // width: 100%; Comment for 2 column layout issues
+      margin-bottom: 15px;
+      &.wpf_item_donation_item {
+        display: block;
+      }
+
+      > label {
+        display: block;
+      }
+
+      .wpf_form_control {
+        display: block;
+        width: 100%;
+        border-radius: 5px;
+        font-size: medium;
+        font-weight: 400;
+      }
+    }
+  }
+
+  form.wpf_form {
+    .wpf_form_group {
+      .wpf_form_item_group {
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+        align-items: stretch;
+        width: 100%;
+
+        .wpf_input-group-prepend,
+        .wpf_input-group-append {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+
+          .wpf_input-group-text {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding: 0 15px;
+            margin-bottom: 0;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: rgb(73, 80, 87);
+            text-align: center;
+            white-space: nowrap;
+            background-color: rgb(233, 236, 239);
+            border-radius: 8px 0px 0px 8px;
+            font-size: 20px;
+            font-weight: 600;
+              &-prepend {
+                border-top-left-radius: 0.25rem;
+                border-bottom-left-radius: 0.25rem;
+              }
+              &-append {
+                border-top-right-radius: 0.25rem;
+                border-bottom-right-radius: 0.25rem;
+              }
+          }
+        }
+
+        input {
+          position: relative;
+          -webkit-box-flex: 1;
+          -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+          width: 1% !important;
+          margin-bottom: 0;
+          height: 40px;
+          font-size: medium;
+          font-weight: 500;
+        }
+        .input-prepend {
+          border-top-left-radius: 0 !important;
+          border-bottom-left-radius: 0 !important;
+        }
+        .input-append {
+          border-top-right-radius: 0 !important;
+          border-bottom-right-radius: 0 !important;
+        }
+      }
+    }
+  }
+
+  .wpf_loading_svg {
+    display: none;
+  }
+
+  form.wpf_submitting_form {
+    .wpf_loading_svg {
+      display: inline-block;
+    }
+  }
+
+  .wpf_form_group {
+    display: block;
+    margin-bottom: 20px;
+    * {
+      box-sizing: border-box;
+    }
+    .wpf_has_error {
+      border-color: #f5c6cb !important;
+    }
+
+    .form-check {
+      .wpf_form_control.form-check-input {
+        display: inline-block;
+        width: auto;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .wpf_inline_labels {
+      &.wpf_label_left {
+        .wpf_form_group {
+          .wpf_input_label > label {
+            text-align: left;
+            display: block;
+          }
+        }
+      }
+
+      &.wpf_label_right {
+        .wpf_form_group {
+          .wpf_input_label > label {
+            text-align: right;
+            display: block;
+          }
+        }
+      }
+
+      .wpf_form_group {
+        .wpf_input_label {
+          float: left;
+          width: 200px;
+          padding-right: 10px;
+        }
+
+        .wpf_input_content {
+          margin-left: 200px;
+          display: block;
+
+          .wpf_form_control {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .wpf_form_group {
+      .wpf_form_control, .wpf_form_item_group {
+        width: 100%;
+        max-width: 100% !important;
+      }
+    }
+  }
+
+  .wpf_submit_button_pos_center {
+    .wpf_form_submissions {
+      display: block;
+      justify-content: center;
+    }
+  }
+  .wpf_submit_button_pos_left {
+    .wpf_form_submissions {
+      display: block;
+      justify-content: left;
+    }
+  }
+  .wpf_submit_button_pos_right {
+    .wpf_form_submissions {
+      display: block;
+      justify-content: right;
+    }
+  }
+
+  form.wpf_form {
+    .wpf_default_btn, .wpf_full_block_btn {
+      border-radius: 8px;
+      display: inline-block;
+      background-color: rgb(62, 168, 229);
+      background-image: linear-gradient(-180deg, rgb(68, 177, 232), rgb(48, 152, 222));
+      // box-shadow: 0 1px 0 0 rgba(46, 86, 153, .15), inset 0 1px 0 0 rgba(46, 86, 153, .1), inset 0 -1px 0 0 rgba(46, 86, 153, .4);
+      font-size: 17px;
+      line-height: 17px;
+      height: 40px;
+      font-weight: 700;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, .12);
+      color: rgb(255, 255, 255);
+      cursor: pointer;
+      transition: all .2s ease-in-out;
+      padding: 10px 20px;
+      border: 1px solid #D6DAE1;
+      &:hover {
+        background-image: linear-gradient(rgb(125, 197, 238), rgb(0, 140, 221) 85%, rgb(48, 162, 228));
+      }
+    }
+
+    .wpf_full_block_btn {
+      display: block !important;
+      width: 100%;
+      height: 40px;
+      background: #FF7519;
+      border: none;
+    }
+
+    .wpf_form_submissions {
+      display: flex;
+    }
+    .wpf_full_block_btn:hover {
+      display: block !important;
+      width: 100%;
+      height: 40px;
+      background: #e69661;
+      text-decoration: none;
+    }
+
+  }
+
+  &.wpf_restriction_action_hide_form {
+    form.wpf_form {
+      display: none !important;
+      visibility: hidden !important;
+    }
+  }
+  &.wpf_restriction_action_hide_submit_button {
+    form.wpf_form {
+      .wpf_form_submissions {
+        display: none !important;
+        visibility: hidden !important;
+      }
+    }
+  }
+
+  .wpf_input_label {
+    > label {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 20px;
+      color: $wpf-text-color;
+      font-family: $wpf-font-family;
+      display: block;
+      margin-bottom: 6px;
+    }
+  }
+
+  form.wpf_bold_labels {
+    .wpf_input_label {
+      > label {
+        font-weight: bold;
+      }
+    }
+  }
+
+}
+
+.wpf_donation_recurring_controller {
+  .form-check {
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+}
+
+form.wpf_default_form_styles {
+  .wpf_form_group {
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    input[type="password"],
+    input[type="search"],
+    input[type="number"],
+    input[type="tel"],
+    input[type="range"],
+    input[type="date"],
+    input[type="month"],
+    input[type="week"],
+    input[type="time"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="color"] {
+      display: block;
+      width: 100%;
+      padding: 8px 12px;
+      height: 40px;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.5;
+      font-family: $wpf-font-family;
+      border: $--border-base;
+      color: $wpf-text-color;
+      background-color: #fff;
+      background-clip: padding-box;
+      border-radius: 8px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+      &::placeholder {
+        color: $wpf-gray-shades-500;
+        font-weight: 400;
+      }
+
+      &:focus {
+        border-color: $--border-color-hover;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(214, 218, 225, 0.3);
+      }
+    }
+    select {
+      display: block;
+      width: 100%;
+      padding: 8px 12px;
+      height: 40px;
+      font-size: 14px;
+      font-weight: 400;
+      font-family: $wpf-font-family;
+      line-height: 1.5;
+      color: $wpf-text-color;
+      background-color: #fff;
+      border: $--border-base;
+      border-radius: 8px;
+      transition: border-color 0.2s ease;
+
+      &:focus {
+        border-color: $--border-color-hover;
+        outline: none;
+      }
+    }
+    textarea {
+      display: block;
+      width: 100%;
+      min-height: 80px;
+      padding: 10px 12px;
+      font-size: 15px;
+      font-weight: 400;
+      font-family: $wpf-font-family;
+      line-height: 1.5;
+      color: $wpf-text-color;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: $--border-base;
+      border-radius: 8px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      resize: vertical;
+
+      &::placeholder {
+        color: $wpf-gray-shades-500;
+      }
+
+      &:focus {
+        border-color: $--border-color-hover;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(214, 218, 225, 0.3);
+      }
+    }
+  }
+}
+
+.dropzone_parent input[type=file] {
+  display: none !important;
+  visibility: hidden;
+}
+
+.payform_file_lists {
+  display: flex;
+  width: 100%;
+  .payform_each_file {
+    max-width: 150px;
+    margin-right: 20px;
+    flex: 1;
+    &:hover {
+      opacity: 0.8;
+      box-shadow: 0px 2px 5px 5px #eeeeef;
+    }
+    img {
+      max-width: 100%;
+    }
+  }
+}
+
+label.wpf_address_heading {
+  font-size: 120%;
+  font-weight: 500;
+  border-bottom: 1px solid #ced4da;
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+  .wpf-t-container {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    vertical-align: top;
+    .wpf-t-cell {
+      display: table-cell;
+      padding: 0 15px;
+      vertical-align: inherit;
+      &:first-of-type {
+        padding-left: 0
+      }
+      &:last-of-type {
+        padding-right: 0
+      }
+    }
+  }
+}
+.wpf_tc_scroll {
+  max-height: 200px;
+  overflow: scroll;
+  padding: 15px;
+  background: #f6f8fa;
+  background-image: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0)), linear-gradient(to top, #ffffff, rgba(255, 255, 255, 0)), linear-gradient(to bottom, #f7f7f7, rgba(255, 255, 255, 0)), linear-gradient(to top, #f5f5f5, rgba(255, 255, 255, 0));
+  background-position: 0 0, 0 100%, 0 0, 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 0em, 100% 5em, 100% 1em, 100% 1em;
+  background-attachment: local, local, scroll, scroll;
+  border: 1px solid #d4d4d4;
+}
+
+ul.wpf_coupon_responses {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+    padding-top: 5px;
+  }
+
+  span.error-clear {
+    font-weight: 400;
+    color: #979797;
+    margin-right: 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 1px 5px;
+  }
+
+  .wpf_error {
+    color: #f56c6c;
+    cursor: pointer;
+  }
+
+  .wpf_success {
+    color: #28a745;
+  }
+}
+
+
+
+// .wpf-radio-with-Icon {
+//   ul {
+//     margin: 0px !important;
+//     padding: 0px !important;
+//     li {
+//       display: inline-block;
+//       width: 60;
+//       height: 60;
+//       border-radius: 2%;
+//       input {
+//         width: 0;
+//         height: 0;
+//         opacity: 0;
+//         margin: 0;
+//       }
+//     }
+//   }
+
+//   :checked + label {
+//     border-color: #ddd;
+//     &img {
+//       transform: scale(0.9);
+//       z-index: -1;
+//     }
+//     &:before {
+//       content: "✓";
+//       background-color: $wpf-success-500;
+//       transform: scale(1);
+//     }
+//   }
+
+//   input[type="radio"][id^="cb"] {
+//     display: none;
+//   }
+
+//   label {
+//     border: 1px solid #ccc;
+//     border-radius: 3px;
+//     display: block;
+//     position: relative;
+//     margin: 10px 2px 3px 0px;
+//     cursor: pointer;
+//   }
+
+//   label:before {
+//     background-color: white;
+//     color: white;
+//     content: " ";
+//     display: block;
+//     border-radius: 50%;
+//     border: 1px solid $wpf-success-400;
+//     position: absolute;
+//     top: -5px;
+//     left: -5px;
+//     width: 14px;
+//     height: 14px;
+//     text-align: center;
+//     line-height: 12px;
+//     font-size: 12px;
+//     transition-duration: 0.4s;
+//     transform: scale(0);
+//   }
+
+//   label
+//   {
+//     img {
+//       height: 36px;
+//       width: 64px;
+//       transition-duration: 0.2s;
+//       transform-origin: 50% 50%;
+//     }
+//   }
+// }
+
+// @media (min-width: 768px) {
+//   .wpf_donation_image_container {
+//     width: 50%;
+//   }
+// }
+
+
+// .wpf_multi_form_controls
+@media (min-width: 768px) {
+  .wpf_form {
+    position: relative;
+  }
+
+  .wpf_donation_image_container {
+      min-width: 50%;
+      position: absolute;
+      left: 0;
+      min-height: 500px;
+      max-height: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+  }
+  .wpf_donation_photo {
+      height: 100%;
+  }
+  .wpf_form > div {
+      padding-left: 54%;
+  }
+}
+.simple_wpf_form {
+  position: '';
+}
+.simple_wpf_form > div {
+  padding-left: 0;
+}
+
+@import "gift_aid";
+

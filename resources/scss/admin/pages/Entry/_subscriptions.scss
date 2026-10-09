@@ -1,0 +1,185 @@
+.entry_subscription_items {
+    background: $wpf-background;
+    margin: 20px 0;
+    // padding: 20px;
+    border-radius: 8px;
+
+    .entry_info_header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: $--border-color-secondary;
+        padding: 20px;
+
+        .info_box_header {
+            color: $wpf-system-dark;
+            font-family: $wpf-font-family;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 22px;
+        }
+
+        .wpf_subscription_sync_btn {
+            span {
+                display: flex;
+                gap: 5px;
+                align-items: center;
+            }
+        }
+
+        .el-button span {
+            color: $wpf-system-dark;
+            font-family: $wpf-font-family;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 16px;
+        }
+    }
+
+    .entry_info_body {
+        .payment_head_top {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            border-bottom: $--border-color-secondary;
+        }
+
+        h3 {
+            padding: 20px;
+            margin: 0;
+        }
+
+        .wp-list-table {
+            border: none !important;
+            border-collapse: separate;
+            border-radius: 0 0 8px 8px;
+            overflow: hidden;
+        }
+
+    }
+}
+
+
+.head_small_title {
+    color: $wpf-system-mid;
+    font-family: $wpf-font-family;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    margin: 0;
+    padding-bottom: 10px;
+}
+
+.head_payment_amount {
+        color: $wpf-system-mid;
+        font-family: $wpf-font-family;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+    .pay_amount {
+        color: $wpf-system-dark;
+        font-family: $wpf-font-family;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 28px;
+    }
+}
+
+.payment_head_top {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: $--border-base;
+
+    .payment_header_right {
+        text-align: right;
+
+        .subscription_payment_url {
+            padding-bottom: 5px;
+            a {
+                color: $wpf-system-dark;
+                font-family: $wpf-font-family;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 16px;
+            }
+        }
+
+        .wpf_payment_amount {
+            padding-top: 10px;
+            color: $wpf-system-mid;
+            font-family: $wpf-font-family;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px;
+        }
+    }
+}
+
+.wpf_paystatus_badge {
+        display: flex;
+        padding: 2px 8px 2px 2px;
+        text-align: center;
+        font-family: $wpf-font-family;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 16px;
+
+    svg {
+        height: 10px;
+    }
+}
+.wpf_pay_status_intented {
+	border-radius: 6px;
+	background: $wpf-warning-25;
+	color: $wpf-warning-600;
+}
+
+.wpf_pay_status_active {
+	border-radius: 6px;
+	background: $wpf-success-25;
+	color: $wpf-success-600;
+}
+
+.wpf_pay_status_cancelled {
+    border-radius: 6px;
+	background: $wpf-danger-25;
+	color: $wpf-danger-600;
+}
+
+.wpf_table_payment {
+	display: flex;
+	gap: 5px;
+
+    .table_payment_amount {
+        color: $wpf-system-dark;
+        font-family: $wpf-font-family;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+    }
+
+    .payment_currency {
+        color: $wpf-system-dark;
+        font-family: $wpf-font-family;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        text-transform: uppercase;
+    }
+}
+

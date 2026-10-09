@@ -1,0 +1,94 @@
+// Gift Aid card — design system tokens only, no hardcoded colors.
+// .wpf_form_wrapper prefix beats generic .wpf_form_wrapper .wpf_form_group
+// rules (display:block, box-sizing) that otherwise win on specificity.
+// Imported by both public.scss and quick_checkout.scss because donation
+// templates are quick_form category and load quick_checkout.css.
+.wpf_form_wrapper .wpf_gift_aid_wrapper {
+  .wpf_gift_aid_card {
+    border: 1px solid #D6DAE16E;
+    border-radius: $--border-radius-base;
+    padding: 16px;
+    background: $wpf-background;
+
+    &__header {
+      display: flex !important;
+      align-items: flex-start;
+      gap: 12px;
+
+      .form-check-input {
+        flex-shrink: 0;
+        width: 16px;
+        height: 16px;
+        margin: 2px 0 0;
+        cursor: pointer;
+      }
+    }
+
+    &__body {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+
+    // !important: theme label color rules win on specificity without this.
+    &__title {
+      display: block;
+      color: $wpf-text-color !important;
+      font-family: $wpf-font-family;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 20px;
+      cursor: pointer;
+      margin-bottom: 0;
+    }
+
+    &__declaration {
+      color: $--color-text-regular !important;
+      font-family: $wpf-font-family;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 20px;
+      margin: 0;
+    }
+  }
+
+  .wpf_gift_aid_address {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+
+    &__label {
+      color: $wpf-text-color;
+      font-family: $wpf-font-family;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 20px;
+      margin: 0 0 4px;
+    }
+
+    &__row {
+      display: flex;
+      gap: 8px;
+
+      .wpf_input {
+        flex: 1;
+        min-width: 0;
+      }
+
+      @media (max-width: 480px) {
+        flex-direction: column;
+        gap: 8px;
+
+        .wpf_input {
+          width: 100%;
+        }
+      }
+    }
+
+    .wpf_input {
+      width: 100%;
+    }
+  }
+}

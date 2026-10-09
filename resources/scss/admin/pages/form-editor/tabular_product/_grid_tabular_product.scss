@@ -1,0 +1,437 @@
+
+  .wpf-product-cards-wrap {
+    gap: 15px;
+    .wpf-product-card {
+        position: relative;
+        border-radius: 8px;
+        border: $--border-base;
+        background: $wpf-background;
+        display: flex;
+        padding: 6px 6px 0px 6px;
+        flex-direction: column;
+        align-items: flex-start;
+
+        &.wpf-tabular-product-is-flex {
+            flex-direction: row;
+            padding: 6px;
+        }
+
+        .label-edit-wrap {
+            display: none;
+            position: absolute;
+        }
+        
+        &:hover .label-edit-wrap {
+            display: contents;
+        }
+
+        &:hover {
+        background: #f5f7fd;
+        }
+
+        .wpf-product-checkbox {
+        position: absolute;
+        top: 13px;
+        left: 13px;
+        z-index: 3;
+        border: 1px solid #c3cad8;
+        background: #fff;
+        width: 20px;
+        height: 20px;
+        border-radius: 6px;
+
+            &:before {
+                content: "";
+                width: 4px;
+                height: 9px;
+                border-bottom: 2px solid #fff;
+                border-right: 2px solid #fff;
+                position: absolute;
+                left: 7px;
+                transform: rotate(45deg);
+                top: 2px;
+            }
+        }
+
+        input[type="checkbox"] {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        border: none;
+        opacity: 0;
+        z-index: 1;
+
+            &:checked {
+                ~ .wpf-product-checkbox {
+                border-color: #4c71fb;
+                background: #4c71fb;
+                }
+
+                ~ .wpf-product-card {
+                background: #f5f7fd;
+                }
+            }
+        }
+
+        .wpf-product-image {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+
+            img {
+                // max-height: 278px;
+                width: 100%;
+                // min-height: 220px;
+                object-fit: cover;
+                border-radius: 8px;
+                height: 230px;
+            }
+
+            &:hover {
+                .wpf-product-image-overlay {
+                opacity: 1;
+                visibility: visible;
+                }
+            }
+
+            .wpf-product-image-overlay {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+                background: rgba(0, 0, 0, 0.50);
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: 0.3s;
+                opacity: 0;
+                visibility: hidden;
+
+                span {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 8px;
+                    padding: 6px 12px;
+                    border-radius: 6px;
+                    background: #FAFAFA;
+                    color: $wpf-system-dark;
+                    font-family: $wpf-font-family;
+                    font-size: 12px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 16px;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .wpf-product-body {
+            padding: 20px 14px;
+
+            &.wpf-flex-body {
+                padding: 14px 10px 14px 8px;
+                width: 70%;
+
+                .wpf-product-title {
+                
+                    .editable-lable {
+                        .wpf_lable {
+                            white-space: normal;
+                            width: 100%;
+                            display: contents;
+                        }
+                    }
+                }
+            }
+
+
+            .wpf-label-editor {
+                padding-bottom: 0 !important;
+            }
+    
+            .wpf-product-title {
+                margin: 0;
+                overflow: hidden;
+                color: $wpf-system-dark;
+                font-family: $wpf-font-family;
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 24px;
+                
+                .editable-lable {
+                    .wpf_lable {
+                        max-width: 90%;
+                        font-size: 15px;
+                        font-weight: 500;
+                        line-height: 20px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: block;
+                        width: 196px;
+                    }
+                }
+            }
+
+            .wpf-product-content {
+                margin: 0;
+                padding: 6px 0;
+
+                .wpf_lable {
+                    font-size: 13px;
+                    font-weight: 400;
+                }
+                .label_editor-width{
+                    width: 100%;
+                }
+            }
+
+            .wpf-product-price {
+                color: $wpf-system-dark;
+                font-family: $wpf-font-family;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 24px;
+                .wpf_lable {
+                    color: $wpf-system-dark;
+                    font-family: $wpf-font-family;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 24px;
+                }
+                .input-wrapper {
+                    padding: 0;
+                }
+            }
+
+            //   select {
+            //     border-color: #b8bdc9;
+            //     box-shadow: none;
+            //     border-radius: 4px;
+            //     padding: 5px 10px;
+            //     width: 100%;
+            //     -moz-appearance: none;
+            //     appearance: none;
+
+            //     background-image: linear-gradient(45deg, transparent 50%, gray 50%),
+            //       linear-gradient(135deg, gray 50%, transparent 50%);
+            //     background-position: calc(100% - 15px) calc(1em + -4px),
+            //       calc(100% - 10px) calc(1em + -4px), calc(100% - 2.5em) 0.5em;
+            //     background-size: 5px 5px, 5px 5px, 1px 1.5em;
+            //     background-repeat: no-repeat;
+
+            //     &:focus {
+            //       outline: none;
+            //       box-shadow: none;
+            //       border-color: #4c71fb;
+            //     }
+            //   }
+
+            .wpf_product_qty {
+                height: 33px;
+                border-color: #b8bdc9;
+                border-radius: 4px;
+            }
+
+            .wpf-product-footer {
+                z-index: 9;
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                position: relative;
+                gap: 9px;
+                margin-top: 13px;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 16px;
+
+                .label_editor-width {
+                    width: 0;
+                    .input-wrapper {
+                        padding: 0;
+                        border: none;
+                        text-decoration: none;
+                    }
+                }
+
+                .wpf_lable {
+                    color: $wpf-system-dark;
+                    font-family: $wpf-font-family;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 16px;
+                }
+
+                .wpf-product-quantity {
+                    display: flex;
+                    flex-direction: column;
+
+                    label {
+                        padding-bottom: 5px;
+                    }
+
+                    input {
+                        line-height: 20px;
+                        border-radius: 8px;
+                        border: $--border-base;
+                        background: $wpf-background;
+                        display: flex;
+                        padding: 6px 8px 6px 10px;
+                        align-items: center;
+                        gap: 4px;
+                        height: 34px;
+                        width: 70px;
+                    }
+                }
+
+                .wpf-product-size {
+                    flex: 0 1 auto;
+                    min-width: 70px;
+                    max-width: 70%;
+
+                    label {
+                        padding-bottom: 5px;
+                    }
+
+                    select {
+                        width: 100%;
+                        height: 36px;
+                        padding: 8px 32px 8px 12px;
+                        border: $--border-base;
+                        border-radius: 8px;
+                        background: $wpf-background;
+                        color: $wpf-system-dark;
+                        font-family: $wpf-font-family;
+                        font-size: 14px;
+                        font-weight: 500;
+                        line-height: 20px;
+                        cursor: pointer;
+                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+                        appearance: none;
+                        
+                        // Modern dropdown arrow
+                        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+                        background-position: right 8px center;
+                        background-repeat: no-repeat;
+                        background-size: 16px;
+
+                        option {
+                            padding: 8px 12px;
+                            color: $wpf-system-dark;
+                            background: $wpf-background;
+                            
+                            &:hover {
+                                background: #f5f7fd;
+                            }
+                            
+                            &:checked {
+                                background: #4c71fb;
+                                color: #ffffff;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.active {
+            .wpf-product-dialog-box {
+                display: flex;
+            }
+        }
+
+        .wpf-product-dialog-box {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: 20;
+            align-items: center;
+            justify-content: center;
+            display: none;
+
+            .wpf-product-dialog-content {
+                width: 100%;
+                max-width: 960px;
+                height: calc(100% - 20px);
+                max-height: calc(100% - 300px);
+                overflow-x: hidden;
+                margin: auto;
+                padding: 60px 70px 20px 70px;
+                background: #fff;
+                border-radius: 8px;
+                position: relative;
+
+                /* Next & previous buttons */
+                .prev,
+                .next {
+                cursor: pointer;
+                position: absolute;
+                top: 50%;
+                width: auto;
+                padding: 16px;
+                margin-top: -22px;
+                color: rgb(136, 32, 32);
+                font-weight: bold;
+                font-size: 18px;
+                transition: 0.6s ease;
+                border-radius: 0 3px 3px 0;
+                user-select: none;
+                }
+
+                /* Position the "next button" to the right */
+                .next {
+                right: 53px;
+                border-radius: 3px 0 0 3px;
+                text-decoration: none;
+                }
+
+                .prev {
+                text-decoration: none;
+                }
+
+                /* On hover, add a black background color with a little bit see-through */
+                .prev:hover,
+                .next:hover {
+                background-color: rgba(0, 0, 0, 0.8);
+                }
+
+                .close-dialog {
+                position: absolute;
+                color: #000;
+                background-color: #edeef5;
+                top: 10px;
+                right: 10px;
+                border-radius: 50%;
+                transform: rotate(-45deg);
+                cursor: pointer;
+                width: 45px;
+                height: 45px;
+                line-height: 45px;
+                text-align: center;
+                font-size: 22px;
+                }
+
+                img {
+                max-width: 100%;
+                max-height: 450px;
+                display: block;
+                margin: auto;
+                object-fit: cover;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,444 @@
+@mixin redirectBtn {
+    color: var(--Secondary-Active, #323DA5);
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    cursor: pointer;
+    font-weight: 500;
+    line-height: 16px; /* 133.333% */
+    text-decoration-line: underline;
+}
+
+.wpf_empty_graph {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 80px;
+    width: 100%;
+}
+
+.payment_stats_overview {
+    &.app-card {
+        margin-bottom: 30px;
+        margin-top: 30px;
+    }
+    .app-card-body {
+        padding: 0px 20px !important;
+        @media only screen and (max-width: 768px) {
+            padding: 0px 10px !important;
+        }
+    }
+    .wpf_report_over_view {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin: 20px 0;
+        .over_view_card {
+            border-radius: 8px;
+            border: 1px solid #D6DAE1;
+            background: #FFF;
+            padding: 20px;
+            min-width: 212px;
+            width: calc(25% - 57px);
+            .card_header {
+                display: flex;
+                align-items: flex-start;
+                gap: 20px;
+                .header_icon {
+                    display: flex;
+                    align-items: center;
+                    padding: 10px;
+                    border-radius: 8px;
+                    svg {
+                        width: 26px;
+                        height: 28px;
+                    }
+                }
+                .content {
+                    h3 {
+                        @include text($size: 14px, $weight: 600, $color: #2F3448);
+                        // margin-top: 8px;
+                        // min-width: 70px;
+                        display: flex;
+                        align-items: center;
+                    }
+                    h6 {
+                        font-style: normal;
+                        font-weight: 500 !important;
+                        color: $wpf-system-mid;
+                        padding-bottom: 8px;
+                    }
+                    p {
+                        @include text($size: 14px, $color: var(--System-Mid, #565865));
+                    }
+                    .redirect_btn_wrapper {
+                        display: flex;
+                        align-items: center;
+                        margin-top: 8px;
+                        gap: 6px;
+                        .redirect_btn {
+                            @include redirectBtn;
+                        }
+                    }
+                }
+            }
+            .badge {
+                display: flex;
+                gap: 4px;
+                padding: 4px;
+                border-radius: 4px;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 16px;
+                color: $wpf-success-500;
+                &.down_stats {
+                    color: $wpf-danger-500;
+                }
+            }
+        }
+    }
+}
+
+.recent_transaction {
+    padding: 0px;
+    .app-card-body {
+        padding: 0px !important;
+        .el-table__body-wrapper {
+            max-height: 400px;
+            overflow-y: scroll;
+        }
+        .el-button {
+            span {
+                color: #2F3448;
+                font-family: $wpf-font-family;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 16px;
+            }
+        }
+    }
+    .app-card-header {
+        padding: 20px !important;
+        .el-table {
+            .cell {
+                padding-left: 20px !important;
+            }
+        }
+    }
+}
+
+.recent_coupon_card {
+    .app-card-body {
+        .el-button {
+            span {
+                color: #2F3448;
+                font-family: $wpf-font-family;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 16px;
+            }
+        }
+    }
+}
+
+
+.payment_status {
+    .badge {
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        width: fit-content;
+        gap: 4px;
+        svg {
+            width: 13px;
+            height: 13px;
+        }
+        &.pending {
+            background: $wpf-warning-50;
+            color: $wpf-warning-500;
+        }
+        &.success {
+            background: $wpf-success-50;
+            color: $wpf-success-500;
+        }
+        &.failed {
+            background: $wpf-danger-50;
+            color: $wpf-danger-500;
+        }
+        &.processing {
+            background: #F2F9FE;
+            color: #0171DB;
+        }
+        &.refunded {
+            background: $wpf-danger-50;
+            color: $wpf-danger-500;
+        }
+        &.paid {
+            background: $wpf-success-50;
+            color: $wpf-success-500;
+        }
+    }
+}
+
+.wpf_performance_container{
+    display: flex;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    gap: 30px;
+    flex-wrap: wrap;
+    .wpf_performance {
+        background: #FFF;
+        // max-height: 560px;
+    }
+    .activities {
+      width: 30%;
+      min-width: 240px;
+    }
+    .wpf_chart_shadow, .revenue_breakdown {
+      width: calc(70% - 30px);
+      .app-card-body {
+        padding: 0px !important;
+      }
+    }
+    .revenue_breakdown {
+        .app-card-body {
+            max-height: 400px;
+            overflow-y: scroll;
+        }
+        ul {
+            width: 100%;
+            li {
+                margin-bottom: 6px;
+                padding: 13px 20px;
+                border-bottom: $--border-base;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .status_and_date {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    .date {
+                        @include text($size: 14px, $weight: 500);
+                    }
+                    .badge {
+                        padding: 3px 6px;
+                    }
+                }
+                .submissions {
+                    margin-top: 4px;
+                    span {
+                        @include text($size: 12px, $weight: 400);
+                    }
+                }
+                .total_paid {
+                    @include text($size: 14px, $weight: 500);
+                }
+            }
+        }
+    }
+}
+.form_stats {
+    width: 29%;
+    .app-card {
+        width: calc(100% + 13px);
+        .app-card-body {
+            padding: 0px !important;
+        }
+    }
+    .form_stats_body{
+        width: 100%;
+        .wpf_performance_form_top {
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin: 20px;
+            flex-wrap: wrap;
+            .card-item {
+                display: flex;
+                gap: 10px;
+                align-items: flex-start;
+                .icon {
+                    padding: 12px;
+                    background: #F5F6F7;
+                    border-radius: 8px;
+                }
+                .info {
+                    span {
+                        color: #565865;
+                        font-size: 14px;
+                        font-weight: 500;
+                        line-height: 20px;
+                    }
+                    p {
+                        color: #2F3448;
+                        font-size: 16px;
+                        font-weight: 600;
+                        line-height: 26px;
+                        margin: 2px;
+                    }
+                }
+            }
+        }
+        .wpf_performance_form_middle {
+            max-height: 300px;
+            overflow-y: scroll;
+            ul {
+                width: 100%;
+                li {
+                    margin-bottom: 6px;
+                    padding: 13px 20px;
+                    border-top: 1px solid #EAECF0;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    font-family: $wpf-font-family;
+                    @include text($size: 16px, $weight: 500, $color: #2F3448);
+                    .left {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 5px;
+                        .entry {
+                            line-height: 16px;
+                            @include text($size: 12px, $weight: 400);
+                        }
+                        .label {
+                            line-height: 20px !important;
+                            @include text($size: 14px, $weight: 500, $color: #2F3448);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.payments {
+    .payment {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 9px 20px;
+        border-bottom: $--border-base;
+        h6 {
+            @include text($size: 14px, $weight: 500);
+        }
+    }
+    .redirect_btn_wrapper {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 20px;
+        .redirect_btn {
+            @include redirectBtn;
+        }
+    } 
+}
+
+.wpf_rev_currency_toggler {
+    display:flex; justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* For tablets in portrait mode */
+@media only screen and (min-width: 1320px) and (max-width: 1600px) {
+    /* Add your CSS styles here */
+    .wpf_performance_container {
+        .activities {
+            max-height: 560px;
+        }
+    }
+}
+
+/* For tablets in landscape mode */
+@media only screen and (min-width: 700px) and (max-width: 1320px) {
+    .over_view_card {
+        width: calc(50.00% - 52px) !important;
+    }
+    .wpf_revenue_chart_container{
+        .wpf_line_chart {
+            width: calc(60% - 30px) !important;
+        }
+        .wpf_pie_chart {
+            width: 40% !important;
+        }
+    }
+    .wpf_performance_container {
+        .activities {
+            width: 40% !important;
+            max-height: 460px;
+            .wpf_activities {
+                width: 100% !important;
+            }
+        }
+        .form_stats {
+            width: 39%;
+            .app-card {
+                width: calc(100% + 10px);
+            }
+        }
+        .wpf_chart_shadow, .revenue_breakdown {
+            width: calc(60% - 30px) !important;
+        }
+    }
+}
+
+@media only screen and (min-width: 400px) and (max-width: 699px) {
+    .wpf_revenue_chart_container{
+        .wpf_line_chart {
+            width: 100% !important;
+        }
+        .wpf_pie_chart {
+            width: 100% !important;
+        }
+    }
+    .payment_status_graph_wrapper {
+        canvas {
+            height: 200px !important;
+            width: 200px !important;
+        }
+    }
+    .wpf_performance_container {
+        .wpf_chart_shadow {
+            width: 100% !important;
+        }
+        .activities {
+            width: 100% !important;
+        }
+    }
+    .wpf_performance_container {
+        gap: 20px !important;
+    }
+    .wpf_performance_container {
+        .revenue_breakdown {
+            width: 100% !important;
+        }
+        .form_stats {
+            width: 100% !important;
+            .app-card {
+                width: 100% !important;
+            }
+        }
+    }
+    .payform_section_header {
+        gap: 10px;
+    }
+    .wpf_report_over_view {
+        justify-content: center !important;
+    }
+}
+  

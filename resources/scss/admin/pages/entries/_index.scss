@@ -1,0 +1,246 @@
+.wpf_report_cards {
+    background: $wpf-background;
+    border-radius: $--border-radius-base;
+    margin-bottom: 20px;
+
+    .wpf_report_title {
+        padding: 20px;
+        border-bottom: $--border-color-secondary;
+
+        h4 {
+            color: $wpf-system-dark;
+            font-family: $wpf-font-family;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 28px;
+            margin: 0;
+        }
+    }
+
+    .wpf_report_status {
+        display: flex;
+
+        .wpf_report_card {
+            flex: 1;
+            background: $wpf-background;
+            border: $--border-color-secondary;
+            border-radius: 8px;
+            margin: 20px 20px 20px 0;
+
+            @media screen and (max-width: 769px) {
+                flex: auto;
+                margin-bottom: 20px;
+            }
+
+            &:first-child{
+                margin-left: 20px;
+            }
+
+            .wpf_report_header {
+                display: flex;
+                padding: 20px;
+
+                @media screen and (max-width: 769px) {
+                    padding: 0px 10px;
+                    font-size: 11px;
+                }
+
+                .wpf_report_icon {
+
+                    .report_name_total {
+                        background: #E6F2FE;
+                        border-radius: 8px;
+                        width: 54px;
+                        height: 54px;
+                        flex-shrink: 0;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    .report_name_paid {
+                        background: $wpf-success-50;
+                        border-radius: 8px;
+                        width: 54px;
+                        height: 54px;
+                        flex-shrink: 0;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    .report_name_pending {
+                        background: $wpf-warning-50;
+                        border-radius: 8px;
+                        width: 54px;
+                        height: 54px;
+                        flex-shrink: 0;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    .report_name_refunded {
+                        background: $wpf-danger-50;
+                        border-radius: 8px;
+                        width: 54px;
+                        height: 54px;
+                        flex-shrink: 0;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+
+                .wpf_report_line {
+                    padding-left: 15px;
+
+                    span {
+                        color: $wpf-system-mid;
+                        font-family: $wpf-font-family;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: 20px;
+                    }
+
+                    p {
+                        color: $wpf-system-dark;
+                        font-family: $wpf-font-family;
+                        font-size: 24px;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: 34px;
+                        margin: 0;
+                    }
+
+                    @media screen and (max-width: 769px) {
+                        font-size: 10px;
+                        line-height: 18px;
+                    }
+                }
+            }
+
+            .wpf_report_body {
+                border-top: $--border-base;
+                margin: 0 20px;
+                padding: 15px 0;
+
+                @media screen and (max-width: 769px) {
+                    padding: 5px 10px;
+                }
+
+                .wpf_report_line {
+
+                    span {
+                    color: $wpf-system-mid;
+                    font-family: $wpf-font-family;
+                    font-size: 15px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 24px;
+                    }
+                    
+                }
+            }
+
+
+        }
+    }
+}
+
+
+// .wpf_entry_actions {
+//     padding: 15px 0px;
+
+//     .wpf_entry_action {
+//         display: inline-block;
+//         margin-right: 20px;
+//         margin-left: 5px;
+
+//         .item_title {
+//             color: #000 !important;
+//             font-weight: 400;
+//             margin-bottom: 6px;
+//         }
+
+//         label {
+//             display: grid;
+//         }
+//     }
+// }
+
+.wpf_form_entries {
+    background: $wpf-background;
+    font-family: $wpf-font-family;
+    border-radius: $--border-radius-base;
+
+    .wpf_entries_filter {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        flex-wrap: wrap;
+        gap: 10px;
+        // margin: 0 20px;
+
+        .wpf_entries_title h3 {
+            margin: 0;
+            color: $--text-color;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 28px;
+        }
+    }
+}
+
+
+.form_entries_wrapper {
+    border-top: $--border-color-secondary;
+}
+
+
+.wpf_entries_status {
+    display: inline-flex;
+    padding: 6px 4px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background: #F5F6F7;
+
+    ul {
+        margin: 0;
+
+        li {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 0 2px;
+            padding: 5px 10px;
+            cursor: pointer;
+            color: #565865;
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px;
+
+            &.active {
+                color: $--text-color;
+                border-radius: 8px;
+                background: $wpf-background;
+                box-shadow: 0px 8px 32px -2px rgba(27, 37, 51, 0.06);
+            }
+
+            &:hover {
+                color: $--text-color;
+                border-radius: 8px;
+                background: $wpf-background;
+                box-shadow: 0px 8px 32px -2px rgba(27, 37, 51, 0.06);
+            }
+        }
+    }
+}
+
+

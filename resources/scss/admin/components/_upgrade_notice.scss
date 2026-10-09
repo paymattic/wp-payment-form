@@ -1,0 +1,68 @@
+
+.payform_upgrade_section_cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    z-index: 1;
+    top: 44%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px 30px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid $wpf-border-color-secondary;
+    width: 240px;
+    .wpf_upgrade_pro_icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .icon {
+            padding: 20px 23px;
+            background: #FEF3EB;
+            border-radius: 50%;
+        }
+    }
+    h4 {
+        padding: 25px 0 20px 0;
+        color: #2F3448;
+        font-family: Inter;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+        margin: 0;
+    }
+}
+.payform_upgrade_section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid $wpf-primary-300;
+    background: $wpf-primary-50;
+    padding: 12px;
+    .wpf_upgrade_pro_title {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        .pro_title {
+            color: $wpf-system-dark;
+            font-family: $wpf-font-family;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 16px;
+        }
+    }
+    .wpf_upgrade_url {
+        color: $--color-primary;
+        font-family: $wpf-font-family;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 16px;
+        text-decoration-line: underline;
+    }
+}

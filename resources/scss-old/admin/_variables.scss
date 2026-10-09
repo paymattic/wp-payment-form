@@ -1,0 +1,42 @@
+/* Color
+-------------------------- */
+// $--color-primary: #F98435;
+$--color-primary: #F98435;
+$--color-success: #67C23A;
+$--color-warning: #E6A23C;
+$--color-danger: #F56C6C;
+$--color-info: #909399;
+$--color-neutral: #666978;
+
+/* text color */
+$--text-color: var($--color-neutral);
+$--color-text-primary: #303133;
+$--color-text-regular: #606266;
+$--color-text-secondary: #909399;
+$--color-text-placeholder: #C0C4CC;
+
+
+
+/* Border
+-------------------------- */
+$--border-width-base: 1px;
+$--border-style-base: solid;
+$--border-color-hover: #FFB380;
+$--border-color-base: #8D8F95;
+$--border-base: $--border-width-base $--border-style-base $--border-color-base;
+$--border-radius-base: 4px;
+$--border-transition-base: border-color .2s cubic-bezier(.645,.045,.355,1);
+
+$border-color-hover: $--border-color-hover;
+$border-transition-hover: border-color 0.3s ease;
+
+
+/* Typography
+-------------------------- */
+$--font-weight-primary: 500;
+
+/* icon font path, required */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+
+@import "~element-ui/packages/theme-chalk/src/index";

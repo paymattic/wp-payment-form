@@ -1,0 +1,161 @@
+.wpf-integration-settings_wrapper{
+    @include flex-container($direction: column, $align: flex-start, $gap: 20px);
+    width: 76%;
+    a span{
+        color: $wpf-active;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 16px;
+    }
+    font-family: $--font-inter;
+    .wpf-integration-settings_header {
+        @include flex-container($direction: row, $gap: 8px);
+    }
+    .wpf-integration-settings_main{
+        @include flex-container($gap: 20px);
+        border-radius: 8px;
+        background: $wpf-background;
+        width: calc(100% - 40px);
+        padding: 20px 20px;
+        flex: 1 0 0;
+        .wpf-integration-settings_main-header{
+            @include flex-container($align: flex-start, $gap: 10px);
+            align-self: stretch;
+            .wpf-integration-settings_main-header_title{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                img{
+                    @include flex-container($justify: center);
+                    width: 20px;
+                    height: 20px;
+                    padding: 1.875px;
+                }
+                span {
+                    color: $wpf-system-dark;
+                    /* Headline/Title/H6-Title */
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 28px; /* 155.556% */
+                }
+            }
+            .wpf-integration-settings_main-description{
+                align-self: stretch;
+                p {
+                    color: $wpf-system-mid;
+                    /* Body/Regular/B5-Regular */
+                    font-size: 13px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 20px; /* 153.846% */
+                }
+            }
+        }
+        .wpf-integration-settings_main-content{
+            @include flex-container($gap: 8px);
+            border-radius: 8px;
+            padding: 15px;
+            align-self: stretch;
+            .wpf-integration-settings_main-content_enable{
+                @include flex-container($direction: row, $gap: 10px);
+                height: 28px;
+                align-self: stretch;
+                p {
+                    color: $wpf-system-dark;
+                    width: 160px;
+                    /* Menu Text/Medium/Regular */
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 20px; /* 142.857% */
+                }
+            }
+            .wpf-integration-settings_setup-wrapper{
+                @include flex-container($align: stretch, $gap: 20px);
+                align-self: stretch;
+            }
+            .wpf-integration-settings_field{
+                @include flex-container($align: flex-start, $gap: 8px);
+                align-self: stretch;
+                .field-label{
+                    color: $wpf-system-dark;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 20px; /* 142.857% */
+                }
+                .field-input{
+                    @include flex-container($direction: row, $gap: 8px);
+                    height: 36px;
+                    padding: 8px 12px;
+                    align-self: stretch;
+                    border-radius: 8px;
+                    border: 1px solid var(--Gray-Outline, #D6DAE1);
+                    background: $wpf-background;
+                }
+            }
+            .save_button{
+                padding: 0px 20px;
+                align-self: flex-end;
+                padding: 9px 18px;
+                border-radius: 8px;
+                background: $wpf-active !important;
+                color: #FFFFFF !important;
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 20px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                &:hover{
+                    background: var(--Primary-Color-Hover, #F98435);
+                }       
+            }
+            .settings_up_running{
+                @include flex-container($direction: row, $gap: 10px, $justify: flex-start);
+                padding: 10px 20px;
+                flex: 1 0 0;
+                border-radius: 8px;
+                align-self: stretch;
+                background: $wpf-success-50;
+                p {
+                    color: $wpf-success-500;
+                    /* Body/Regular/B6-Regular */
+                    font-family: Inter;
+                    font-size: 12px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 16px; /* 133.333% */
+                    align-self: stretch;
+                }
+            }
+            .settings_discard{
+                @include flex-container($direction: row, $justify: flex-end, $gap: 10px);
+                padding: 0px 20px;
+                align-self: stretch;
+            }
+            .tick-icon{
+                @include flex-container($align: center, $justify: center);
+                width: 20px;
+                height: 20px;
+                padding: 1.875px;
+            }
+            .discard_button{
+                @include flex-container($align: center);
+                padding: 8px 16px;
+                border-radius: 8px;
+                border: 1px solid $wpf-danger-500;
+                background: $wpf-background;
+                color: $wpf-danger-500;
+                /* Body/Bold/B5-Bold */
+                font-family: Inter;
+                font-size: 13px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 20px; /* 153.846% */
+            }
+        }
+    }
+}
+

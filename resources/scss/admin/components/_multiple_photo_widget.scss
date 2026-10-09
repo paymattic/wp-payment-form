@@ -1,0 +1,51 @@
+.wpf_photo_card {
+    .wpf_photo_holder {
+        .el-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            .img-btn {
+                position: relative;
+                transition: all 0.3s;
+                img {
+                    border: none;
+                    width: 100%;
+                    aspect-ratio: 2 / 2;
+                    object-fit: cover;
+                    border-radius: 4px;
+                }
+                .delete-img {
+                    display: none;
+                }
+                &:hover {
+                    .delete-img {
+                        display: block;
+                        position: absolute;
+                        top: 3px;
+                        right: 3px;
+                        font-size: 9px;
+                        background: #fff;
+                        border-radius: 50%;
+                        padding: 2px;
+                        font-weight: 700;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+
+    .upload-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        border: 1px dashed $--border-color-base;
+        margin-bottom: 4px;
+        cursor: pointer;
+        padding: 11px 20px;
+        svg {
+            width: 22px;
+        }
+    }
+}

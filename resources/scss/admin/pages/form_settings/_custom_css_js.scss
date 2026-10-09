@@ -1,0 +1,11 @@
+.wpf_form_custom_css_js {
+	width: 100%;
+
+    .wpf_custom_css {
+        padding-bottom: 20px;
+    }
+    .wpf_custom_js {
+        padding-top: 20px;
+        border-top: $--border-color-secondary;
+    }
+}

@@ -1,0 +1,487 @@
+<template>
+    <div class="element_editor">
+      <div class="wpf_editor_tabs">
+        <div class="wpf_tabs_header">
+          <div
+            @click="showing_tab = 'general'"
+            :class="showing_tab == 'general' ? 'wpf_tab_active' : ''"
+            class="wpf_tab"
+          >
+            General
+          </div>
+          <div
+            @click="showing_tab = 'advanced'"
+            :class="showing_tab == 'advanced' ? 'wpf_tab_active' : ''"
+            class="wpf_tab"
+          >
+            Advanced
+          </div>
+          <div
+            style="
+              float: right;
+              margin-top: 15px;
+              margin-right: 20px;
+              display: flex;
+            "
+          >
+            <div v-if="element.postion_group !== 'payment_method'">
+              <span style="margin-right: 10px">Disable Field</span>
+              <el-switch
+                v-model="element.field_options.disable"
+                :active-value="true"
+                :inactive-value="false"
+              >
+              </el-switch>
+            </div>
+          </div>
+        </div>
+        <div class="wpf_tab_body wpf_inputs_new_ui">
+          <el-form
+            :disabled="element.field_options.disable"
+            ref="element_form"
+            :class="'wpf_element_editor_form wpf_showing_' + showing_tab"
+            :model="element"
+            label-width="220px"
+          >
+            <div
+              v-for="(item, itemName) in element.editor_elements"
+              :class="[item.wrapper_class, 'wpf_item_group_' + item.group]"
+              class="editor_form_item" :key="itemName"
+            >
+              <template v-if="item.type == 'text'">
+                <el-form-item :label="item.label">
+                  <template v-if="itemName == 'default_value'">
+                    <default-value-component
+                      @showProMessage="
+                        () => {
+                          showDevaultValuePro = true;
+                        }
+                      "
+                      :item="item"
+                      :element="element"
+                      :itemName="itemName"
+                    />
+                  </template>
+                  
+                  <template v-else-if="itemName == 'default_payment_method'">
+                  </template>
+                  <template v-else>
+                    <el-input
+                      :placeholder="item.label"
+                      size="mini"
+                      v-model="element.field_options[itemName]"
+                    ></el-input>
+                  </template>
+                  <p v-if="item.info" v-html="item.info"></p>
+                </el-form-item>
+              </template>
+              <template v-else-if="item.type == 'number'">
+                <el-form-item :label="item.label">
+                  <el-input-number
+                    :placeholder="item.label"
+                    size="mini"
+                    v-model="element.field_options[itemName]"
+                  ></el-input-number>
+                </el-form-item>
+              </template>
+              <template v-else-if="item.type == 'textarea'">
+                <el-form-item :label="item.label">
+                  <el-input
+                    type="textarea"
+                    :placeholder="item.label"
+                    size="mini"
+                    v-model="element.field_options[itemName]"
+                  ></el-input>
+                  <p v-if="item.info" v-html="item.info"></p>
+                </el-form-item>
+              </template>
+              <template v-else-if="item.type == 'checkbox'">
+                <el-form-item :label="item.label">
+                  <el-checkbox-group v-model="element.field_options[itemName]">
+                    <el-checkbox class="el-checkbox"
+                      v-for="(option, optionName) in item.options"
+                      :label="optionName"
+                      :key="optionName"
+                      >{{ option }}
+                    </el-checkbox>
+                  </el-checkbox-group>
+                </el-form-item>
+              </template>
+              <template v-else-if="item.type == 'switch'">
+                <el-form-item :label="item.label">
+                  <el-switch
+                    v-model="element.field_options[itemName]"
+                    active-value="yes"
+                    inactive-value="no"
+                  >
+                  </el-switch>
+                  <p v-if="item.info" v-html="item.info"></p>
+                </el-form-item>
+              </template>
+              <template v-else-if="item.type === 'switch'">
+                <el-form-item :label="item.label">
+                  <el-switch
+                    v-model="element.field_options[itemName]"
+                    active-value="yes"
+                    inactive-value="no"
+                  >
+                  </el-switch>
+                  <p v-if="item.info" v-html="item.info"></p>
+                </el-form-item>
+              </template>
+              <template v-else-if="item.type == 'key_pair'">
+                <el-form-item :label="item.label">
+                  <key-pair-options
+                    :value.sync="element.field_options[itemName]"
+                  />
+                </el-form-item>
+              </template>
+              <template v-else-if="item.type == 'html'">
+                <el-form-item :label="item.label">
+                  <wp-editor v-model="element.field_options[itemName]" />
+                  <div
+                    v-if="item.info"
+                    class="html_placeholder_instruction"
+                    v-html="item.info"
+                  ></div>
+                </el-form-item>
+              </template>
+              <template v-else-if="item.type == 'payment_options'">
+                <payment-options-settings
+                  :item="item"
+                  :pricing_details="element.field_options.pricing_details"
+                  :enableImage="element.field_options.enable_image"
+                />
+              </template>
+              <template v-else-if="item.type == 'conditional_render'">
+                <conditional-render-settings
+                  :item="item"
+                  :condition_options="getConditionalDefaultValue(element)"
+                  :all_elements="all_elements"
+                  :current_item="element.id"
+                />
+              </template>
+              <template v-else-if="item.type == 'donation_options'">
+                <donation-options-settings
+                  :item="item"
+                  :pricing_details="element.field_options.pricing_details"
+                  :enableImage="element.field_options.enable_image"
+                />
+              </template>
+              <template v-else-if="item.type == 'product_selector'">
+                <el-form-item :label="item.label">
+                  <item-selector
+                    :all_elements="all_elements"
+                    :item_name="itemName"
+                    :field_options="element.field_options"
+                  />
+                  <p v-if="item.info" v-html="item.info"></p>
+                </el-form-item>
+              </template>
+              <template v-else-if="item.type == 'onetime_products_selector'">
+                <el-form-item :label="item.label">
+                  <one-time-products-selector
+                    :all_elements="all_elements"
+                    :item_name="itemName"
+                    :field_options="element.field_options"
+                  />
+                  <p v-if="item.info" v-html="item.info"></p>
+                </el-form-item>
+              </template>
+              <template v-else-if="item.type == 'all_product_selector'">
+                <el-form-item :label="item.label">
+                  <all-item-selector
+                    :all_elements="all_elements"
+                    :item_name="itemName"
+                    :field_options="element.field_options"
+                  />
+                  <p v-if="item.info" v-html="item.info"></p>
+                </el-form-item>
+              </template>
+              <template v-else-if="item.type == 'select_option'">
+                <el-form-item :label="item.label">
+                  <el-select
+                    :allow-create="item.creatable == 'yes'"
+                    filterable
+                    default-first-option
+                    class="item_full_width"
+                    size="small"
+                    v-model="element.field_options[itemName]"
+                  >
+                    <el-option
+                      v-for="(option_name, option_key) in item.options"
+                      :key="option_key"
+                      :label="option_name"
+                      :value="option_key"
+                    ></el-option>
+                  </el-select>
+                  <p v-if="item.info" v-html="item.info"></p>
+                </el-form-item>
+              </template>
+              <template v-else-if="item.type == 'radio_button'">
+                <el-form-item :label="item.label">
+                  <el-radio-group
+                    size="small"
+                    v-model="element.field_options[itemName]"
+                  >
+                    <el-radio-button
+                      v-for="(option_name, option_key) in item.options"
+                      :label="option_key"
+                      :key="option_key"
+                    >
+                      {{ option_name }}
+                    </el-radio-button>
+  
+                  </el-radio-group>
+                </el-form-item>
+              </template>
+              <template v-else-if="item.type == 'select_multi_tags'">
+                <el-form-item
+                  v-if="element.field_options.active_list != 'all'"
+                  :label="item.label"
+                >
+                  <el-select
+                    filterable
+                    style="margin-top: 15px"
+                    :allow-create="item.creatable == 'yes'"
+                    v-model="element.field_options[itemName]"
+                    clearable
+                    multiple
+                    class="item_full_width el-fluid"
+                  >
+                    <el-option
+                      v-for="(option_name, option_key) in item.options"
+                      :key="option_key"
+                      :label="option_name"
+                      :value="option_key"
+                    >
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </template>
+              <template v-else-if="item.type == 'checkout_display_options'">
+                <checkout-display-option
+                  :item="item"
+                  :item_name="itemName"
+                  :checkout_settings="element.field_options[itemName]"
+                ></checkout-display-option>
+              </template>
+              <template v-else-if="item.type == 'choose_payment_method'">
+                <payment-method-choice
+                  :field_options="element.field_options"
+                  :item="item"
+                  :method_settings="element.field_options[itemName]"
+                />
+              </template>
+              <template v-else-if="item.type == 'info_html'">
+                <div v-html="item.info"></div>
+              </template>
+              <template v-else-if="item.type == 'tabular_products'">
+                <tabular-products
+                  :item="item"
+                  :field_options="element.field_options"
+                  :product_settings="element.field_options[itemName]"
+                >
+                </tabular-products>
+              </template>
+              <template v-else-if="item.type == 'recurring_payment_options'">
+                <recurring-item
+                  :item="item"
+                  :product_settings="element.field_options[itemName]"
+                />
+              </template>
+              <template v-else-if="item.type == 'confirm_email_switch'">
+                <el-form-item :label="item.label">
+                  <el-switch
+                    v-model="element.field_options[itemName]"
+                    active-value="yes"
+                    inactive-value="no"
+                  >
+                  </el-switch>
+                  <p v-if="item.info" v-html="item.info"></p>
+                </el-form-item>
+                <el-form-item
+                  v-if="element.field_options[itemName] == 'yes'"
+                  label="Confirm Email Label"
+                >
+                  <el-input
+                    placeholder="Confirm Email Label"
+                    size="mini"
+                    v-model="element.field_options.confirm_email_label"
+                  ></el-input>
+                </el-form-item>
+                <el-form-item
+                  v-if="element.field_options[itemName] == 'yes'"
+                  label="Confirm Email Placeholder"
+                >
+                  <el-input
+                    placeholder="Confirm Email Placeholder"
+                    size="mini"
+                    v-model="element.field_options.confirm_email_placeholder"
+                  ></el-input>
+                </el-form-item>
+              </template>
+              <template v-else-if="item.type == 'unique_email_validation_switch'">
+                <el-form-item :label="item.label">
+                  <el-switch
+                      v-model="element.field_options[itemName]"
+                      :active-value="true"
+                      :inactive-value="false"
+                  >
+                  </el-switch>
+                </el-form-item>
+                <el-form-item v-if="element.field_options[itemName]" label="Unique Validation message">
+                   <el-input
+                       placeholder="Unique Validation Message"
+                       size="mini"
+                       v-model="element.field_options.unique_validation_message"
+                   >
+                   </el-input>
+                </el-form-item>
+              </template>
+              <template v-else-if="item.type == 'address_subfields'">
+                <Address
+                  :fields="item.fields"
+                  :field_options="element.field_options[itemName]"
+                />
+              </template>
+              <template v-else-if="item.type == 'mask_input'">
+                <MaskInput :item="item" :field_options="element.field_options" />
+              </template>
+            </div>
+            <el-form-item class="wpf_item_group_advanced" label="Field ID">
+              {{ element.id }}
+            </el-form-item>
+          </el-form>
+          <div class="action_right">
+            <el-button @click="deleteItem()" type="warning" size="medium"
+              >Delete</el-button
+            >
+            <el-button @click="updateItem()" type="primary" size="medium"
+              >Update</el-button
+            >
+          </div>
+        </div>
+      </div>
+  
+      <el-dialog
+        title="Default Value is a Pro Feature"
+        :visible.sync="showDevaultValuePro"
+        :append-to-body="true"
+        width="60%"
+      >
+        <div
+          v-if="showDevaultValuePro"
+          class="modal_body wpf_default_value_modal"
+        >
+          <img :src="assets_url + 'images/default_value_screen.png'" alt="" />
+          <h3>
+            Add Default Value from dynamic variables from WordPress / URL
+            Parameter
+          </h3>
+          <a
+            class="el-button el-button--success"
+            target="_blank"
+            rel="noopener"
+            :href="pro_purchase_url"
+            >Upgrade To Pro</a
+          >
+        </div>
+      </el-dialog>
+    </div>
+  </template>
+  
+  <script type="text/babel">
+  import KeyPairOptions from "./Widget/KeyPairOption/_key_pair_options";
+  import PaymentOptionsSettings from "./PaymentItem/_PaymentOptions.vue";
+  import ConditionalRenderSettings from "./ConditionalComponent/_Conditional_render.vue";
+  import DonationOptionsSettings from "./Donation/_DonationOptions.vue";
+  import ItemSelector from "./_ProductSelector";
+  import OneTimeProductsSelector from "./_OnetimeProductsSelector";
+  import AllItemSelector from "./_AllProductSelector";
+  import CheckoutDisplayOption from "./ChoosePaymentMethod/_StripeCheckoutSettings.vue";
+  import PaymentMethodChoice from "./ChoosePaymentMethod/_payment_method_settings";
+  import TabularProducts from "./TabularProduct/_tabular_products";
+  import popover from "../../Common/input-popover-dropdown.vue";
+  import RecurringItem from "./PaymentItem/_RecurringItem";
+  import Address from "../../Common/Address";
+  import MaskInput from "../../Common/MaskInput";
+  import DefaultValueComponent from "./_DefaultValueComponent";
+  import WpEditor from "../../Common/_wp_editor";
+  export default {
+    name: "oldElementEditor",
+    components: {
+      KeyPairOptions,
+      PaymentOptionsSettings,
+      DonationOptionsSettings,
+      ItemSelector,
+      CheckoutDisplayOption,
+      PaymentMethodChoice,
+      TabularProducts,
+      popover,
+      RecurringItem,
+      AllItemSelector,
+      OneTimeProductsSelector,
+      Address,
+      MaskInput,
+      DefaultValueComponent,
+      WpEditor,
+      ConditionalRenderSettings
+    },
+    props: ["element", "all_elements"],
+    comments: {
+      KeyPairOptions,
+    },
+    data() {
+      return {
+        merge_tags: Object.values(window.wpPayFormsAdmin.value_placeholders),
+        showDevaultValuePro: false,
+        assets_url: window.wpPayFormsAdmin.assets_url,
+        showing_tab: "general",
+      };
+    },
+    methods: {
+      deleteItem() {
+        this.$emit("deleteItem", this.element);
+      },
+      updateItem() {
+        this.$emit("updateItem", this.element);
+      },
+      getConditionalDefaultValue (element) {
+        if(element.field_options.conditional_logic_option) {
+          return element.field_options.conditional_logic_option;
+        } else {
+          return element.field_options.conditional_logic_option = 
+            {
+              conditional_logic : 'no',
+              conditional_type  : 'any',
+              options : [{
+                target_field : '',
+                condition : '',
+                value : '' 
+              }],
+            }
+        }
+      }
+    },
+    mounted() {
+      if (!this.element.field_options) {
+        this.$set(this.element, "field_options", {});
+      }
+    },
+  };
+  </script>
+  
+  <style scoped>
+  .el-checkbox{
+    padding-top: 10px;
+  }
+  .el-checkbox__input {
+    vertical-align: top !important;
+    padding-top: 4px;
+  }
+  .el-checkbox__label {
+    white-space: normal !important;
+    vertical-align: top !important;
+  }
+  </style>

@@ -1,0 +1,171 @@
+.wppayform_main_content_v2 {
+    width: calc(100% - 166px);
+
+    .wppayform_global_settings_option {
+        margin-right: 20px;
+    }
+    
+    .wpf_settings_section.wpf_general_settings {
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background: $wpf-background;
+            font-family: $wpf-font-family;
+
+        .sub_section_header {
+            border-bottom: $--border-color-secondary;
+            padding: 16px 20px;
+
+            .wpf_settings_section_inner_label {
+                color: $wpf-system-dark;
+                font-family: $wpf-font-family;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 20px;
+                margin: 0;
+            }
+
+            span {
+                color: $wpf-system-dark;
+                font-family: $wpf-font-family;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 20px;
+            }
+        }
+
+        .sub_section_body {
+            padding: 0 20px 20px 20px;
+
+            .el-form-item {
+                margin: 0;
+                padding: 20px 0 0 0;
+
+                .el-form-item__content {
+                    p {
+                        padding-left: 0;
+                        margin-top: 0;
+                        color: $wpf-system-dark;
+                        font-family: $wpf-font-family;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: 20px;
+                    }
+                    .el-input__inner {
+                        color: #676767;
+                        font-size: 13px;
+                        font-weight: 400;
+                        border: $--border-base;
+
+                        &:focus {
+                            box-shadow: none !important;
+                        }
+                    }
+
+                    .el-checkbox .el-checkbox__label {
+                        font-weight: 400;
+                    }
+                    .el-select {
+                        width: 100%;
+                    }
+
+                    .wpf_settings_submission_abandoned {
+
+                        .el-input__inner {
+                            border-radius: 8px 0 0 8px;
+                        }
+
+                        .el-input-group__append {
+                            color: #565865;
+                        }
+                    }
+
+                    .wpf_honeypot_security_label {
+                        padding-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    .wpf_settings_section.wpf_expiration_time {
+        background: $wpf-background;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-family: $wpf-font-family;
+        .wpf_expiration_time_header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: $--border-color-secondary;
+            padding: 16px 20px;
+
+            .wpf_expiration_time_label {
+                color: $wpf-system-dark;
+                font-family: $wpf-font-family;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 20px;
+            }
+        }
+        .sub_section_body {
+            padding: 20px;
+        }
+    }
+    .wpf_currency_switcher_settings {
+        background: $wpf-background;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-family: $wpf-font-family;
+
+        .wpf_currency_switcher_heading {
+            display: flex;
+            gap: 10px;
+            padding: 20px;
+            border-bottom: $--border-color-secondary;
+
+            span {
+                color: $wpf-system-dark;
+                font-family: $wpf-font-family;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 20px;
+            }
+        }
+
+        .wpf_currency_switcher_body {
+            padding: 8px 20px;
+
+            .wpf_settings_section_inner_label {
+                color: $wpf-system-dark;
+                font-family: $wpf-font-family;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 20px;
+            }
+
+            .el-input {
+                width: 100%;
+                .el-input__inner {
+                    color: #676767;
+                    font-size: 13px;
+                    font-weight: 400;
+                    border: $--border-base;
+                    border-radius: 8px;
+
+                    &:focus {
+                        box-shadow: none !important;
+                    }
+                }
+            }
+        }
+    }
+
+    .action_right {
+        text-align: right;
+    }
+}

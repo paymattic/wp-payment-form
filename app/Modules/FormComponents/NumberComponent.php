@@ -1,0 +1,161 @@
+<?php
+
+namespace WPPayForm\App\Modules\FormComponents;
+
+use WPPayForm\Framework\Support\Arr;
+
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+class NumberComponent extends BaseComponent
+{
+    public function __construct()
+    {
+        parent::__construct('number', 15);
+        add_filter('wppayform/validate_data_on_submission_number', array($this, 'validateOnSubmission'), 1, 4);
+    }
+
+    public function validateOnSubmission($error, $elementId, $element, $form_data)
+    {
+        if ($error) {
+            return $error;
+        }
+
+        $itemValue = Arr::get($form_data, $elementId);
+
+        if ($itemValue === '' || $itemValue === null) {
+            return $error;
+        }
+
+        $itemValue = floatval($itemValue);
+        $minValue = Arr::get($element, 'options.min_value');
+        $maxValue = Arr::get($element, 'options.max_value');
+        $formId = Arr::get($form_data, '__wpf_form_id');
+
+        if ($minValue !== null && $minValue !== '' && $itemValue < floatval($minValue)) {
+            /* translators: %s: minimum allowed field value */
+            $minMessage = sprintf(__('must be at least %s', 'wp-payment-form'), $minValue);
+            return $this->getErrorLabel($element, $formId, $minMessage);
+        }
+
+        if ($maxValue !== null && $maxValue !== '' && $itemValue > floatval($maxValue)) {
+            /* translators: %s: maximum allowed field value */
+            $maxMessage = sprintf(__('must be at most %s', 'wp-payment-form'), $maxValue);
+            return $this->getErrorLabel($element, $formId, $maxMessage);
+        }
+
+        return $error;
+    }
+
+    public function component()
+    {
+        return array(
+            'type' => 'number',
+            'quick_checkout_form' => true,
+            'editor_title' => 'Number Field',
+            'is_pro' => 'no',
+            'group' => 'input',
+            'is_markup' => 'no',
+            'postion_group' => 'general',
+            'isNumberic' => 'yes',
+            'editor_elements' => array(
+                'label' => array(
+                    'label' => 'Field Label',
+                    'type' => 'text',
+                    'group' => 'general'
+                ),
+                'placeholder' => array(
+                    'label' => 'Placeholder',
+                    'type' => 'text',
+                    'group' => 'general'
+                ),
+                'required' => array(
+                    'label' => 'Required',
+                    'type' => 'switch',
+                    'group' => 'general'
+                ),
+                'default_value' => array(
+                    'label' => 'Default Value',
+                    'type' => 'text',
+                    'group' => 'general'
+                ),
+                'min_value' => array(
+                    'label' => 'Minimum Value',
+                    'type' => 'number',
+                    'group' => 'general'
+                ),
+                'max_value' => array(
+                    'label' => 'Maximum Value',
+                    'type' => 'number',
+                    'group' => 'general'
+                ),
+                'admin_label' => array(
+                    'label' => 'Admin Label',
+                    'type' => 'text',
+                    'group' => 'advanced'
+                ),
+                'wrapper_class' => array(
+                    'label' => 'Field Wrapper CSS Class',
+                    'type' => 'text',
+                    'group' => 'advanced'
+                ),
+                'element_class' => array(
+                    'label' => 'Input Element CSS Class',
+                    'type' => 'text',
+                    'group' => 'advanced'
+                ),
+                'conditional_render' => array(
+                    'type' => 'conditional_render',
+                    'group' => 'advanced',
+                    'label' => 'Conditional render',
+                    'selection_type' => 'Conditional logic',
+                    'conditional_logic' => array(
+                        'yes' => 'Yes',
+                        'no' => 'No'
+                    ),
+                    'conditional_type' => array(
+                        'any' => 'Any',
+                        'all' => 'All'
+                    ),
+                ),
+                'numeric_calculation' => array(
+                    'label' => 'Enable Calculation',
+                    'type' => 'numeric_calculation',
+                    'group' => 'advanced',
+                ),
+                'numeric_serverside_validation' => array(
+                    'label' => 'Enable Additional Checks',
+                    'type' => 'numeric_serverside_validation',
+                    'group' => 'advanced',
+                    'info' => 'Extra layer of input checks'
+                ),
+            ),
+            'field_options' => array(
+                'label' => 'Numeric Value',
+                'placeholder' => '',
+                'required' => 'no',
+                'numeric_calculation' => 'no',
+                'calculation_expression' => '',
+                'numeric_serverside_validation' => 'no',
+                'conditional_logic_option' => array(
+                    'conditional_logic' => 'no',
+                    'conditional_type'  => 'any',
+                    'options' => array(
+                        array(
+                            'target_field' => '',
+                            'condition' => '',
+                            'value' => ''
+                        )
+                    ),
+                ),
+            )
+        );
+    }
+
+    public function render($element, $form, $elements)
+    {
+        $element['type'] = 'number';
+        $this->renderNormalInput($element, $form);
+    }
+}

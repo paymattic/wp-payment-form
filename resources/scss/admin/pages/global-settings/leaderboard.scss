@@ -1,0 +1,103 @@
+.leaderboard_wrapper {
+    .template-header {
+        @include h5-medium();
+        font-weight: 600;
+    }
+
+    .settings_header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        code {
+            display: flex;
+            gap: 5px;
+            background: $wpf-gray-50;
+            border-radius: 6px;
+            padding: 6px 10px;
+            cursor: copy;
+        }
+
+        .payform_section_sub_title {
+            margin-bottom: 0px;
+        }
+    }
+
+    .payform_section_body {
+
+        width: 100%;
+
+        .wpf_leaderboard_options {
+            margin: 20px 0px;
+
+            &:first-child {
+                margin-top: 0px;
+            }
+
+            &:last-child {
+                margin-bottom: 0px;
+            }
+              code {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+                background: #F5F6F7;
+                border-radius: 6px;
+                padding: 0 10px;
+                cursor: copy;
+                font-size: 13px;
+                height: 36px;
+                width: fit-content;
+            }
+        }
+
+        .select_donation_form {
+            min-width: 444px;
+            .el-input__inner {
+                border: $--border-base;
+                border-radius: 8px;
+            }
+
+            .el-tag--info {
+                background-color: $wpf-gray-50;
+                border: 6px;
+                color: $wpf-system-mid;
+            }
+
+            .el-tag__close {
+                color: $wpf-system-mid;
+
+                &:hover {
+                    color: $wpf-system-mid;
+                }
+            }
+
+            input {
+                border: 1px solid transparent;
+
+                &:focus {
+                    border-color: transparent;
+                    box-shadow: 0 0 0 1px transparent;
+                    outline: 2px solid transparent;
+                }
+            }
+        }
+
+        .other_settings {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+
+            .el-checkbox {
+                margin-right: 0px;
+            }
+        }
+
+        .el_radio_dashed_button {
+            margin-right: 10px !important;
+        }
+    }
+
+}

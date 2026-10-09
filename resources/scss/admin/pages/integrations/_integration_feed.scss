@@ -1,0 +1,143 @@
+.integration_feed_wrapper{
+    background: #fff;
+    display: flex;
+    max-width: 915px;
+    margin: 0px auto;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 8px;
+    background: #FFF;
+    .integration_feed{
+        padding: 0 20px 20px 20px;
+    }
+}
+.wpf_integration_feed-form_item{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 0px;
+    .el-form-item__content {
+        .el-select {
+            width: 100%;
+        }
+        p{
+            padding-left: 0px;
+        }
+        .dropdown_label_repeater {
+            border: 1px solid #D6DAE1;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .wppayform_chained_filter {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+    } 
+    .wppayform_field_routing{
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+.wpf_integration_feed-user_role{
+    display: flex;
+    flex-direction: column;
+    padding-top: 0px;
+    .el-form-item__label{
+        display: flex;
+        padding: 14px 20px;
+        align-items: center;
+        gap: 10px;
+        align-self: stretch;
+        border-radius: 8px 8px 0px 0px;
+        border: 1px solid $--border-color-base;
+        background: $Gray-Neutral;
+    }
+    .el-form-item__content{
+        display: flex;
+        padding: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        align-self: stretch;
+        border-radius: 0px 0px 8px 8px;
+        border-right: 1px solid $--border-color-base;
+        border-bottom: 1px solid $--border-color-base;
+        border-left: 1px solid $--border-color-base;
+        background: #FFF;
+        .el-radio-group{
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, auto));
+            align-items: flex-start;
+            align-content: flex-start;
+            gap: 20px;
+            align-self: stretch;
+            .el-radio{
+                display: flex;
+                min-width: 150px;
+                align-items: center;
+                gap: 10px;
+                margin-right: 0px;
+                .el-radio__label{
+                    padding-left: 0px !important;
+                }
+            }
+        }
+    }
+}
+
+.wpf_integration_feed-form_item_checkbox-singular{
+    .el-form-item__content p{
+        padding-left: 0px;
+    }
+    .el-checkbox__label{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+}
+
+.wpf_warning{
+    display: flex;
+    padding: 10px 20px;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+    border-radius: 10px;
+    background: $wpf-warning-25;
+    p{
+        align-self: stretch;
+        margin: 0px;
+        color: $wpf-warning-500;
+
+        /* Body/Regular/B6-Regular */
+        font-family: Inter;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 18px; /* 133.333% */
+    }
+}
+
+.local_field{
+    @include flex-container($gap: 8px, $align: normal);
+
+    .field_general{
+        .el-input{
+            .el-input__inner{
+                overflow: hidden;
+                color: $wpf-system-dark;
+                text-overflow: ellipsis;
+
+                /* Body/Regular/B5-Regular */
+                font-family: Inter;
+                font-size: 13px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 20px; /* 153.846% */
+            }
+        }
+    }
+}

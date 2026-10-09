@@ -1,0 +1,29 @@
+.wpf_button {
+
+    &.el-button--primary,
+    &.el-button--success {
+        border-color: 1px solid #FFB380;
+    }
+
+    &.el-button--default {
+        border-color: $border-color-hover;
+    }
+
+    &.el-button--button {
+        color: #FFB380 !important;
+
+        &:hover {
+            color: #FF7518 !important;
+            border-color: #FFB380 !important;
+            background-color: #FFF9F5 !important;
+        }
+    }
+
+    &.el-button--info {
+        max-width: 95px;
+        height: 34px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,125 @@
+// //search component
+// .wpf_modules_search {
+// 	display: flex;
+// 	align-items: center;
+// 	gap: 8px;
+// 	background-color: $wpf-background;
+// 	width: 180px;
+//     border: $--border-base;
+// 	border-radius: $--border-radius-base;
+//     padding: 1px 0;
+
+//     .el-input {
+//         width: 98%;
+
+//         .el-input__inner {
+//             border: none;
+//             background-color: $wpf-background;
+//         }
+//         input:focus {
+//             box-shadow: 0 0 0 0px !important;
+//             border: none !important;
+//             background: $wpf-background !important;
+//         }
+    
+//         &:hover {
+    
+//             .el-input__inner,
+//             .el-input-group__append {
+//                 border: none;
+//                 transition: $border-transition-hover;
+//             }
+//         }
+    
+//         .el-icon-search {
+//             color: #121313;
+//             font-size: 15px;
+//             display: flex;
+//             align-items: center;
+//             justify-content: center;
+//         }
+//     }
+// }
+
+// .payform_action.search_action {
+// 	border: $--border-base;
+// 	border-radius: $--border-radius-base;
+//     margin-right: 10px;
+// }
+
+.wpf_modules_date {
+    // display: flex;
+    // // padding: 1px 0;
+    // align-items: center;
+    // gap: 8px;
+    // background-color: $wpf-background;
+    // border-radius: $--border-radius-base;
+    // border: $--border-base;
+
+    // .el-date-editor.el-range-editor {
+    //     // width: 242px !important;
+    //     // border: none !important;
+    //     // height: 36px;
+
+    //     &.el-date-editor .el-range__icon.el-icon-date {
+    //         display: flex;
+    //         justify-content: center;
+    //         align-items: center;
+    //         color: #121313 !important;
+    //         font-size: $wpf-medium-font-size;
+    //     }
+    // }
+
+    // input:focus {
+    //     box-shadow: 0 0 0 0px !important;
+    //     border: none !important;
+    //     background: $wpf-background !important;
+    // }
+
+    // .el-date-editor .el-range-separator {
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    // }
+
+    // &:hover {
+    //     border: $--border-base;
+    //     transition: $border-transition-hover;
+    // }
+    // .el-input__icon.el-range__close-icon {
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: flex-end;
+    // }
+}
+
+
+.wpf_module_search {
+	width: 23%;
+    min-width: 205px;
+}
+
+.wpf_modules_date {
+    width: 28%;
+    min-width: 240px;
+}
+
+.wpf_editor_field_search {
+    .el-input {
+        // width: 99%;
+        border-bottom: 1px solid #EAECF0;
+        padding-right: 4px;
+        border-radius: 8px 8px 0 0;
+        .el-input__inner {
+            border: none !important;
+        }
+    }
+}
+.wpf_editor_fields_wrapper {
+    .el-collapse-item__header {
+        border-bottom: 1px solid #EAECF0 !important;
+    }
+    .el-collapse-item__wrap {
+        border-bottom: 1px solid #EAECF0 !important;
+    }
+}

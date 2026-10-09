@@ -1,0 +1,1341 @@
+@import '../../../node_modules/pikaday/css/pikaday.css';
+@import "dropzone";
+
+.wpf_form_preview_wrapper {
+  padding: 30px;
+  max-width: 900px;
+  background: white;
+  padding: 23px;
+  margin: auto;
+}
+
+.wpf_form_notices {
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+
+  p,
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+
+  .wpf_alert_heading {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+
+  ul.wpf_alert_ietms {
+    margin-left: 30px;
+    list-style: disc;
+  }
+
+  &.wpf_form_notice_error {
+    color: rgb(114, 28, 36);
+    background-color: rgb(248, 215, 218);
+    border-color: rgb(245, 198, 203);
+  }
+
+  &.wpf_form_notice_success {
+    color: rgb(21, 87, 36);
+    background-color: rgb(212, 237, 218);
+    border-color: rgb(195, 230, 203);
+  }
+
+  &.wpf_form_notice_info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+  }
+}
+
+.wpf_strip_default_style {
+
+  .wpf_card-errors {
+    color: #fa755a;
+  }
+
+  .StripeElement {
+    background-color: white;
+    height: 40px;
+    padding: 10px 12px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+  }
+
+  .StripeElement--focus {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+  }
+
+  .StripeElement--invalid {
+    border-color: #fa755a;
+  }
+
+  .StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+  }
+
+  .wpf_regular_table {
+    empty-cells: show;
+    font-size: 14px;
+    border: 1px solid #cbcbcb;
+    width: 100%;
+
+    td,
+    th {
+      border-left: 1px solid #cbcbcb;
+      border-width: 0 0 0 1px;
+      font-size: inherit;
+      margin: 0;
+      overflow: visible;
+      padding: .5em 1em
+    }
+
+    td:first-child,
+    th:first-child {
+      border-left-width: 0
+    }
+
+    thead {
+      background-color: #e3e8ee;
+      color: #000;
+      text-align: left;
+      vertical-align: bottom
+    }
+
+    td {
+      background-color: transparent;
+      border-bottom: 1px solid #cbcbcb;
+    }
+
+    tfoot {
+      border-top: 1px solid #cbcbcb;
+    }
+
+    .wpf_tabular_qty,
+    .wpf_tabular_price {
+      width: 130px;
+    }
+
+    th.wpf_subtotal_th {
+      text-align: right;
+    }
+
+    .wpf_tabular_product_photo {
+      width: 80px;
+      padding: 10px !important;
+
+      img {
+        max-width: 100%;
+      }
+    }
+
+  }
+
+  .subscription_custom_amount_block {
+    margin-top: 10px;
+  }
+
+}
+
+/**donation field css*/
+.wpf_donation_status {
+  align-items: center;
+  background: #f8f8f8;
+  color: #767676;
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  font-weight: 500;
+  justify-content: center;
+  width: 100%;
+
+  div {
+    align-items: center;
+    border-color: #f2f2f2;
+    border-width: 1px 0;
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: column;
+    padding: 4px;
+  }
+
+  .number {
+    font-weight: bold;
+    font-size: 19px;
+  }
+}
+
+.wpf_donation_fields_wrapper {
+  padding: 23px 0px;
+  min-height: 150px;
+}
+
+.wpf_donation_photo img {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.wpf_donation_bar_wrapper {
+  border-top: 1px solid #ececec80;
+  padding: 18px;
+  background: #f8f8f8;
+
+  .wpf_donation_fields_bar {
+    border-radius: 11px;
+    background: #dedede;
+    width: 100%;
+
+    .wpf_bar {
+      height: 16px;
+      line-height: 1.2;
+      background: #065d95;
+      border-radius: 11px;
+      font-size: 12px;
+      color: white;
+      font-style: italic;
+      text-align: center;
+      max-width: 100%;
+    }
+  }
+}
+
+
+.wpf_item_donation_item {
+  // border: 1px solid #e8ebed;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+
+  // padding-bottom: 12px;
+  .wpf_donation_controls_custom {
+
+    .wpf_input-group-text-prepend,
+    input {
+      text-align: center;
+      outline: none;
+    }
+
+    max-width:250px;
+  }
+}
+
+.wpf_donation_controls_radio {
+  min-height: 42px;
+
+  .form-check {
+    display: block;
+    float: left;
+    margin: 0px 11px 11px 0px;
+  }
+
+  .form-check:first-of-type {
+    margin-left: 0;
+  }
+
+  input {
+    display: none;
+  }
+
+  label {
+    border-radius: 0.25rem;
+    position: relative;
+    text-align: center;
+    font-weight: 300;
+    line-height: 27px;
+    display: block;
+    cursor: pointer;
+    // border: 1px solid #ccc;
+    padding: 6px 20px;
+    background: #f2f2f2;
+  }
+
+  // input:checked + label {
+  //   border: 1px solid #e0d9d9;
+  // }
+}
+
+.wpf_multi_form_controls {
+  .form-check {
+    label {
+      display: initial;
+    }
+  }
+}
+
+.wpf_form_wrapper {
+  form.wpf_submitting_form {
+    span.wpf_txt_normal {
+      display: none !important;
+    }
+
+    span.wpf_txt_loading {
+      display: block !important;
+    }
+  }
+
+  form.wpf_label_top {
+    .wpf_form_group {
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 15px;
+
+      >label {
+        display: block;
+      }
+
+      .wpf_form_control {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+
+  form.wpf_form {
+    .wpf_form_group {
+      .wpf_form_item_group {
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+        align-items: stretch;
+        width: 100%;
+
+        .wpf_input-group-prepend,
+        .wpf_input-group-append {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+
+          .wpf_input-group-text {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding: 0 15px;
+            margin-bottom: 0;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: rgb(73, 80, 87);
+            text-align: center;
+            white-space: nowrap;
+            background-color: rgb(233, 236, 239);
+            border: 1px solid rgb(206, 212, 218);
+            border-radius: 0;
+
+            &-prepend {
+              border-top-left-radius: 0.25rem;
+              border-bottom-left-radius: 0.25rem;
+            }
+
+            &-append {
+              border-top-right-radius: 0.25rem;
+              border-bottom-right-radius: 0.25rem;
+            }
+          }
+        }
+
+        input {
+          position: relative;
+          -webkit-box-flex: 1;
+          -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+          width: 1% !important;
+          margin-bottom: 0;
+        }
+
+        .input-prepend {
+          border-top-left-radius: 0 !important;
+          border-bottom-left-radius: 0 !important;
+        }
+
+        .input-append {
+          border-top-right-radius: 0 !important;
+          border-bottom-right-radius: 0 !important;
+        }
+      }
+    }
+  }
+
+  .wpf_loading_svg {
+    display: none;
+  }
+
+  form.wpf_submitting_form {
+    .wpf_loading_svg {
+      display: inline-block;
+    }
+  }
+
+  .wpf_form_group {
+    display: block;
+    margin-bottom: 20px;
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .wpf_has_error {
+      border-color: #f5c6cb !important;
+    }
+
+    .form-check {
+      .wpf_form_control.form-check-input {
+        display: inline-block;
+        width: auto;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .wpf_inline_labels {
+      &.wpf_label_left {
+        .wpf_form_group {
+          .wpf_input_label>label {
+            text-align: left;
+            display: block;
+          }
+        }
+      }
+
+      &.wpf_label_right {
+        .wpf_form_group {
+          .wpf_input_label>label {
+            text-align: right;
+            display: block;
+          }
+        }
+      }
+
+      .wpf_form_group {
+        .wpf_input_label {
+          float: left;
+          width: 200px;
+          padding-right: 10px;
+        }
+
+        .wpf_input_content {
+          margin-left: 200px;
+          display: block;
+
+          .wpf_form_control {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .wpf_form_group {
+
+      .wpf_form_control,
+      .wpf_form_item_group {
+        width: 100%;
+        max-width: 100% !important;
+      }
+    }
+  }
+
+  .wpf_submit_button_pos_center {
+    .wpf_form_submissions {
+      display: block;
+      text-align: center;
+    }
+  }
+
+  .wpf_submit_button_pos_left {
+    .wpf_form_submissions {
+      display: block;
+      text-align: left;
+    }
+  }
+
+  .wpf_submit_button_pos_right {
+    .wpf_form_submissions {
+      display: block;
+      text-align: right;
+    }
+  }
+
+  form.wpf_form {
+
+    .wpf_default_btn,
+    .wpf_full_block_btn {
+      border-radius: 4px;
+      display: inline-block;
+      background-color: rgb(62, 168, 229);
+      background-image: linear-gradient(-180deg, rgb(68, 177, 232), rgb(48, 152, 222));
+      box-shadow: 0 1px 0 0 rgba(46, 86, 153, .15), inset 0 1px 0 0 rgba(46, 86, 153, .1), inset 0 -1px 0 0 rgba(46, 86, 153, .4);
+      font-size: 17px;
+      line-height: 17px;
+      height: 40px;
+      font-weight: 700;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, .12);
+      color: rgb(255, 255, 255);
+      cursor: pointer;
+      transition: all .2s ease-in-out;
+      padding: 10px 20px;
+
+      &:hover {
+        background-image: linear-gradient(rgb(125, 197, 238), rgb(0, 140, 221) 85%, rgb(48, 162, 228));
+      }
+    }
+
+    .wpf_full_block_btn {
+      display: block !important;
+      width: 100%;
+    }
+
+    .wpf_form_submissions {
+      display: flex;
+    }
+
+  }
+
+  &.wpf_restriction_action_hide_form {
+    form.wpf_form {
+      display: none !important;
+      visibility: hidden !important;
+    }
+  }
+
+  &.wpf_restriction_action_hide_submit_button {
+    form.wpf_form {
+      .wpf_form_submissions {
+        display: none !important;
+        visibility: hidden !important;
+      }
+    }
+  }
+
+  form.wpf_bold_labels {
+    .wpf_input_label {
+      >label {
+        font-weight: bold;
+      }
+    }
+  }
+
+}
+
+form.wpf_default_form_styles {
+  .wpf_form_group {
+
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    input[type="password"],
+    input[type="search"],
+    input[type="number"],
+    input[type="tel"],
+    input[type="range"],
+    input[type="date"],
+    input[type="month"],
+    input[type="week"],
+    input[type="time"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="color"] {
+      display: block;
+      width: 100%;
+      padding: 8px 12px;
+      height: 40px;
+      font-size: 1rem;
+      line-height: 52px;
+      border: $--border-base;
+      color: rgb(73, 80, 87);
+      background-color: rgb(255, 255, 255);
+      background-clip: padding-box;
+      border: 1px solid rgb(206, 212, 218);
+      border-radius: 8px;
+      transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    select {
+      padding: 0 .75rem;
+      height: 36px;
+      margin: 0;
+      line-height: 1.5;
+      background: #fff;
+      border-radius: 5px;
+      border:1px solid #ced4da !important;
+    }
+
+    textarea {
+      display: block;
+      width: 100%;
+      padding: .375rem .75rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: rgb(73, 80, 87);
+      background-color: rgb(255, 255, 255);
+      background-clip: padding-box;
+      border: 1px solid rgb(206, 212, 218);
+      border-radius: .25rem;
+      transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+  }
+}
+
+.dropzone_parent input[type=file] {
+  display: none !important;
+  visibility: hidden;
+}
+
+.payform_file_lists {
+  display: flex;
+  width: 100%;
+
+  .payform_each_file {
+    max-width: 150px;
+    margin-right: 20px;
+    flex: 1;
+
+    &:hover {
+      opacity: 0.8;
+      box-shadow: 0px 2px 5px 5px #eeeeef;
+    }
+
+    img {
+      max-width: 100%;
+    }
+  }
+}
+
+label.wpf_address_heading {
+  font-size: 120%;
+  font-weight: 500;
+  border-bottom: 1px solid #ced4da;
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+  .wpf-t-container {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    vertical-align: top;
+
+    .wpf-t-cell {
+      display: table-cell;
+      padding: 0 15px;
+      vertical-align: inherit;
+
+      &:first-of-type {
+        padding-left: 0
+      }
+
+      &:last-of-type {
+        padding-right: 0
+      }
+    }
+  }
+}
+
+.wpf_tc_scroll {
+  max-height: 200px;
+  overflow: scroll;
+  padding: 15px;
+  background: #f6f8fa;
+  background-image: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0)), linear-gradient(to top, #ffffff, rgba(255, 255, 255, 0)), linear-gradient(to bottom, #f7f7f7, rgba(255, 255, 255, 0)), linear-gradient(to top, #f5f5f5, rgba(255, 255, 255, 0));
+  background-position: 0 0, 0 100%, 0 0, 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 0em, 100% 5em, 100% 1em, 100% 1em;
+  background-attachment: local, local, scroll, scroll;
+  border: 1px solid #d4d4d4;
+}
+
+ul.wpf_coupon_responses {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    padding-top: 5px;
+  }
+
+  span.error-clear {
+    font-weight: 400;
+    color: #979797;
+    margin-right: 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 1px 5px;
+  }
+
+  .wpf_error {
+    color: #f56c6c;
+    cursor: pointer;
+  }
+
+  .wpf_success {
+    color: #28a745;
+  }
+}
+
+
+
+.wpf-radio-with-Icon {
+  ul {
+    margin: 0px !important;
+    padding: 0px !important;
+
+    li {
+      display: inline-block;
+      width: 60;
+      height: 60;
+      border-radius: 2%;
+
+      input {
+        width: 0;
+        height: 0;
+        opacity: 0;
+        margin: 0;
+      }
+    }
+  }
+
+  :checked+label {
+    border-color: #ddd;
+
+    &img {
+      transform: scale(0.9);
+      z-index: -1;
+    }
+
+    &:before {
+      content: "✓";
+      background-color: #ff7518;
+      transform: scale(1);
+    }
+  }
+
+  input[type="radio"][id^="cb"] {
+    display: none;
+  }
+
+  label {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    display: block;
+    position: relative;
+    margin: 10px 2px 3px 0px;
+    cursor: pointer;
+  }
+
+  label:before {
+    background-color: white;
+    color: white;
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    border: 1px solid #ffb380;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 21px;
+    height: 21px;
+    text-align: center;
+    line-height: 19px;
+    transition-duration: 0.4s;
+    transform: scale(0);
+  }
+
+  label {
+    img {
+      height: 46px;
+      width: 64px;
+      transition-duration: 0.2s;
+      transform-origin: 50% 50%;
+    }
+  }
+}
+
+// .wpf_multi_form_controls
+
+/* Step form css start */
+#wpf_svg_form_time {
+  height: 15px;
+  max-width: 80%;
+  margin: 40px auto 20px;
+  display: block;
+}
+
+#wpf_svg_form_time circle,
+#wpf_svg_form_time rect {
+  fill: white;
+}
+
+.wpf_step_button {
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 10px 15px;
+  display: inline-block;
+  margin-right: 10px;
+  font-weight: bold;
+  color: #ff7518;
+  cursor: pointer;
+  box-shadow: 0px 1px 2px rgb(0 0 0 / 30%);
+  text-decoration: none !important;
+}
+
+.wpf_step_disabled {
+  display: none;
+}
+
+.wpf_step_section {
+  padding: 2rem 0 !important;
+}
+
+
+/* Step Form */
+.step-form {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  overflow-x: auto;
+}
+
+.step-form.justify-start {
+  justify-content: flex-start;
+}
+
+.step-form::-webkit-scrollbar {
+  height: 4px;
+  border-radius: 10px;
+}
+
+.step-form::-webkit-scrollbar-thumb {
+  height: 4px;
+  background: #ffd8c7;
+  border-radius: 10px;
+}
+
+.step-form::-webkit-scrollbar-track {
+  height: 4px;
+  background: #e4e4e4;
+  border-radius: 10px;
+}
+
+.step-form .step-form-item {
+  flex-basis: 16.6667%;
+  min-width: 130px;
+  margin-bottom: 12px;
+}
+
+.step-form .step-form-item .step-form-item-content h2 {
+  margin: 10px 0 0 0;
+  font-size: 22px;
+  padding-bottom: 3px;
+  color: #d2d2d2
+}
+
+.step-form .step-form-item .step-form-item-content p {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.step-form .step-form-item .step-form-item-header {
+  position: relative;
+}
+
+.step-form .step-form-item .step-form-item-header:before {
+  content: '';
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -1px;
+  background: #d2d2d2;
+}
+
+.step-form .step-form-item .step-form-item-header .number {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  background: #fff;
+  transition: .15s ease-out;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #d2d2d2;
+  font-weight: 500;
+  color: #6b6b6b;
+}
+
+.step-form .step-form-item.success .step-form-item-header .number {
+  border-color: #ff7518;
+  color: #ff7518;
+}
+
+.step-form .step-form-item.success .step-form-item-content h2 {
+  color: #ff7518;
+}
+
+.step-form .step-form-item.success .step-form-item-header:before {
+  background: #ff7518;
+}
+
+.step-form .step-form-item.error .step-form-item-header .number {
+  border-color: #ff1818 !important;
+  color: #ff1818 !important;
+}
+
+.step-form .step-form-item.error .step-form-item-content h2 {
+  color: #ff1818 !important;
+}
+
+.step-form .step-form-item.error .step-form-item-header:before {
+  background: #ff1818 !important;
+}
+
+.step-form .step-form-item.active .step-form-item-header .number {
+  border-color: #596075;
+  color: #596075;
+}
+
+.step-form .step-form-item.active .step-form-item-content h2 {
+  color: #596075;
+}
+
+.step-form .step-form-item.active .step-form-item-header:before {
+  background: #596075;
+}
+
+.wpf_tabular_filter_container {
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 30px;
+  div {
+    margin: 2px;
+    width: 33%;
+    text-align: center;
+  }
+
+  select {
+    width: 100%;
+    padding: auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .wpf_tabular_filter_container {
+    flex-wrap: wrap;
+
+    div {
+      width: 48%;
+    }
+  }
+}
+
+.grid-template-col {
+  &-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.d {
+  &-flex {
+    display: flex;
+  }
+
+  &-grid {
+    display: grid;
+  }
+}
+
+.gap {
+  &-20 {
+    gap: 20px;
+  }
+
+  &-8 {
+    gap: 8px;
+  }
+
+  &-10 {
+    gap: 10px;
+  }
+}
+
+.wpf-tabular-product-is-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.wpf-product-cards-wrap {
+  .wpf-product-card {
+    border: 1px solid rgba(195, 202, 216, .5);
+    border-radius: 4px;
+    position: relative;
+
+    &:hover {
+      background: #f5f7fd;
+    }
+
+    .wpf-product-checkbox {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 3;
+      border: 1px solid #c3cad8;
+      background: #fff;
+      width: 20px;
+      height: 20px;
+
+      &:before {
+        content: "";
+        width: 6px;
+        height: 10px;
+        border-bottom: 2px solid #fff;
+        border-right: 2px solid #fff;
+        position: absolute;
+        left: 6px;
+        transform: rotate(45deg);
+        top: 3px;
+      }
+    }
+
+    input[type="checkbox"] {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      border: none;
+      opacity: 0;
+      z-index: 1;
+      &:checked {
+        ~.wpf-product-checkbox {
+          border-color: #4c71fb;
+          background: #4c71fb;
+        }
+
+        ~.wpf-product-body {
+          background: #f5f7fd;
+        }
+      }
+    }
+
+    .wpf-product-image {
+      position: relative;
+      z-index: 2;
+      img {
+        max-height: 278px;
+        width: 100%;
+        min-height: 220px;
+        object-fit: cover;
+      }
+      &:hover {
+        .wpf-product-image-overlay {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+
+      .wpf-product-image-overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background: rgba(1, 118, 254, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: .3s;
+        opacity: 0;
+        visibility: hidden;
+
+        span {
+          color: #fff;
+          display: block;
+          font-size: 15px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .wpf-product-body {
+      padding: 10px;
+
+      .wpf-product-title {
+        font-size: 16px;
+        margin: 0 0 5px 0;
+        letter-spacing: 0.2px;
+      }
+
+      .wpf-product-content {
+        font-size: 14px;
+        color: #2C3345;
+        opacity: 0.6;
+        margin: 0 0 8px 0;
+      }
+
+      .wpf-product-price {
+        color: #ff7518;
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        display: block;
+      }
+
+      label {
+        font-size: .75em;
+        color: #464d5f;
+      }
+
+      select {
+        padding: 5px 10px;
+        width: 100%;
+        height: 33px;
+        border-color: #b8bdc9;
+        border-radius: 4px;
+        -moz-appearance: none;
+        appearance: none;
+
+        background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%);
+        background-position: calc(100% - 15px) calc(1em + -4px), calc(100% - 10px) calc(1em + -4px), calc(100% - 2.5em) 0.5em;
+        background-size: 5px 5px, 5px 5px, 1px 1.5em;
+        background-repeat: no-repeat;
+
+        &:focus {
+          outline: none;
+          box-shadow: none;
+          border-color: #4c71fb;
+        }
+      }
+
+      .wpf_product_qty {
+        height: 33px;
+        border-color: #b8bdc9;
+        border-radius: 4px;
+      }
+
+      .wpf-product-footer {
+        z-index: 9;
+        position: relative;
+      }
+    }
+
+    &.active {
+      .wpf-product-dialog-box {
+        display: flex;
+      }
+    }
+    .wpf-product-dialog-box {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.1);
+      z-index: 20;
+      align-items: center;
+      justify-content: center;
+      display: none;
+
+      .wpf-product-dialog-content {
+        width: 100%;
+        max-width: 960px;
+        height: calc(100% - 20px);
+        max-height: calc(100% - 300px);
+        overflow-x: hidden;
+        margin: auto;
+        padding: 60px 70px 20px 70px;
+        background: #fff;
+        border-radius: 8px;
+        position: relative;
+
+        /* Next & previous buttons */
+        .prev,
+        .next {
+          cursor: pointer;
+          position: absolute;
+          top: 50%;
+          width: auto;
+          padding: 16px;
+          margin-top: -22px;
+          color: rgb(136, 32, 32);
+          font-weight: bold;
+          font-size: 18px;
+          transition: 0.6s ease;
+          border-radius: 0 3px 3px 0;
+          user-select: none;
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+          right: 70px;
+          border-radius: 3px 0 0 3px;
+          text-decoration: none;
+        }
+        .prev {
+          text-decoration: none;
+        }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover,
+        .next:hover {
+          background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .close-dialog {
+          position: absolute;
+          color: #000;
+          background-color: #edeef5;
+          top: 10px;
+          right: 10px;
+          border-radius: 50%;
+          transform: rotate(-45deg);
+          cursor: pointer;
+          width: 45px;
+          height: 45px;
+          line-height: 45px;
+          text-align: center;
+          font-size: 22px;
+        }
+
+        img {
+          max-width: 100%;
+          max-height: 450px;
+          display: block;
+          margin: auto;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 573px) {
+  .wpf-product-cards-wrap {
+    grid-template-columns: 1fr 1fr;
+
+    .wpf-product-card {
+      .wpf-product-dialog-box {
+        .wpf-product-dialog-content {
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 573px) {
+  .wpf-product-cards-wrap {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wpf_filter_select, .wpf_sort_select {
+  border-color: #dcd7ca;
+  border-radius: 4px;
+  padding: 5px 10px;
+  width: 100%;
+  height: 40px;
+  -moz-appearance: none;
+  appearance: none;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.08);
+  background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%);
+  background-position: calc(100% - 15px) calc(1em + -4px), calc(100% - 10px) calc(1em + -4px), calc(100% - 2.5em) 0.5em;
+  background-size: 5px 5px, 5px 5px, 1px 1.5em;
+  background-repeat: no-repeat;
+  &:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #4c71fb;
+  }
+}
+
+
+
+.wpf_filter_input {
+  .input-elevated{
+  font-size: 16px;
+  line-height: 1.4;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><path fill='%23838D99' d='M13.22 14.63a8 8 0 1 1 1.41-1.41l4.29 4.29a1 1 0 1 1-1.41 1.41l-4.29-4.29zm-.66-2.07a6 6 0 1 0-8.49-8.49 6 6 0 0 0 8.49 8.49z'></path></svg>");
+  background-repeat: no-repeat;
+  background-position: 10px 10px;
+  background-size: 20px 20px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.08);
+  border-radius: 5px;
+  padding: .5em 1em .5em 2.5em;
+  } 
+  
+  .input-elevated::placeholder{
+    color: #838D99;
+  }
+  
+  .input-elevated:focus {
+    outline: none;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.16);
+  }
+}
+.wpf-is-hidden, .wpf-search-hidden {
+  display: none;
+}
+.wpf-flex-body {
+  width: 70%;
+}
+.wpf-image_row_wrapper {
+ max-width: 28%;
+}
+.wpf_product_not_found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .show {
+    display: block;
+  }
+  .hide {
+    display: none;
+  }
+  img {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+.grid_tab_sub_total {
+  display: flex;
+  justify-content: right;
+  padding: 12px;
+  font-size: inherit;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 580px) {
+  .wpf-tabular-product-is-flex {
+    display: block;
+  }
+  .wpf-image_row_wrapper {
+    max-width: none;
+   }
+}
+

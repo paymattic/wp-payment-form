@@ -1,0 +1,44 @@
+.wpf_regular_table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 14px;
+    border: $--border-base;
+    
+    th,
+    td {
+        border-bottom: $--border-base;
+        padding: 10px 12px 10px 15px;
+        border-right: $--border-base;
+        &:last-child {
+            border-right: none;
+        }
+    }
+
+    .wpf-label-editor {
+        padding-bottom: 0 !important;
+    }
+    
+    th {
+        text-align: left;
+        background-color: #F5F6F7;
+
+
+        .editable-lable {
+            color: $wpf-system-dark;
+            font-family: $wpf-font-family;
+            font-size: 13px !important;
+        }
+    }
+    
+    td {
+        .editable-lable {
+            overflow: hidden;
+            color: $wpf-system-dark !important;
+            text-overflow: ellipsis;
+            font-weight: 400 !important;
+        }
+    }
+}

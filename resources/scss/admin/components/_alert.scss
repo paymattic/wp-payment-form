@@ -1,0 +1,31 @@
+.el-alert {
+    font-family: $wpf-font-family;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+
+    &--success.is-light {
+        background: $wpf-success-50;
+        color: $wpf-success-500;
+
+    }
+
+    &--warning.is-light {
+        background: $wpf-warning-50;
+        color: $wpf-warning-500;
+    }
+
+    &--error.is-light {
+        background: $wpf-danger-50;
+        color: $wpf-danger-500;
+    }
+
+    .el-alert__icon {
+        font-size: 16px;
+        width: 16px;
+    }
+}

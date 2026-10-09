@@ -1,0 +1,258 @@
+.wpf_payment_item_components {
+    .form-check {
+        margin-bottom: 12px !important;
+        &:last-child {
+            margin-bottom: 0 !important;
+        }
+    }
+}
+
+.wpf_payment_item_radio_vertical {
+    .wpf_payment_item_radio_div {
+        white-space: normal;
+        
+    }
+    .wpf_payment_item_checkbox_div {
+        white-space: normal;
+    }
+}
+
+.wpf_payment_item_template {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    border: $--border-base;
+    background: #fff;
+    &.selected {
+        border: 1px solid #0693e3;
+    }
+    margin-top: 20px;
+    margin-right: 20px;
+    &:last-child {
+        margin-right: 0;
+    }
+    padding: 16px;
+    width: 440px;
+    min-width: 440px;
+    position: relative;
+    min-height: 100px;
+    @media screen and (max-width: 480px) {
+        width: 100%;
+        min-width: 100%;
+        padding: 10px;
+        
+    }
+    .wpf_tabular_product_photo {
+        margin: 0 !important;
+        position: absolute;
+        left: 48px;
+        img {
+            margin: 0 !important;
+            aspect-ratio: 1;
+        }
+    }   
+    .form-check-label {
+        margin-left: 9px;
+        .wpf_price_option_name {
+            display: block;
+            word-break: break-all;
+            @include text($size: 16px, $weight: 500, $color: $wpf-system-dark);
+        }
+        .wpf_price_option_price {
+            display: block;
+            @include text($size: 18px, $weight: 600, $color: $wpf-system-dark);
+            margin-top: 10px;
+        }
+        .wpf_price_option_sep {
+            display: none;
+        }
+    }
+    .wpf_tabular_product_photo + .form-check .form-check-label {
+        margin-left: 100px;
+    }
+    input[type="radio"] {
+        width: 24px;
+        height: 24px;
+        margin: 0;
+    }
+    .wpf-no-image {
+        .form-check-label {
+           margin-left: 36px;
+        }
+    }
+}
+
+.wpf_payment_item_card_template {
+    width: calc(100% / 3 - 14px);
+    min-width: 280px;
+    background: #fff;
+    border: $--border-base;
+    border-radius: 8px;
+    position: relative;
+    &:not(:last-child) {
+        margin-bottom: 20px;
+    }
+    .wpf_tabular_product_photo {
+        background-color: #F5F6F7;
+        background: #F5F6F7;
+        border-radius: 8px;
+        margin-top: 0px;
+        margin: 8px;
+        img {
+            border-radius: 8px;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover;
+            aspect-ratio: 1;
+        }
+    }
+    input {
+        position: absolute;
+        top: 20px;
+        left: 15px;
+    }
+    .form-check-label {
+        padding: 6px 16px;
+        .wpf_price_option_name {
+            display: block;
+            word-break: break-all;
+            @include text($size: 15px, $weight: 500, $color: $wpf-system-dark);
+        }
+        .wpf_price_option_price {
+            display: block;
+            @include text($size: 16px, $weight: 600, $color: $wpf-system-dark);
+            margin-top: 10px;
+        }
+        .wpf_price_option_sep {
+            display: none;
+        }
+    }
+    .wpf-no-image {
+        .form-check-label {
+           margin-left: 36px;
+        }
+    }
+}
+
+// Admin panel
+
+.payment_item_template {
+    .wpf_payment_item_radio_div, .wpf_payment_item_checkbox_div {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-radius: 8px;
+        border: $--border-base;
+        background: #fff;
+        margin-top: 10px;
+        margin-right: 10px;
+        &:last-child {
+            margin-right: 0;
+        }
+        padding: 12px;
+        width: calc(50% - 42px);
+        min-width: 386px;
+        min-height: 100px;
+        align-items: center !important;
+        .payment-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            img {
+                width: 70px;
+                height: 70px;
+                border-radius: 8px;
+            }
+        }
+        .wpf-price-label {
+            span {
+                display: block;
+            }
+            .dash {
+                display: none;
+            }
+            .price {
+                @include text($size: 18px, $weight: 600, $color: $wpf-system-dark);
+                margin-top: 10px;
+            }
+            .label {
+                @include text($size: 16px, $weight: 500, $color: $wpf-system-dark);
+                white-space: normal;
+                word-break: break-all;
+            }
+        }
+    }
+}
+
+.payment_item_card_template {
+    .wpf_payment_item_radio_div, .wpf_payment_item_checkbox_div {
+        width: calc(100% / 3 - 9px);
+        min-width: 260px;
+        background: #fff;
+        border: 1px solid #D6DAE1;
+        border-radius: 8px;
+        position: relative;
+        white-space: normal;
+        word-break: break-all;
+        margin-right: 0px !important;
+        .payment_item_image {
+            background-color: #F5F6F7;
+            background: #F5F6F7;
+            border-radius: 8px;
+            margin-top: 0px;
+            margin: 8px;
+            img {
+                border-radius: 8px;
+                width: 100% !important;
+                height: 100%;
+                object-fit: cover;
+                aspect-ratio: 1;
+            }
+        }
+        .el-radio__input, .el-checkbox__input {
+            position: absolute;
+            top: 18px;
+            left: 17px;
+        }
+        .el-radio__label, .el-checkbox__label {
+            padding-left: 0px !important;
+            .wpf-price-label{
+                padding: 10px 14px;
+                &.no-image {
+                    margin-left: 36px;
+                }
+                label {
+                    display: block;
+                    word-break: break-all;
+                    @include text($size: 15px, $weight: 500, $color: $wpf-system-dark); 
+                }
+                .price {
+                    display: block;
+                    @include text($size: 16px, $weight: 600, $color: $wpf-system-dark);
+                    margin-top: 10px;
+                }
+                .dash {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.wpf_payment_item_horizontal {
+    .wpf_payment_item_components {
+        margin-bottom: 0px;
+    }
+    margin-top: 10px;
+    .wpf_payment_item_template {
+        margin-top: 0px !important;
+        margin-right: 0px !important;
+    }
+    display: flex !important;
+    flex-wrap: wrap;
+    flex-direction: row !important;
+    gap: 20px;
+}
+
+

@@ -1,0 +1,27 @@
+@import './header.scss';
+@import './form-editor.scss';
+@import './key_pair_options';
+@import './container_component.scss';
+@import './tabular_product/index';
+@import './choose_payment_method/choose_payment_method';
+
+
+
+.payform_shortcode {
+    .el-tooltip.copy {
+        display: flex;
+        padding: 6px 10px;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 5px;
+        border-radius: 6px;
+        background: #F5F6F7;
+        color: #565865;
+        text-align: center;
+        font-family: "Inter", sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 16px;
+    }
+}

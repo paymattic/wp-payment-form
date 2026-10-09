@@ -1,0 +1,40 @@
+// //search component
+.wpf_modules_search {
+    display: flex;
+    padding: 9px 12px;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+
+    .wpf_search_input {
+        max-width: 250px;
+        width: 100%;
+    }
+
+    &:hover {
+
+        .el-input__inner,
+        .el-input-group__append {
+            border-color: $border-color-hover;
+            transition: $border-transition-hover;
+        }
+    }
+}
+
+
+.wpf_modules_date {
+    border: 1px solid #808080;
+    border-radius: 4px;
+    margin-left: 5px;
+    padding: 1px 0 1px 0;
+
+    .el-date-editor.el-range-editor {
+        width: 242px !important;
+        border: none !important;
+    }
+
+    &:hover {
+        border-color: $border-color-hover;
+        transition: $border-transition-hover;
+    }
+}

@@ -1,0 +1,16 @@
+.wpf_form_wrapper {
+    .form-check .wpf_form_control.form-check-input {
+        width: 25px !important;
+        height: 25px !important;
+    }
+    input[type=radio]:checked:focus , input[type=checkbox]:checked:focus {
+        outline: none !important;
+    }
+    .wpf_payment_method_item {
+        .form-check-input {
+            width: 34px !important;
+            height: 25px !important;
+            margin-top: 8px !important;
+        }
+    }
+}

@@ -1,0 +1,116 @@
+
+.wp_vue_editor_wrapper {
+    position: relative;
+
+    .popover-wrapper {
+        z-index: 2;
+        position: absolute;
+        top: -6px;
+        right: 0;
+
+        &-plaintext {
+            left: auto;
+            right: 0;
+            top: -32px;
+        }
+    }
+
+    .wp-editor-tools {
+        .wp-media-buttons .button {
+            margin-right: 0;
+            margin-bottom: 0;
+            padding-left: 7px;
+            padding-right: 7px;
+            padding: 2px 6px;
+            border: 1px solid #EAECF0;
+            border-radius: 6px;
+        }
+
+        .button.insert-media.add_media {
+            color: #000;
+        }
+
+        .wp-editor-container {
+            clear: both;
+            border: 1px solid #dcdcde;
+            padding: 1px;
+            border-radius: 8px;
+        }
+    }
+
+    .wp-core-ui .button {
+        color: #000;
+        border-color: #fff;
+        background: #fff;
+        vertical-align: top;
+
+        &:hover {
+            color: #000;
+            border-color: #fff;
+            background: #f6f7f7;
+            box-shadow: 0 0 0 1px #EAECF0;
+        }
+
+        &:focus {
+            color: #000;
+            border-color: #fff;
+            background: #f6f7f7;
+            box-shadow: 0 0 0 1px #EAECF0;
+        }
+    }
+
+    .wp-editor-tabs {
+        float: left;
+        border: 1px solid var(--Gray-Outline, #EAECF0);
+        border-radius: 6px;
+        padding: 3px 5px;
+        margin-bottom: 5px;
+        margin-left: 5px;
+
+        button.wp-switch-editor {
+            line-height: 2px;
+        }
+    }
+
+    .el-form-item__content {
+        line-height: 0;
+    }
+
+    .wp-switch-editor {
+        float: left;
+        box-sizing: content-box;
+        position: relative;
+        top: 1px;
+        background: #f0f0f1;
+        color: #646970;
+        cursor: pointer;
+        font-size: 13px;
+        line-height: 1.46153846;
+        height: 20px;
+        margin: 0;
+        padding: 3px 8px 4px;
+        // border: 1px solid #EAECF0;
+        border: none !important;
+    }
+
+    .switch-tmce {
+        border-radius: 6px;
+        background: var(--White, #FFF);
+
+    }
+
+    .switch-html {
+        border-radius: 6px;
+        background: var(--White, #FFF);
+    }
+
+    .html-active .tmce-active {
+        background: #F5F6F7;
+        border-radius: 6px;
+        border: 1px solid var(--Gray-Outline, #EAECF0);
+    }
+
+    .wp_vue_editor {
+        border: 1px solid #D6DAE1;
+    }
+}

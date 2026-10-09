@@ -1,0 +1,29 @@
+.wpf-recaptcha-settings {
+    .el-form-item {
+        padding: 0 !important;
+    }
+    .wpf_settings_section_inner_label, .header-text {
+        padding-left: 0px !important;
+        margin: 0;
+        margin-bottom: 12px;
+        @include h6;
+    }
+    .wpf_recaptcha_settings_section {
+        .el-radio {
+            margin-bottom: 0;
+        }
+        .wpf_recaptcha_keys {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+
+            .el-input {
+                width: 100%;
+            }
+        }
+        .app-card {
+            margin-top: 20px;
+        }
+    }
+}

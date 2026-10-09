@@ -1,0 +1,51 @@
+.wpf_global_payment_setting_component {
+	padding: 0 12px;
+	border-radius: 8px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 40px;
+	text-decoration: none;
+	&.active {
+		background: $--color-primary;
+		color: #FFF;
+
+
+		p {
+			color: #FFF;
+			font-family: Inter;
+			font-size: 15px !important;
+			font-style: normal;
+			font-weight: 500;
+			line-height: 24px;
+		}
+		.wpf_payment_setting_forward_icon {
+			filter: grayscale(100%) brightness(0) invert(1);
+			.icon {
+				filter: grayscale(100%) brightness(0) invert(1);
+			}
+		}
+	}
+	&:focus {
+		box-shadow: none;
+		outline: none;
+	}
+
+    .menu_item_img {
+        color: #2F3448;
+    }
+
+	p {
+		color: var(--System-Dark, #2F3448);
+		font-family: Inter;
+		font-size: 15px;
+		font-style: normal;
+		font-weight: 500;
+		line-height: 24px;
+	}
+
+	.wpf_payment_title {
+		display: flex;
+		gap: 10px;
+	}
+}

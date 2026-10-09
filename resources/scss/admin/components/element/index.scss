@@ -1,0 +1,35 @@
+@import './input.scss';
+@import './select.scss';
+@import './date.scss';
+
+p {
+	color: $wpf-system-dark;
+	font-family: $wpf-font-family;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px;
+}
+
+.payform_form_item_wrapper {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
+}
+
+
+	.el-form-item {
+		padding: 0;
+		margin-bottom: 0;
+
+		.el-form-item__label {
+			text-align: left;
+			line-height: 20px;
+			box-sizing: border-box;
+			color: $wpf-system-dark;
+			font-family: $wpf-font-family;
+			font-size: 14px;
+			font-style: normal;
+			font-weight: 500;
+		}
+	}

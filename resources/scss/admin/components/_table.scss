@@ -1,0 +1,471 @@
+
+.el-table--border,
+.el-table--group {
+    border: none !important;
+    // border-radius: 6px !important;
+}
+
+.el-table {
+
+    .el-table--border {
+        border: none !important;
+        // border-radius: 6px !important;
+    }
+
+    // .el-table__header {
+    //     background: #F5F6F7 !important;
+    //     padding: 0 6px;
+    // }
+
+    .el-checkbox {
+        display: flex;
+        justify-content: center;
+    }
+
+    th.el-table__cell {
+        background-color: #F5F6F7 !important;
+
+        .cell {
+            font-weight: 500 !important;
+            font-family: $wpf-font-family;
+            font-style: normal;
+            line-height: 20px;
+            color: $--text-color;
+        }
+
+        // &:first-child {
+        //     border-radius: 6px 0 0 6px;
+        // }
+
+        // &:last-child {
+        //     border-radius: 0 6px 6px 0;
+        // }
+    }
+
+    td.el-table__cell {
+        border-right: none !important;
+        background-color: $wpf-background !important;
+        color: $--text-color;
+        height: 70px;
+        
+        // &:first-child {
+        //     padding: 0 6px !important;
+        // }
+
+        code {
+            display: inline-flex;
+            padding: 5px 10px;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            border-radius: 6px;
+            background: #F5F6F7;
+        }
+
+        .cell {
+            font-family: $wpf-font-family;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400 !important;
+            line-height: 20px;
+            color: $--text-color;
+
+            .el-checkbox {
+                padding-top: 0 !important;
+            }
+
+            a {
+                color: $--text-color;
+                font-family: $wpf-font-family;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 20px;
+                // text-decoration-line: none;
+                border-bottom: 1px solid transparent;
+                transition: $wpf-transition;
+
+                &:hover {
+                    // text-decoration-line: underline;
+                    border-bottom: $--border-base;
+                    transition: $border-transition-hover;
+                    color: $--el-color-secondary;
+                }
+                &:focus {
+                    box-shadow: none;
+                }
+            }
+
+        }
+
+        .wpf_action_button_group {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            &>a {
+                padding: 0 12px;
+                border-right: $--border-base;
+                color: gray;
+            }
+
+            &>a:first-child {
+                padding: 0 12px 0 0;
+            }
+
+            &>a:last-child {
+                border-right: none !important;
+            }
+
+            .el-button.wpf-button span {
+                color: $wpf-system-dark;
+                font-family: $wpf-font-family;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 16px;
+            }
+
+            .el-dropdown {
+                // padding: 2px 15px 0 15px;
+                // cursor: pointer;
+
+                .el-dropdown-link {
+                    cursor: pointer;
+                    border: none;
+                    background: none;
+                }
+
+                .el-icon-arrow-down {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
+
+.el-dropdown-menu__item {
+
+    a {
+        color: $--text-color;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        padding: 8px 12px;
+        gap: 8px;
+        align-self: stretch;
+
+        .icon {
+            display: flex;
+            width: 16px;
+            height: 16px;
+            padding: 1.339px 1.458px 1.328px 1.542px;
+            justify-content: center;
+            align-items: center;
+
+            svg {
+                width: 13px;
+                height: 13.333px;
+            }
+        }
+
+
+        span {
+            color: $wpf-system-dark;
+            font-family: $wpf-font-family;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px;
+        }
+    }
+
+    &.last-item {
+        border-bottom: none;
+    }
+}
+
+
+
+.el-icon-arrow-down {
+    font-size: 12px;
+}
+
+.wpf_pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    .pager-wrap {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        .el-select {
+            .el-input {
+                width: 60%;
+                .el-input__inner {
+                    border: none !important;
+                    background: #F5F6F7 !important;
+                }
+            }
+        }
+    }
+
+    .pagination_page_list {
+
+        .el-pagination .btn-prev, .btn-next {
+            margin: 0 5px;
+            background-color: #f4f4f5;
+            color: #606266;
+            min-width: 30px;
+            border-radius: 2px;
+        }
+
+        .el-icon-arrow-right,
+        .el-icon-arrow-left {
+            color: $--el-color-secondary !important;
+        }
+
+        .el-pager li {
+            margin: 0 3px;
+            background: #f4f4f5;
+            border-radius: 4px;
+
+            &:hover {
+                background-color: $--el-color-secondary !important;
+                color: $wpf-background !important;
+            }
+            
+            &.active {
+                background-color: $--el-color-secondary !important;
+                color: $wpf-background !important;
+            }
+        }
+
+    }
+}
+
+
+.wpf_pay_status_pending {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #FFF9F3;
+    color: $wpf-warning-600;
+    text-align: center;
+    font-family: $wpf-font-family;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    width: fit-content;
+
+    .icon {
+        display: flex;
+        align-items: center;
+
+        svg {
+            height: 16px;
+            width: 16px;
+        }
+    }
+}
+
+.wpf_pay_status_refunded {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #FDF5F3;
+    color: $wpf-danger-600;
+    text-align: center;
+    font-family: $wpf-font-family;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    width: fit-content;
+
+    .icon {
+        display: flex;
+        align-items: center;
+
+        svg {
+            height: 16px;
+            width: 16px;
+        }
+    }
+}
+
+.wpf_pay_status_paid {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #F3FAF8;
+    color: $wpf-success-600;
+    text-align: center;
+    font-family: $wpf-font-family;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    width: fit-content;
+
+    .icon {
+        display: flex;
+        align-items: center;
+
+        svg {
+            height: 16px;
+            width: 16px;
+        }
+    }
+}
+
+.wpf_pay_status_processing {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #F2F9FE;
+    color: #0171DB;
+    text-align: center;
+    font-family: $wpf-font-family;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    width: fit-content;
+
+    .icon {
+        display: flex;
+        align-items: center;
+
+        svg {
+            height: 16px;
+            width: 16px;
+        }
+    }
+}
+
+.wpf_pay_status_failed {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #FDF5F3;
+    color: $wpf-danger-600;
+    text-align: center;
+    font-family: $wpf-font-family;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    width: fit-content;
+
+    .icon {
+        display: flex;
+        align-items: center;
+
+        svg {
+            height: 16px;
+            width: 16px;
+        }
+    }
+}
+
+.wpf_pay_status_authorized {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    color: $wpf-success-600;
+    background: #F3FAF8;
+    text-align: center;
+    font-family: $wpf-font-family;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    width: fit-content;
+
+    .icon {
+        display: flex;
+        align-items: center;
+
+        svg {
+            height: 16px;
+            width: 16px;
+        }
+    }
+}
+
+.wpf_pay_status_partially-refunded {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    gap: 5px;
+    color: $wpf-system-mid;
+    background: #2196f35e;
+    text-align: center;
+    font-family: $wpf-font-family;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    width: fit-content;
+
+    .icon {
+        display: flex;
+        align-items: center;
+
+        svg {
+            height: 16px;
+            width: 16px;
+        }
+    }
+}
+
+
+.wpf_entry_status {
+    &_read {
+        text-transform: capitalize;
+        color: $--text-color;
+        padding: 1px 6px;
+        border-radius: 4px;
+        font-family: $wpf-font-family;
+    }
+
+    &_new {
+        text-transform: capitalize;
+        color: $--text-color;
+        padding: 1px 6px;
+        border-radius: 4px;
+        font-family: $wpf-font-family;
+        display: flex;
+
+        .icon {
+            display: flex;
+        }
+    }
+}
+
+.icon {
+	display: flex;
+	align-items: center;
+}

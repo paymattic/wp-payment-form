@@ -1,0 +1,608 @@
+.wpf-user-dashboard {
+    box-shadow: 0px 8px 32px -2px rgba(27, 37, 51, 0.1);
+    border-radius: 8px;
+    background: #fff;
+    max-width: 100%;
+    max-width: 1200px !important;
+    margin: 0 auto;
+
+    .wpf-dashboard-card {
+        // border: 1px solid #8080801f;
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .wpf-user-dashboard-table {
+        &.loading {
+            pointer-events: none;
+            opacity: 0.9;
+        }
+
+        .wpf-user-dashboard-loader {
+            &.loading {
+                display: inline-block;
+                width: 80px;
+                height: 80px;
+                position: absolute;
+                left: calc(50% - 8px);
+                top: calc(50% - 8px);
+
+
+                &:after {
+                    content: " ";
+                    display: block;
+                    width: 44px;
+                    height: 44px;
+                    margin: 8px;
+                    border-radius: 50%;
+                    border: 6px solid #ff9000;
+                    border-color: #ff9000 transparent #ff9000 transparent;
+                    animation: lds-dual-ring 1.2s linear infinite;
+                }
+            }
+        }
+
+        @keyframes lds-dual-ring {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .wpf-user-table-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding-bottom: 10px;
+            margin: 20px;
+            border-bottom: 1px solid #80808033;
+
+            .wpf-sync-action {
+                display: flex;
+                background: #fff;
+                border: 1px solid #80808033;
+                border-radius: 4px;
+                padding: 8px 8px;
+                cursor: pointer;
+
+                .wpf-sync-subscription-btn {
+                    background: #fff;
+                    border: none;
+                    font-size: 16px;
+                    font-weight: 600;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        background: #fff;
+        border: 1px solid #e2e6ec;
+        border-radius: 6px;
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+        overflow: hidden;
+        margin-top: 20px;
+
+        .wpf-table-container {
+            border: 1px solid #e2e6ec;
+            margin: 20px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .wpf-user-dashboard-table__header {
+            align-items: center;
+            background: #fbfbfb;
+            display: flex;
+            font-size: 14px;
+            text-transform: uppercase;
+            overflow-y: scroll;
+
+            .wpf-user-dashboard-table__column {
+                flex: 1;
+                padding: 12px;
+                min-width: 100px;
+                font-weight: 500;
+            }
+
+            @media only screen and (max-width: 876px) {
+                display: none;
+            }
+        }
+
+        .wpf-user-dashboard-table__rows {
+            flex: 1;
+            overflow-y: scroll;
+
+            .wpf-user-dashboard-table__row {
+                border-top: 1px solid #e2e6ec;
+                display: flex;
+                line-height: 1.6;
+                align-items: center;
+                gap: 4px;
+
+                // @media only screen and (max-width: 876px) {
+                //     display: block;
+                //     text-align: center;
+                // }
+
+                .wpf-user-dashboard-table__column {
+                    flex: 1;
+                    padding: 12px;
+                    min-width: 100px;
+
+                    .wpf-subscription-action-btn {
+                        display: flex;
+                        gap: 4px;
+                        justify-content: flex-end;
+
+                        .wpf_toal_amount_btn {
+                            border: 1px solid #9e9e9e4d;
+                            border-radius: 4px;
+                            padding: 0 12px;
+                            font-size: 14px;
+                        }
+                    }
+
+                    .wpf-confirmation-modal {
+                        .modal-content {
+                            max-width: 400px;
+                            margin: 0 auto;
+                            padding: 0;
+
+                            .modal-title {
+                                display: flex;
+                                align-items: center;
+                                gap: 20px;
+                                justify-content: space-between;
+                                background: #80808014;
+                                padding: 0px 20px;
+                            }
+
+                            .modal-body {
+                                padding: 20px;
+                                text-align: center;
+
+                                .wpf-info-icon {
+                                    font-size: 48px;
+                                    width: 50px;
+                                    color: #ff9000;
+                                    margin-bottom: 20px;
+                                }
+
+                                h4 {
+                                    font-size: 18px;
+                                    font-weight: 600;
+                                }
+
+                                p {
+                                    color: #000000bd;
+                                    font-size: 14px;
+                                    font-weight: 500;
+                                }
+                            }
+
+                            .modal-footer {
+                                display: flex;
+                                align-items: center;
+                                gap: 14px;
+                                justify-content: right;
+                                background: #80808014;
+                                padding: 16px;
+
+                                .modal-btn {
+                                    background: #fff;
+                                    border: 1px solid #fff;
+                                    padding: 8px 16px;
+                                    border-radius: 4px;
+                                    cursor: pointer;
+
+                                    &.wpf-cancel {
+                                        color: #ff9000;
+                                    }
+
+                                    &.wpf-success {
+                                        background: #ff9000;
+                                        border: 1px solid #ff9000;
+                                        color: #fff;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .wpf-cancel-subscription {
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 50%;
+                        position: relative;
+                        .wpf-cancel-confirm-button  {
+                            position: absolute;
+                            left: -28px;
+                            cursor: pointer;
+                            transform: translateX(-50%);
+                            background-color: #fff;
+                            color: #2196f3;
+                            padding: 6px 0px;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            font-weight: 600;
+                            opacity: 0;
+                            transition: opacity 0.3s ease;
+                            width: 35px;
+                            &.active {
+                                opacity: 1;
+                            }
+                        }
+                        // &:hover .wpf-cancel-confirm-button {
+                        //     opacity: 1;
+                        // }
+                    }
+
+                    .wpf-cancel-subscription-btn {
+                        border-radius: 4px;
+                        padding: 0px 0px;
+                        font-weight: 600;
+                        pointer-events: none;
+                        color: #607D8B;
+                        opacity: 0.6;
+                        width: 20px;
+                        height: 100%;
+
+                        &.active {
+                            pointer-events: all;
+                            cursor: pointer;
+                            opacity: 1;
+                        }
+                    }
+                }
+
+            }
+        }
+
+        // }
+
+    }
+
+    .wpf-user-profile {
+        border-bottom: 1px solid #8080801c;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 20px;
+        gap: 40px;
+
+        .wpf-user-avatar {
+            img {
+                width: 140px;
+                height: 140px;
+                border-radius: 50%;
+            }
+        }
+
+        .wpf-user-info {
+            .wpf-user-name {
+                font-size: 24px;
+                font-weight: 600;
+                color: rgb(10, 2, 29);
+            }
+
+            .wpf-info-item {
+                display: flex;
+                gap: 5px;
+                align-items: center;
+            }
+        }
+    }
+
+    .wpf-user-content {
+        display: flex;
+        flex-wrap: wrap;
+
+        .wpf-menu {
+            border-right: 1px solid #8080801c;
+            min-width: 240px;
+            background: #d5dadf17;
+
+            .wpf-menu-item {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                gap: 12px;
+                padding: 14px;
+
+                &.active {
+                    border-left: 4px solid #198754;
+                    background-color: #fff;
+                    padding-left: 10px;
+                    color: #198754;
+                }
+            }
+        }
+
+        .wpf-content {
+            display: none;
+            flex: 70%;
+            padding: 20px;
+            overflow-y: scroll;
+            box-sizing: border-box;
+
+            &.active {
+                display: block;
+            }
+        }
+
+        .wpf-dashboard {
+            .wpf-user-stats {
+                .wpf-stats-head {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    color: #2F3448;
+                    border-bottom: 1px solid #D6DAE1;
+                    padding-bottom: 5px;
+                }
+
+                .wpf-stats-card {
+                    display: flex;
+                    gap: 30px;
+                    flex-wrap: wrap;
+                    margin-top: 20px;
+                    justify-content: center;
+
+                    .overview-card {
+                        width: calc(33% - 20px);
+                        display: flex;
+                        min-width: 220px;
+                        border: 1px solid #dadadb;
+                        border-radius: 8px;
+                        align-items: center;
+                        flex-wrap: wrap;
+
+                        .info {
+                            padding: 20px;
+                            flex: 1;
+
+                            @media only screen and (max-width: 1244px) {
+                                padding: 10px;
+                            }
+
+                            .h4 {
+                                color: #2F3448;
+                                margin: 0;
+                                font-size: 22px;
+                            }
+
+                            .wpf_toal_amount_btn {
+                                margin: 0 !important;
+                                color: #1797f2;
+                                cursor: pointer;
+                                font-size: 12px;
+                            }
+
+                            span {
+                                color: #8e8e8e;
+                                font-size: 14px;
+                            }
+                        }
+
+                        .icon {
+                            padding: 20px;
+                            padding-bottom: 0px;
+
+                            img {
+                                padding: 8px;
+                                border-radius: 8px;
+
+                                &.spent {
+                                    background: #FEF4E6;
+                                    width: 26px;
+                                    height: 26px;
+                                }
+
+                                &.order {
+                                    background: #E6F2FE;
+                                }
+
+                                &.subscription {
+                                    background: #F0ECFD;
+                                }
+                            }
+
+                            @media only screen and (max-width: 1244px) {
+                                padding: 10px;
+                            }
+
+                            max-height: 40px;
+                        }
+                    }
+                }
+            }
+
+            .wpf-submission-table {
+
+                .wpf-submission-head {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    color: #2F3448;
+                    border-bottom: 1px solid #D6DAE1;
+                    padding-bottom: 5px;
+                }
+
+                .wpf-payment-status {
+                    border: 1px solid #ff98004d;
+                    border-radius: 25px;
+                    padding: 4px 8px;
+                    font-weight: 500;
+                    color: #fff;
+                    background-color: #2F3448;
+
+                    &.paid,
+                    &.active {
+                        border: 1px solid #198754;
+                        background: #198754;
+                    }
+
+                    &.pending {
+                        background: #F58E07;
+                    }
+
+                    &.cancelled {
+                        border: 1px solid #DC2626;
+                        background: #DC2626;
+                    }
+                }
+
+                .wpf-sub-id {
+                    color: #1797f2;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+
+    /* The Modal (background) */
+    .wpf-dashboard-modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+        max-height: calc(100vh - 100px);
+        overflow-y: scroll;
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 8px;
+            max-width: 1120px;
+
+            &.max-width-340 {
+                max-width: 340px;
+            }
+
+            .submission-modal {
+                padding: 15px 20px;
+                border: 1px solid #8080801f;
+                border-radius: 8px;
+            }
+        
+            .wpf_submission_details {
+            padding-bottom: 12px;
+            }
+        }
+        
+
+        /* The Close Button */
+        .wpf-close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 22px;
+            font-weight: bold;
+            border: 1px solid #8080802e;
+            padding: 0px 6px 3px 6px;
+            height: 22px;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #8080800d;
+            
+        }
+
+        .wpf-close:hover,
+        .wpf-close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    }
+
+    @media only screen and (max-width: 876px) {
+        .wpf_payment_receipt {
+            .wpf_payment_info_item {
+                width: 100%;
+                border-bottom: 1px solid #e3e8ee;
+                box-sizing: border-box;
+            }
+
+            .wpf_order_items_table_wrapper {
+                overflow-y: scroll;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 426px) {
+
+    .wpf-content,
+    .wpf-dashboard-card {
+        padding: 4px !important;
+    }
+
+    .wpf-user-dashboard-table__column {
+        padding: 2px !important;
+        min-width: 68px !important;
+    }
+}
+
+.wpf-dashboard-auth-box {
+    background: #fff;
+    border: 1px solid #80808017;
+    border-radius: 8px;
+    max-width: 500px !important;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, .2);
+
+    .wpf-dashboard-auth-box-header,
+    .wpf-dashboard-auth-box-button>a {
+        padding: 14px;
+        background: #FF9800;
+        border-radius: 8px 8px 0px 0px;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .wpf-dashboard-auth-box-button {
+        margin-top: 42px;
+
+        a {
+            border-radius: 8px;
+            text-decoration: none;
+        }
+    }
+
+    .wpf-dashboard-auth-box-body {
+        padding: 20px;
+        font-size: 16px;
+
+        .wpf-dashboard-auth-box-button {
+            text-align: center;
+
+            button {
+                border: none;
+                border-radius: 8px;
+                padding: 14px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+        }
+    }
+}

@@ -1,0 +1,311 @@
+.wpf-integration-modules_wrapper {
+    width: 100%;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    .wpf-integration-modules_header {
+        color: var(--System-Dark, #2F3448);
+        /* Headline/Title/H4-Title */
+        font-family: $wpf-font-family;
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 30px;
+        margin: 0;
+        padding-top: 10px;
+    }
+    .wpf-integration-modules_body {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        .wpf-integration-modules_sidebar {
+            position: sticky;
+            top: 36px;
+            display: flex;
+            width: 22%;
+            padding: 15px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 5px;
+            border-radius: 8px;
+            background: var(--White, #FFF);
+            .wpf-integration-module_category{
+                display: flex;
+                padding: 8px 12px;
+                justify-content: space-between;
+                align-items: center;
+                align-self: stretch;
+                border-radius: 8px;
+                cursor: pointer;
+                background: var(--White, #FFF);
+                .wpf-integration-module_category-left {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    flex: 1 0 0;
+                    .left-icon{
+                        display: flex;
+                        width: 18px;
+                        height: 18px;
+                        padding: 2px;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    .label{
+                        flex: 1 0 0;
+                        /* Menu Text/Large/Regular */
+                        font-family: $wpf-font-family;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: 24px; /* 160% */
+                    }
+                }
+                .right-icon{
+                    display: flex;
+                    width: 18px;
+                    height: 18px;
+                    padding: 4.5px 0px;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+            .active{
+                background: $wpf-active;
+                color: #FFF !important;
+            }
+        }
+        .wpf-integration-modules_main {
+            width: 76%;
+            .wpf-integration-modules_main-header {
+                flex-shrink: 0;
+                border-radius: 8px 8px 0px 0px;
+                border-bottom: 1px solid var(--Neutral-Neutral-Variant-Neutral-Variant-200, #EAECF0);
+                background: var(--White, #FFF);
+                padding: 20px 15px;
+                .wpf-integration-modules_main-header_content {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 4px;
+                    h4 {
+                        color: var(--System-Dark, #2F3448);
+
+                        /* Headline/Bold/H4-Bold */
+                        font-family: Inter;
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: 22px; /* 137.5% */
+                        margin: 0;
+                    }
+                    p {
+                        align-self: stretch;
+                        color: var(--System-Mid, #565865);
+                        /* Body/Regular/B5-Regular */
+                        font-family: Inter;
+                        font-size: 13px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 20px; /* 153.846% */
+                        margin: 0;
+                    }
+                }
+            }
+            .wpf-integration-modules_search {
+                display: flex;
+                padding: 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+                align-self: stretch;
+                border-bottom: 1px solid var(--Neutral-Neutral-Variant-Neutral-Variant-200, #EAECF0);
+                background: var(--White, #FFF);
+                .wpf-integration-modules_search-layout{
+                    display: flex;
+                    height: 26px;
+                    padding: 8px 12px;
+                    align-items: center;
+                    gap: 8px;
+                    align-self: stretch;
+                    border-radius: 8px;
+                    border: 1px solid var(--Gray-Outline, #D6DAE1);
+                    background: var(--Gray-Neutral, #FAFAFA);
+                    .wpf-integration-modules_search-icon{
+                        display: flex;
+                        width: 16px;
+                        height: 16px;
+                        padding: 1.333px;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    .wpf-integration-modules_search-input {
+                        flex: 1 0 0;
+                        color: var(--System-Light, #9D9FAC);
+
+                        /* Body/Regular/B5-Regular */
+                        font-family: Inter;
+                        font-size: 13px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 20px; /* 153.846% */
+                        input {
+                            outline: none;
+                            border-width: 0;
+                            background-color: inherit;
+                        }
+                    }
+                }
+            }
+            .wpf-integration-modules_main-content {
+                display: flex;
+                padding: 20px;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                align-self: stretch;
+                border-radius: 0px 0px 8px 8px;
+                background: var(--White, #FFF);
+                .wpf-integration-module_body {
+                    display: flex;
+                    padding: 20px;
+                    align-items: flex-start;
+                    gap: 20px;
+                    align-self: stretch;
+                    border-radius: 8px;
+                    border: 1px solid var(--Gray-Outline, #D6DAE1);
+                    background: var(--White, #FFF);
+                    .wpf-integration-module_body-left{
+                        display: flex;
+                        flex: 1 0 0;
+                        gap: 10px;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        .wpf-integration-module_body-left_top {
+                            display: flex;
+                            align-items: center;
+                            gap: 15px;
+                            align-self: stretch;
+                            .wpf-integration-module_left-top_status{
+                                display: flex;
+                                align-items: center;
+                                gap: 4px;
+                                .wpf-integration-module_checkmark{
+                                    width: 10px;
+                                    height: 10px;
+                                    flex-shrink: 0;
+                                }
+                                .wpf-integration-module_active {
+                                    color: var(--Success-600, #16896B);
+                                    text-align: center;
+    
+                                    /* Menu Text/Small/Regular */
+                                    font-family: Inter;
+                                    font-size: 12px;
+                                    font-style: normal;
+                                    font-weight: 500;
+                                    line-height: 16px; /* 133.333% */
+                                }
+                                .wpf-integration-module_minus{
+                                    width: 10px;
+                                    height: 10px;
+                                    flex-shrink: 0;
+                                }
+                                .wpf-integration-module_inactive{
+                                    color: var(--System-Mid, #565865);
+                                    text-align: center;
+    
+                                    /* Menu Text/Small/Regular */
+                                    font-family: Inter;
+                                    font-size: 12px;
+                                    font-style: normal;
+                                    font-weight: 500;
+                                    line-height: 16px; /* 133.333% */
+                                }
+                            }
+
+                        }
+                        .wpf-integration-module_body-description{
+                            color: var(--System-Mid, #565865);
+
+                            /* Body/Regular/B4-Regular */
+                            font-family: Inter;
+                            font-size: 14px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: 20px; /* 142.857% */
+                            margin: 0;
+                        }
+                    }
+                    .wpf-integration-module_middle{
+                        display: flex;
+                        width: 28px;
+                        padding: 4px;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 8px;
+                        border-radius: 8px;
+                        border: 1px solid var(--Gray-Outline, #D6DAE1);
+                        background: var(--White, #FFF);
+                        .icon {
+                            display: flex;
+                            width: 16px;
+                            height: 16px;
+                            padding: 1.667px;
+                            justify-content: center;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+                    }
+                    .wpf-integration-module_body_right{
+                        .wpf-integration-module_right-install_active{
+                            display: flex;
+                            padding: 6px 12px;
+                            justify-content: center;
+                            align-items: center;
+                            gap: 8px;
+                            border-radius: 8px;
+                            border: 1px solid var(--Gray-Outline, #D6DAE1);
+                            background: var(--White, #FFF);
+                            a {
+                                text-decoration: none;
+                                color: var(--System-Dark, #2F3448);
+
+                                /* Body/Bold/B6-Bold */
+                                font-family: Inter;
+                                font-size: 12px;
+                                font-style: normal;
+                                font-weight: 600;
+                                line-height: 16px; /* 133.333% */
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.wpf_form_integrations{
+    // max-width: 1040px;
+    margin: 0 auto;
+
+    .wpf_empty_integrations_section {
+        background: #fff;
+        padding: 30px 0;
+        border-radius: 0 0 8px 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+
+        p {
+            margin: 0;
+            font-size: 15px;
+            font-weight: 500;
+        }
+    }
+}
+

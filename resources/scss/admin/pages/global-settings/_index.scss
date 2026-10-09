@@ -1,0 +1,116 @@
+@import './general_settings';
+@import './coupon';
+@import './recaptcha.scss';
+@import './pdf';
+@import './user_dashboard';
+@import './leaderboard.scss';
+
+.wpf_global_settings_header {
+
+    .payform_gateway_title {
+        margin: 0;
+        padding: 20px 0;
+    }
+}
+
+.wpf_content_wrapper_v2 {
+    .wppayform_sidebar_v2 {
+        width: 285px;
+        padding: 15px;
+        background: $wpf-background;
+        border-radius: 8px;
+        height: fit-content;
+        position: sticky;
+        top: 36px;
+
+        .wppayform_sidebar_list_v2 {
+            width: 100%;
+
+            .wpf_global_setting_component {
+                display: flex;
+                padding: 8px 12px;
+                justify-content: space-between;
+                align-items: center;
+                border-radius: 8px;
+
+
+                &.active {
+                    background: $--color-primary;
+                    color: $wpf-background;
+
+                    img {
+                        filter: grayscale(100%) brightness(0) invert(1);
+                    }
+
+                    p {
+                        color: $wpf-background !important;
+                    }
+                }
+
+                a {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+                    align-items: center;
+                    text-decoration: none;
+
+                    .wpf_setting_title {
+                        display: flex;
+                        gap: 10px;
+                        justify-content: flex-start;
+                        align-items: center;
+
+                        img {
+                            display: flex;
+                            width: 18px;
+                            height: 18px;
+                            padding: 1.506px 1.641px 1.494px 1.734px;
+                            justify-content: center;
+                            align-items: center;
+                            // filter: grayscale(100%) brightness(0) invert(1);
+                        }
+
+
+                        p {
+                            color: $--text-color;
+                            font-family: $wpf-font-family;
+                            font-size: 15px;
+                            font-style: normal;
+                            font-weight: 500;
+                            line-height: 24px;
+                            margin: 0;
+                        }
+                    }
+                    &:focus {
+                        outline: none;
+                        box-shadow: none !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// .app-card-header {
+//     padding: 20px !important;
+// } 
+
+.user-roles {
+    label {
+        margin-top: 10px;
+    }
+    h2 {
+        margin-bottom: 16px !important;
+    }
+    .el-checkbox-group {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+}
+
+.sub-header {
+    .app-card-header {
+        padding: 12px 20px !important;
+    }
+}

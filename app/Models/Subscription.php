@@ -1,0 +1,362 @@
+<?php
+
+namespace WPPayForm\App\Models;
+
+use WPPayForm\Framework\Foundation\App;
+use WPPayForm\App\Http\Controllers\FormController;
+use WPPayForm\App\Models\Form;
+use WPPayForm\App\Models\Submission;
+use WPPayForm\App\Models\OrderItem;
+use WPPayForm\App\Services\GeneralSettings;
+
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+/**
+ * Subscriptions Model
+ * @since 1.2.0
+ */
+class Subscription extends Model
+{
+    protected $table = 'wpf_subscriptions';
+
+    public function createSubscription($item)
+    {
+        return $this->create($item);
+    }
+
+    public function getSubscriptions($submissionId)
+    {
+        $subscriptions = $this->where('submission_id', $submissionId)->get();
+        foreach ($subscriptions as $subscription) {
+            $subscription->original_plan = wppayform_safeUnserialize($subscription->original_plan);
+            $subscription->vendor_response = wppayform_safeUnserialize($subscription->vendor_response);
+        }
+
+        if ($subscriptions->isEmpty()) {
+            return $subscriptions;
+        }
+
+        $discountItems = (new OrderItem())->getDiscountItems($submissionId);
+        if ($discountItems->isEmpty()) {
+            return $subscriptions;
+        }
+
+        $discountTotal = 0;
+        foreach ($discountItems as $item) {
+            $discountTotal += intval($item->line_total);
+        }
+        if (!$discountTotal) {
+            return $subscriptions;
+        }
+
+        $submission = Submission::find($submissionId);
+        $subsTotal = 0;
+        foreach ($subscriptions as $sub) {
+            $subsTotal += intval($sub->recurring_amount) * max(intval($sub->quantity), 1);
+        }
+        $totalPayable = intval($submission->payment_total) + $subsTotal;
+
+        if ($submission->currency && GeneralSettings::isZeroDecimal($submission->currency)) {
+            $discountTotal = intval($discountTotal / 100);
+        }
+
+        if (!$totalPayable) {
+            return $subscriptions;
+        }
+
+        foreach ($subscriptions as $subscription) {
+            $base = intval($subscription->recurring_amount);
+            $subscription->discounted_recurring_amount = intval($base - ($discountTotal / $totalPayable) * $base);
+        }
+
+        return $subscriptions;
+    }
+
+    public function updateSubscriptionBySubmissionId($submissionId, $data)
+    {
+        return $this->where('submission_id', $submissionId)
+            ->update($data);
+    }
+
+    public function getSubscription($id, $key = 'id')
+    {
+        $subscription = $this->where($key, $id)
+            ->first();
+        if ($subscription) {
+            $subscription->original_plan = wppayform_safeUnserialize($subscription->original_plan);
+        }
+
+        return $subscription;
+    }
+
+    public function updateSubscription($id, $data)
+    {
+        $data['updated_at'] = current_time('mysql');
+        return Subscription::where('id', $id)
+            ->update($data);
+    }
+
+    public function updateBySubmissionId($submissionId, $data)
+    {
+        return $this->where('submission_id', $submissionId)
+            ->update($data);
+    }
+
+    public function submission()
+    {
+        return $this->belongsTo(Submission::class);
+    }
+
+    public function getSubscriptionPaymentTotal($formId, $submissionId = false, $searchString = false, $startDate = null, $endDate = null)
+    {
+        $paymentTotal = 0;
+
+        $DB = App::make('db');
+
+        // Calculate from subscriptions
+        $query = $this->select($DB->raw('SUM(payment_total) as payment_total'));
+
+        if ($formId) {
+            $query = $query->where('form_id', $formId);
+        }
+
+        if ($submissionId) {
+            $query = $query->where('submission_id', $submissionId);
+        }
+
+        if ($startDate && $endDate) {
+            $query = $query->where('created_at', '>=', $startDate)
+                           ->where('created_at', '<=', $endDate);
+        }
+
+        $result = $query->first();
+
+        if ($result && $result->payment_total) {
+            $paymentTotal = $result->payment_total;
+        }
+
+        return $paymentTotal;
+    }
+
+    public function getDonationSubscriptionTotal($formId, $baseCurrency, $rates, $submissionId = false)
+    {
+        $paymentTotal = 0;
+        $DB = App::make('db');
+        $query = $this->select(['wpf_submissions.currency', 'wpf_subscriptions.payment_total'])
+            ->join('wpf_submissions', 'wpf_submissions.id', '=', 'wpf_subscriptions.submission_id')
+            ->where('wpf_subscriptions.form_id', '=', $formId);
+
+        $result = $query->get()->toArray();
+        $hasDifferentCurrencies = 0;
+        if (count($result) > 0) {
+            foreach ($result as $key => $value) {
+                $currency = $result[$key]['currency'];
+                if ($currency != $baseCurrency) {
+                    $hasDifferentCurrencies = 1;
+                }
+            }
+        }
+        if (count($result) > 0 && $hasDifferentCurrencies) {
+            if (count($rates) > 0) {
+                foreach ($result as $key => $value) {
+
+                    $currency = $result[$key]['currency'];
+                    if ($currency != $baseCurrency) {
+                        $rawamount = number_format(floatval(floatval($result[$key]['payment_total'] / 100) / $rates[$currency]['value']), 2);
+                        $amountFormatted = str_replace(',', '', $rawamount);
+                        // Now, you can safely multiply the formatted number by 100
+                        $amountInCents = $amountFormatted * 100;
+                        $paymentTotal += $amountInCents;
+                    } else {
+                        $paymentTotal += $result[$key]['payment_total'];
+                    }
+                }
+            } else {
+                $paymentTotal = 0;
+            }
+        } else {
+            // Do the usual calculation
+            // $query = $this->select($DB->raw('SUM(payment_total) as payment_total'));
+            // if ($formId) {
+            //     $query = $query->where('form_id', $formId);
+            // }
+            // if ($submissionId) {
+            //     $query = $query->where('submission_id', $submissionId);
+            // }
+            // $result = $query->first();
+            // if ($result && $result->payment_total) {
+            //     $paymentTotal = $result->payment_total;
+            // }
+
+            $query = $this->select('id', 'payment_total');
+
+            if ($formId) {
+                $query = $query->where('form_id', $formId);
+            }
+
+            if ($submissionId) {
+                    $query = $query->where('submission_id', $submissionId);
+                }
+
+            $query->groupBy('id', 'payment_total');
+            $results = $query->get();
+            
+            foreach ($results as $result) {
+    
+                $paymentTotal += $result->payment_total;
+            }          
+        }
+        return $paymentTotal;
+    }
+
+    public function updateMeta($optionId, $key, $value)
+    {
+        $value = maybe_serialize($value);
+        $exists = (new Meta())->where('meta_group', $this->table)
+            ->where('meta_key', $key)
+            ->where('option_id', $optionId)
+            ->first();
+
+        if ($exists) {
+            (new Meta())->where('id', $exists->id)
+                ->update([
+                    'meta_group' => $this->table,
+                    'option_id' => $optionId,
+                    'meta_key' => $key,
+                    'meta_value' => $value,
+                    'updated_at' => current_time('mysql')
+                ]);
+            return $exists->id;
+        }
+
+        return (new Meta())->insert([
+            'meta_group' => $this->table,
+            'option_id' => $optionId,
+            'meta_key' => $key,
+            'meta_value' => $value,
+            'created_at' => current_time('mysql'),
+            'updated_at' => current_time('mysql')
+        ]);
+    }
+
+    public function getMetas($optionId)
+    {
+        $metas = (new Meta())->where('meta_group', $this->table)
+            ->where('option_id', $optionId)
+            ->get();
+        $formatted = array();
+        foreach ($metas as $meta) {
+            $formatted[$meta->meta_key] = wppayform_safeUnserialize($meta->meta_value);
+        }
+        return (object) $formatted;
+    }
+
+    /**
+     * One meta key across many subscriptions in a single query, as [subscription_id => value].
+     *
+     * getMetas() is per-subscription: calling it inside a render loop costs one wpf_meta SELECT
+     * and one unserialize per row. The customer dashboard lists every subscription a customer
+     * owns, so that scales with their subscription count for data the page needs all at once.
+     * Missing rows are simply absent from the map — callers should treat that as "no value".
+     *
+     * @param  array  $optionIds subscription ids
+     * @param  string $key       meta_key
+     * @return array
+     */
+    public function getMetaForMany($optionIds, $key)
+    {
+        $optionIds = array_values(array_unique(array_filter(array_map('absint', (array) $optionIds))));
+
+        if (!$optionIds) {
+            return array();
+        }
+
+        $metas = (new Meta())->where('meta_group', $this->table)
+            ->where('meta_key', $key)
+            ->whereIn('option_id', $optionIds)
+            ->get();
+
+        $formatted = array();
+        foreach ($metas as $meta) {
+            $formatted[$meta->option_id] = wppayform_safeUnserialize($meta->meta_value);
+        }
+
+        return $formatted;
+    }
+
+    public function getIntentedSubscriptions($submissionId)
+    {
+        $subscriptions = $this->where('submission_id', $submissionId)
+            ->where('status', 'intented')
+            ->get();
+        foreach ($subscriptions as $subscription) {
+            $subscription->original_plan = wppayform_safeUnserialize($subscription->original_plan);
+            $subscription->vendor_response = wppayform_safeUnserialize($subscription->vendor_response);
+        }
+        return $subscriptions;
+    }
+
+    public function getLatestSubscriptions()
+    {
+        try{
+            $latestSubscriptions = $this->select(
+                'wpf_subscriptions.submission_id',
+                'wpf_subscriptions.form_id as form_id',
+                'wpf_subscriptions.id as subscription_id',
+                'posts.post_title',
+                'wpf_submissions.customer_email',
+                'wpf_submissions.customer_name',
+                'wpf_submissions.currency',
+                'wpf_subscriptions.plan_name',
+                'wpf_subscriptions.recurring_amount',
+                'wpf_subscriptions.payment_total as payment_total',
+                'wpf_subscriptions.bill_count',
+                'wpf_subscriptions.created_at as subscription_date'
+            )->where('wpf_subscriptions.status', 'active')
+                ->where('wpf_subscriptions.bill_count', '>', 0)
+                ->join('posts', 'posts.ID', '=', 'wpf_subscriptions.form_id')
+                ->leftJoin('wpf_submissions', 'wpf_submissions.id', '=', 'wpf_subscriptions.submission_id')
+                ->orderBy('wpf_subscriptions.id', 'desc')
+                ->limit(10)
+                ->get();
+        } catch(\Exception $e) {
+            return [];
+        }
+       
+        return $latestSubscriptions->toArray();
+        }
+
+        public function getSubscriptionEntryIds()
+        {
+            $entryIds = $this->query()->select('wpf_subscriptions.submission_id')->get();
+            return $entryIds->toArray();
+        }
+
+        public function getSubscriptionsById($formId)  
+    {  
+        $columns = [  
+            'wpf_subscriptions.id as subscription_id', 
+            'wpf_subscriptions.form_id', 
+            'wpf_subscriptions.submission_id',
+            'wpf_submissions.customer_name',  
+            'wpf_submissions.customer_email',  
+            'wpf_subscriptions.recurring_amount',    
+            'wpf_subscriptions.status',
+            'wpf_subscriptions.billing_interval',
+            'wpf_subscriptions.bill_count',
+            'wpf_subscriptions.trial_days',
+            'wpf_subscriptions.created_at as subscription_date'  
+        ];  
+        $subscriptions = $this->select($columns)  
+            ->where('wpf_subscriptions.form_id', $formId)  
+            ->whereIn('wpf_subscriptions.status', ['trialing', 'active'])  
+            ->join('posts', 'posts.ID', '=', 'wpf_subscriptions.form_id')  
+            ->leftJoin('wpf_submissions', 'wpf_submissions.id', '=', 'wpf_subscriptions.submission_id')  
+            ->orderBy('wpf_subscriptions.created_at', 'desc')  
+            ->get()->toArray();  
+        return $subscriptions; 
+    }  
+
+}

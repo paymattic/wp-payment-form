@@ -1,0 +1,33 @@
+.wpf_merge_fields_table{
+    width: 100%;
+    border-radius: 8px;
+    color: var(--System-Dark, #2F3448);
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    .wpf_merge_fields_table_head{
+        width: 100%;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        padding: 8px;
+        border-radius: 8px 8px 0px 0px;
+        border: 1px solid var(--Gray-Outline, #D6DAE1);
+        background: var(--Gray-Neutral, #FAFAFA);
+    }
+    .wpf_merge_fields_table_row{
+        height: fit-content;
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+        border-right: 1px solid var(--Gray-Outline, #D6DAE1);
+        border-bottom: 1px solid var(--Gray-Outline, #D6DAE1);
+        border-left: 1px solid var(--Gray-Outline, #D6DAE1);
+        background: var(--White, #FFF);
+        &:last-child{
+            border-radius: 0px 0px 8px 8px;
+        }
+    }
+}

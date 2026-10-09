@@ -1,0 +1,17 @@
+.wpf_form_currency_settings {
+    width: 100%;
+
+    .wpf_currency {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        padding-top: 20px;
+
+        .el-select {
+            width: 100%;
+        }
+    }
+    .wpf_form_setting_btn {
+        padding-top: 20px;
+    }
+}

@@ -1,0 +1,20 @@
+.choose-page {
+  min-width: 410px;
+  padding-bottom: 6px;
+
+  .el-select {
+    width: 100%;
+
+    .el-input {
+      width: 100%;
+
+      .el-input__inner {
+        border: $--border-base;
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+  }
+}

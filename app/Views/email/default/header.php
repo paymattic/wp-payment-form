@@ -1,0 +1,56 @@
+<?php
+/**
+ * Email Header
+ */
+
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+$wppayform_submission = isset($wppayform_submission) ? $wppayform_submission : null;
+$wppayform_notification = isset($wppayform_notification) ? $wppayform_notification : null;
+
+$wppayform_email_heading = apply_filters('wppayform/email_template_email_heading', false, $wppayform_submission, $wppayform_notification);
+$wppayform_header_image = apply_filters('wppayform/email_template_header_image', false, $wppayform_submission, $wppayform_notification);
+
+?>
+<!DOCTYPE html>
+<html dir="<?php echo is_rtl() ? 'rtl' : 'ltr' ?>">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title><?php echo esc_html(get_bloginfo('name', 'display')); ?></title>
+</head>
+<body <?php echo is_rtl() ? 'rightmargin' : 'leftmargin'; ?>="0" marginwidth="0" topmargin="0" marginheight="0" offset="
+0">
+<div id="wrapper" dir="<?php echo is_rtl() ? 'rtl' : 'ltr' ?>">
+    <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">
+        <tr>
+            <td align="center" valign="top">
+                <div id="template_header_image">
+                    <?php
+                    if ($wppayform_header_image) {
+                        echo '<p style="margin-top:0;"><img src="' . esc_url($wppayform_header_image) . '" alt="' . esc_attr(get_bloginfo('name', 'display')) . '" /></p>';
+                    }
+                    ?>
+                </div>
+                <table border="0" cellpadding="0" cellspacing="0" width="600" id="template_container">
+                    <?php if ($wppayform_email_heading) { ?>
+                        <tr>
+                            <td align="center" valign="top">
+                                <table border="0" cellpadding="0" cellspacing="0" width="600" id="template_header">
+                                    <tr>
+                                        <td id="header_wrapper"><h1><?php echo wp_kses_post($wppayform_email_heading); ?></h1></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                    <tr>
+                        <td align="center" valign="top">
+                            <table border="0" cellpadding="0" cellspacing="0" width="600" id="template_body">
+                                <tr>
+                                    <td valign="top" id="body_content">
+                                        <table border="0" cellpadding="20" cellspacing="0" width="100%">
+                                            <tr>
+                                                <td valign="top">
+                                                    <div id="body_content_inner">

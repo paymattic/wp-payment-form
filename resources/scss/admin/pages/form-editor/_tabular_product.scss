@@ -1,0 +1,459 @@
+.tabular_products_wrapper {
+    padding: 30px 0px 0 0;
+
+    .el-input__inner {
+        border: $--border-base;
+        border-radius: 4px;
+    }
+    .el-input-number {
+        border: none;
+        // border: $--border-base;
+        border-radius: 4px;
+        .el-input-number__decrease, .el-input-number__increase {
+            background: $wpf-gray-50;
+        }
+    }
+    .tabular_title {
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 28px;
+        color: $wpf-system-dark;
+        font-family: $wpf-font-family;
+        margin: 0;
+        padding-bottom: 20px;
+    }
+    .wpf-choose-tabular-template-cards {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        .wpf-choose-tabular-template-card {
+            width: calc(32% - 3px);
+            border: $--border-base;
+            border-radius: 8px;
+            background-color: $wpf-gray-25;
+            border: $--border-base;
+            transition: all 0.3s;
+            position: relative;
+            .active-icon {
+                width: 33px;
+                position: absolute;
+                right: -10px;
+                top: -11px;
+                display: none;
+            }
+            &.active {
+                border-color: $wpf-active;
+                .active-icon {
+                    display: block;
+                }
+            }
+            .tabular_template_choose {
+                background-color: #fff;
+                border: none;
+                border-radius: 8px 8px 0 0;
+                padding: 20px;
+                .el-radio-button__inner {
+                    border: none !important;
+                    background-color: #fff !important;
+                }
+            }
+            .template-title {
+                padding: 12px 20px;
+                margin: 0;
+            }
+        }
+    }
+    .add-table-product-btn {
+        border: none;
+        padding: 12px 0px;
+        font-weight: 900;
+        color: #2F3448;
+        .el-icon-plus {
+            font-weight: 900;
+        }
+        &:hover {
+            color: $wpf-active;
+        }
+    }
+    .tablular_headings {
+        margin: 30px 0px;
+        .tabular_title {
+            font-size: 18px;
+        }
+        .tabular_actions {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            label {
+                margin: 0;
+                padding: 0;
+            }   
+        }
+        .tabular_title {
+            font-size: 18px;
+        }
+    }
+    .table_wrap {
+        border: 1px solid #D6DAE1;
+        border-radius: 10px;
+        overflow: hidden;
+        overflow-x: auto;
+        table {
+            thead {
+                tr {
+                    background: $wpf-gray-50;
+                    th {
+                        padding: 14px 0px;
+                        &:first-child {
+                            padding-left: 14px;
+                        }
+                        &:last-child {
+                            padding-right: 14px;
+                        }
+                    }
+                }
+            }
+            tbody {
+                tr {
+                    td {
+                        padding: 14px;
+                        .el-input-number {
+                            width: 145px;
+                        }
+                        &:first-child {
+                            padding-left: 14px;
+                            // max-width: 60px;
+                        }
+                        &:last-child {
+                            padding-right: 14px;
+                            // max-width: 60px;
+                        }
+                        .wpf_photo_card {
+                            .upload-btn {
+                                margin-bottom: 0;
+                            }
+                            .el-button {
+                                padding: 6px 0px;
+                            }
+                        }
+                        .delete-action {
+                            width: 32px;
+                            height: 32px;
+                            border: 1px solid #D6DAE1;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 20px;
+                            border-radius: 8px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .product_wrap {
+        border: $--border-base;
+        border-radius: 8px;
+        .tabular_title {
+            padding: 8px 16px;
+            font-size: 16px;
+            background: $Gray-Neutral;
+            border-bottom: $--border-base;
+            margin: 0;
+            border-radius: 8px 8px 0 0;
+        }
+        .category-manage-wrapper {
+            padding: 20px;
+            .el-checkbox  {
+                padding-top: 0px;
+            }
+            .key_pair_table_wrapper {
+                display: block;
+            }
+            table {
+                thead {
+                    tr {
+                        display: none;
+                    }
+                }
+                tbody {
+                    display: flex;
+                    gap: 10px;
+                    flex-wrap: wrap;
+                    padding: 20px;
+                    tr {
+                        display: flex;
+                        align-items: center;
+                        width: calc(34% - 18px);
+                        border-radius: 8px;
+                        border-bottom: none;
+                        gap: 10px;
+                        margin-bottom: 5px;
+                        margin-right: 5px;
+                        td{
+                            padding: 0px !important;
+                            border: none;
+                            width: 100%;
+                            span {
+                                margin: 0px;
+                            }
+                            div {
+                                gap: 10px !important;
+                            }
+                            &:first-child  {
+                                margin: 0px;
+                                display: none;
+                            }
+                            .el-button {
+                                width: 32px;
+                                padding: 2px;
+                            }
+
+                            &.td_last_child_customize {
+                                width: 42px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .product_wrap_slider {
+        box-shadow: none;
+        border: $--border-base;
+        border-radius: 8px;
+        margin: 20px 0 0 0;
+        .tabular_title {
+            padding: 8px 16px;
+            font-size: 16px;
+            background: #FAFAFA;
+            border-bottom: 1px solid #D6DAE1;
+            margin: 0;
+            border-radius: 8px 8px 0 0;
+        }
+        .tabular-grid-row-products-settings-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            .product-list-sidebar {
+                width: 200px;
+                border-right: $--border-base;
+                padding: 10px;
+                .product-list {
+                    margin-bottom: 10px;
+                    .all-product {
+                        @include p;
+                        font-size: 12px;
+                        text-align: left;
+                        margin: 10px 0px;
+                    }
+                    .product-item {
+                        @include p;
+                        text-align: left;
+                        &:hover {
+                            cursor: pointer;
+                        }
+                        p {
+                            padding: 10px;
+                            margin: 0;
+                            border-left: 2px solid transparent;
+                            color: $wpf-system-light;
+                            font-family: $wpf-font-family;
+                            font-size: 13px;
+                            font-style: normal;
+                            font-weight: 500;
+                            line-height: 20px;
+                            &.active {
+                                background: $wpf-gray-25;
+                                border-radius: 2px;
+                                border-left: 2px solid $wpf-active;
+                                color: $wpf-system-dark;
+                                font-family: $wpf-font-family;
+                                font-size: 14px;
+                                font-style: normal;
+                                font-weight: 600;
+                                line-height: 20px;
+                            }
+                        }
+                    }
+                }
+                .product-list-actions {
+                    .el-button {
+                        width: 100%;
+                    }  
+                }
+            }
+            .product-list-settings {
+                width: calc(100% - 222px);
+                min-width: 400px;
+                .product-settings-action {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 10px;
+                    padding: 20px;
+                    .el-switch {
+                        width: 50% !important;
+                    }
+                    .delete-action {
+                        display: flex;
+                        align-items: center;
+                        gap: 6px;
+                        color: $wpf-danger-500;
+                        font-weight: 500px;
+                        cursor: pointer;
+                        .icon {
+                            margin-top: 3px;
+                            font-weight: 500px;
+                        }
+                    }
+                }
+                .product-details {
+                    margin: 0 20px;
+                    margin-bottom: 20px;
+                    border: $--border-base;
+                    border-radius: 8px;
+
+                    .tabular_title {
+                        font-size: 16px;
+                        padding: 8px 16px;
+                        margin: 0;
+                    }
+                    .product-details-body {
+                        padding: 0px 20px 20px 20px;
+
+                        h4 {
+                            color: $wpf-system-dark;
+                            font-family: $wpf-font-family;
+                            font-size: 14px;
+                            font-style: normal;
+                            font-weight: 600;
+                            line-height: 20px;
+                            margin: 0;
+                            padding: 20px 0 8px 0;
+
+                        }
+
+                        .product-meta-details {
+                            display: flex;
+                            justify-content: space-between;
+                            gap: 10px;
+
+                            .el-input-number {
+                                width: 100%;
+                            }
+                        }
+
+                        .product_settings_wrapper {
+                            .wpf_photo_card .upload-btn {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                border-radius: 4px;
+                                border: 1px dashed #D6DAE1;
+                                margin-bottom: 4px;
+                                cursor: pointer;
+                                padding: 18px 20px;
+                            }
+                        }
+                    }
+                }
+                .select-box {
+                    .el-select {
+                        width: 100%;
+                        max-width: 400px;
+                    }
+                }
+                .file-upload-wrapper {
+                    margin: 0;
+                }
+                .custom-options {
+                    .custom-options-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 10px 20px;
+                        border-bottom: $--border-base;
+                        background: #FAFAFA;
+                        border-radius: 8px 8px 0 0;
+
+                        .wpf-label-editor {
+                            padding-bottom: 0;
+
+                            .wpf-label-editor {
+                                padding-bottom: 0;
+                            }
+                        }
+                        .el-button {
+                            width: 100px;
+                        }
+                        .delete-action {
+                            display: flex;
+                            align-items: center;
+                            width: 148px;
+                            gap: 6px;
+                            color: $wpf-danger-500;
+                            font-weight: 500px;
+                            cursor: pointer;
+                            .icon {
+                                margin-top: 3px;
+                                font-weight: 500px;
+                            }
+                            &.disabled {
+                                cursor: not-allowed;
+                                opacity: 0.5;
+                            }
+                        }
+                        .disabled {
+                            cursor: not-allowed;
+                            opacity: 0.5;
+                        }
+                    }
+                    table.ninja_filter_table {
+                        border-radius: 0 0 8px 8px;
+                        // background: $wpf-background;
+                        thead th {
+                            background: #F5F6F7;
+                        }
+                        td {
+                            padding: 14px 8px;
+                            .el-button {
+                                padding: 2px 8px;
+                            }
+                        }
+                    }
+                    .wpf-label-editor {
+                        .label-edit-wrap {
+                            opacity: 1;
+                            // margin-top: -18px;
+                        }
+                    }
+                    .input-wrapper {
+                        min-width: 300px !important;
+                    }
+                    .wpf_add_item 
+                    {
+                        padding-bottom: 30px;
+                        a {
+                            padding: 0;
+                            background: none;
+                        }
+                    }
+                    .product_option_btn {
+                        width: 100%;
+                        .el-button {
+                            width: 100%;
+                            background: $wpf-gray-50;
+                            border: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.el-radio-button__orig-radio {
+    background-color: red !important;
+    border-color: #FFB380;
+}

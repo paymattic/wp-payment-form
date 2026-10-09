@@ -1,0 +1,44 @@
+.wpf_conditional_block{
+    margin-top: 20px;
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    border-radius: 8px;
+    border: 1px solid $--border-color-base;
+    background: var(--White, #FFF);
+    .wpf_conditional_block-if{
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px;
+        .wpf_conditional_block-select{
+            display: flex !important;
+            width: 85px !important;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+        }
+    }
+    .wpf_conditional_block-row{
+        width: 100%;
+        display: flex !important;
+        align-items: center !important;
+        .el-col {
+            margin-right: 20px;
+        }
+    }
+    .wpf_conditional_block-delete{
+        display: flex;
+        width: 32px;
+        padding: 6px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        border: 1px solid $--border-color-base;
+        background: #FFF;
+        flex: 0;
+    }
+}

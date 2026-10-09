@@ -1,0 +1,215 @@
+.wpf_form_payment_settings {
+	padding: 20px;
+
+    .wpf_stripe_meta_settings {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    
+        .wpf_stripe_meta_settings_header {
+            h3 {
+                color: var(--System-Dark, #2F3448);
+                font-family: Inter;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 20px;
+                padding-bottom: 7px;
+            }
+    
+            h4 {
+                color: var(--System-Dark, #2F3448);
+                font-family: Inter;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 20px;
+            }
+        }
+        
+    }
+    
+    .wpf_stripe_meta_settings_body {
+        width: 100%;
+        padding: 20px;
+    
+        h3 {
+            padding-bottom: 10px;
+            color: var(--System-Dark, #2F3448);
+            font-family: Inter;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 20px;
+        }
+
+        .dropdown_label_repeater {
+            border: 1px solid #D6DAE1;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 95%;
+
+            .ninja_filter_table.wpf_dropdown_label_repeater {
+                width: 100%;
+                border-collapse: collapse;
+                border-radius: 8px;
+            }
+        }
+    }
+    
+    
+    .wpf_form_payment_method {
+        border: $--border-base;
+        border-radius: 8px;
+    
+        &.el-form-item {
+            display: grid;
+            grid-template-columns: 1fr;
+            padding: 14px 0 0 0;
+            margin-bottom: 10px;
+    
+            .el-form-item__label {
+                padding-bottom: 14px !important;
+                min-width: 100% !important;
+                border-bottom: $--border-color-secondary;
+                padding-left: 20px;
+            }
+    
+            .el-form-item__content {
+                margin-left: 0 !important;
+                padding: 20px 0 20px 20px;
+    
+                p {
+                    padding-left: 0 !important;
+                }
+
+                .el-checkbox-group {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                    gap: 17px;
+                }
+            }
+        }
+    }
+    
+    .wpf_form_stripe_account {
+        width: 100%;
+        .el-form-item {
+            display: flex;
+            flex-direction: column;
+            .el-form-item__label {
+                line-height: 40px;
+            }
+
+            .el-form-item__content {
+                margin-left: 0 !important;
+            }
+        }
+    }
+    
+    .wpf_form_stripe_key {
+            align-items: center;
+            display: grid;
+            grid-template-columns: 48% 48%;
+            width: 97%;
+            gap: 20px;
+            padding: 20px;
+    
+        .el-form-item {
+            display: flex;
+            flex-direction: column;
+            padding: 0 !important;
+            margin: 0 !important;
+
+            .el-form-item__label {
+                padding-bottom: 12px;
+            }
+    
+            .el-form-item__content {
+                margin-left: 0 !important;
+    
+                .el-input {
+                    width: 100%;
+                }
+            }
+        }
+    }
+    
+    .wpf_form_stripe_settings {
+        width: 100%;
+        .wpf_form_stripe_mode {
+            &.el-form-item {
+                display: grid;
+                grid-template-columns: 1fr;
+                margin-bottom: 0;
+
+                .el-form-item__label {
+                   line-height: 40px;
+                }
+        
+                .el-form-item__content {
+                    margin-left: 0 !important;
+                }
+            }
+        }
+    
+        .app-card {
+            margin-top: 20px;
+            margin-bottom: 0;
+            p {
+                margin: 0;
+                padding-top: 5px;
+                padding-bottom: 3px;
+                color: $wpf-system-light !important;
+                font-family: $wpf-font-family;
+                font-size: 13px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 20px;
+            }
+        }
+    }
+}
+
+
+.wpf_form_paypal_settings {
+    padding-bottom: 20px;
+    width: 100%;
+    .el-form-item {
+        display: flex;
+        flex-direction: column;
+        padding: 10px 20px 0 20px;
+
+        .el-form-item__label {
+            line-height: 40px;
+        }
+    
+        .el-form-item__content {
+            margin-left: 0 !important;
+
+            .el-input {
+                width: 100%;
+            }
+        }
+    }
+}
+
+
+.wpf_transaction_type_settings {
+    background: #fff;
+    padding: 10px 20px 20px 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    .el-form-item {
+        display: flex;
+        flex-direction: column;
+        .el-form-item__label {
+            line-height: 40px;
+         }
+
+        .el-form-item__content {
+            margin-left: 0 !important;
+
+        }
+    }
+}

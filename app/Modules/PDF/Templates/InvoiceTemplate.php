@@ -1,0 +1,279 @@
+<?php
+
+namespace WPPayForm\App\Modules\PDF\Templates;
+
+use WPPayForm\App\Services\PlaceholderParser;
+use WPPayForm\App\Modules\PDF\Templates\TemplateManager;
+use WPPayForm\App\Models\Submission;
+use WPPayForm\Framework\Support\Arr;
+
+class InvoiceTemplate extends TemplateManager
+{
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function getDefaultSettings($form)
+    {
+        return [
+            'logo' => '',
+            'business_email',
+            'business_address',
+            'invoice_upper_text' => '',
+            'invoice_thanks' => 'Thank you for your order',
+            'invoice_prefix' => '',
+            'customer_name' => '',
+            'customer_email' => '',
+            'customer_address' => ''
+        ];
+    }
+
+    public function getSettingsFields()
+    {
+        return array(
+            [
+                'key' => 'logo',
+                'label' => 'Business Logo',
+                'tips' => 'Your Business Logo which will be shown in the invoice header',
+                'type' => 'image_widget'
+            ],
+            [
+                'key' => 'business_name',
+                'label' => 'Business Name',
+                'placeholder' => 'Ex: XYZ Company',
+                'tips' => 'Your Business Name which will be shown in the invoice header',
+                'type' => 'admin_input'
+            ],
+            [
+                'key' => 'business_email',
+                'label' => 'Business Email',
+                'placeholder' => 'Ex: xyz@xyz.com',
+                'tips' => 'Your Business Email which will be shown in the invoice header',
+                'type' => 'admin_input'
+            ],
+            [
+                'key' => 'business_address',
+                'label' => 'Business Address',
+                'placeholder' => 'Ex: 24/A, XYZ Road, XYZ City',
+                'tips' => 'Your Business Address which will be shown in the invoice header',
+                'type' => 'admin_input'
+            ],
+            [
+                'key' => 'customer_name',
+                'label' => 'Customer Name',
+                'tips' => 'Please select the customer name field from the smartcode dropdown',
+                'type' => 'value_text'
+            ],
+            [
+                'key' => 'customer_email',
+                'label' => 'Customer Email',
+                'tips' => 'Please select the customer email field from the smartcode dropdown',
+                'type' => 'value_text'
+            ],
+            [
+                'key' => 'customer_address',
+                'label' => 'Customer Address',
+                'tips' => 'Please select the customer address field from the smartcode dropdown',
+                'type' => 'value_text'
+            ],
+            [
+                'key' => 'invoice_prefix',
+                'label' => 'Invoice Prefix',
+                'tips' => 'Add your invoice prefix which will be prepended with the invoice number',
+                'type' => 'value_text'
+            ],
+            [
+                'key' => 'invoice_upper_text',
+                'label' => 'Invoice Body Text',
+                'tips' => 'Write Invoice body text. This will show before the invoice items',
+                'type' => 'wp-editor'
+            ],
+            [
+                'key' => 'invoice_thanks',
+                'label' => 'Invoice Footer Text',
+                'tips' => 'Write Invoice Footer Text. This will show at the end of the invoice',
+                'type' => 'value_textarea'
+            ]
+        );
+    }
+
+    public function generatePdf($submissionId, $feed, $outPut, $fileName = '')
+    {
+        $settings = $feed['settings'];
+        $submissionModel = new Submission();
+        $submission = $submissionModel->getSubmission($submissionId);
+        $formData = wppayform_safeUnserialize($submission->form_data_formatted, true);
+        $settings['invoice_lines']   = '';
+        $settings['payment_summary'] = '';
+
+        $settings = PlaceholderParser::parse($settings, $submission);
+
+        $settings = $this->forcePaymentInfoHorizontal($settings);
+
+        $htmlBody = $this->generateInvoiceHTML($submission, $settings, $feed);
+
+        $htmlBody = str_replace('{page_break}', '<page_break />', $htmlBody);
+
+        $htmlBody = apply_filters('wppayform_pdf_body_parse', $htmlBody, $submissionId, $formData, $submission->form_id);
+
+        if(!$fileName) {
+            $fileName = PlaceholderParser::parse( $feed['name'], $submission, $formData);
+            $fileName = sanitize_title($fileName, 'pdf-file', 'display');
+        }
+
+        return $this->pdfBuilder($fileName, $feed, $htmlBody, '', $outPut);
+    }
+
+    private function forcePaymentInfoHorizontal($settings)
+    {
+        if (!is_array($settings)) {
+            return $settings;
+        }
+
+        foreach ($settings as $key => $value) {
+            if (!is_string($value) || strpos($value, 'wpf_payment_info') === false) {
+                continue;
+            }
+            $settings[$key] = $this->convertPaymentInfoBlocks($value);
+        }
+
+        return $settings;
+    }
+
+    private function generateInvoiceHTML($submission, $settings, $feed)
+    {  
+        $paymentSettings = false;
+        $logo = Arr::get($settings, 'logo');
+        if(!class_exists('\WPPayForm\App\Http\Controllers\GlobalSettingsController', false)) {
+            $paymentSettings = (new \WPPayForm\App\Http\Controllers\GlobalSettingsController())->currencies();
+            if(!$logo) {
+                $logo = Arr::get($paymentSettings, 'business_logo');
+            }
+        } else {
+            $paymentSettings = (new \WPPayForm\App\Http\Controllers\GlobalSettingsController())->currencies();
+            if(!$logo) {
+                $logo = Arr::get($paymentSettings, 'business_logo');
+            }
+        }
+
+        ob_start();
+        ?>
+        <table style="width: 100%; border: 0px solid transparent;">
+            <tr>
+                <td style="width: 40%" class="business_details">
+                    <?php if($logo): ?>
+                    <div class="business_logo">
+                        <img src="<?php echo esc_url($logo); ?>" alt="Business-logo" class='buisness-logo' style="margin: 0; padding-bottom: 10px;"/>
+                    </div>
+                    <div>
+                        <h4><?php echo esc_html(Arr::get($settings, 'business_name')); ?></h4>
+                        <div class="business_email"><?php echo esc_html(Arr::get($settings, 'business_email')); ?></div>
+                        <div class="business_address"><?php echo esc_html(Arr::get($settings, 'business_address')); ?></div>
+                    </div>
+                    <?php endif; ?>
+                    <?php if($paymentSettings): ?>
+                    <div class="business_address">
+                        <div class="business_name"><?php echo esc_html(Arr::get($paymentSettings, 'business_name')); ?></div>
+                        <div class="business_address"><?php echo esc_html(Arr::get($paymentSettings, 'business_address')); ?></div>
+                    </div>
+                    <?php endif; ?>
+                </td>
+                <td style="width: 20%"></td>
+                <td style="width: 40%" class="customer_row">
+                    <div  class="heading_items">
+                        <?php if (Arr::get($settings, 'invoice_prefix')): ?>
+                            <div class="order_number">
+                                <b><?php esc_html_e('Order Number:', 'wp-payment-form'); ?></b>
+                                <span class="invoice_prefix" ><?php echo '<b>'. esc_html(Arr::get($settings, 'invoice_prefix')) . '</b>' . '-' . esc_html($submission->id); ?></span>
+                            </div>
+                        <?php else: ?>
+                            <div class="order_number">
+                                <b><?php esc_html_e('Order Number:', 'wp-payment-form'); ?></b>
+                                <?php echo esc_html($submission->id); ?>
+                            </div>
+                        <?php endif; ?>
+                        <div class="payment_date"><b><?php esc_html_e('Payment Date:', 'wp-payment-form'); ?></b> <?php echo esc_html(wp_date(get_option( 'date_format' ), strtotime($submission->created_at))); ?></div>
+                        <br />
+                        <div class="customer_details">
+                            <?php if(Arr::get($settings, 'customer_name') || Arr::get($settings, 'customer_address') || Arr::get($settings, 'customer_email')): ?>
+                                <p style="font-weight: bold; margin-bottom:10px;" class="customer_heading"><?php esc_html_e('Customer Details', 'wp-payment-form'); ?></p>
+                                <p class="customer_name"><?php echo esc_html(Arr::get($settings, 'customer_name')); ?></p>
+                                <p class="customer_email"><?php echo esc_html(Arr::get($settings, 'customer_email')); ?></p>
+                                <p class="customer_address"><?php echo esc_html(Arr::get($settings, 'customer_address')); ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <hr />
+        <div class="receipt_upper_text"><?php echo wp_kses_post(Arr::get($settings, 'invoice_upper_text')); ?></div>
+
+        <div class="invoice_lines"><?php echo wp_kses_post(Arr::get($settings, 'invoice_lines')); ?></div>
+
+        <?php
+        $paymentSummaryHtml = (string) Arr::get($settings, 'payment_summary');
+
+        $paymentSummaryHtml = preg_replace('#<style\b[^>]*>.*?</style>#is', '', $paymentSummaryHtml);
+
+        $hasLegacyMarker    = strpos($paymentSummaryHtml, 'class="ffp_payment_info_table"') !== false;
+        $hasConvertedMarker = strpos($paymentSummaryHtml, 'wpf_payment_info') !== false;
+        if ($hasLegacyMarker || $hasConvertedMarker): ?>
+            <div class="invoice_summary">
+                <h3><?php esc_html_e('Payment Details', 'wp-payment-form');?></h3>
+                <?php echo wp_kses_post($paymentSummaryHtml); ?>
+            </div>
+        <?php endif;?>
+
+        <div class="invoice_thanks" style="margin-top: 20px;">
+            <?php echo wp_kses_post(Arr::get($settings, 'invoice_thanks')); ?>
+        </div>
+        <style>
+            .business_logo {
+                max-width: 200px;
+                margin-bottom: 20px;
+            }
+            .business_logo img {
+                margin-bottom: 20px;
+                max-width: 200px;
+                max-height: 100px;
+            }
+            .business_name {
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+            td.customer_row {
+                text-align: right;
+            }
+            td.customer_row ul, td.customer_row ul li {
+                list-style: none;
+            }
+            td.customer_row ul li {
+                padding-bottom: 7px;
+            }
+            .wpf_payment_info {
+                display: table;
+                width: 100%;
+                table-layout: fixed;
+                border-collapse: collapse;
+                margin-bottom: 10px;
+            }
+            .wpf_payment_info_item {
+                display: table-cell;
+                vertical-align: top;
+                padding: 8px 12px 8px 0;
+            }
+            .wpf_payment_info_item .wpf_item_heading {
+                font-weight: bold;
+                margin-bottom: 4px;
+            }
+            .wpf_payment_info_item .wpf_item_value {
+                word-wrap: break-word;
+            }
+        </style>
+        <?php
+
+        return ob_get_clean();
+    }
+}

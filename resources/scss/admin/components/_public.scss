@@ -1,0 +1,33 @@
+.wpf_action_handler {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+.wpf_prev {
+	display: inline-flex;
+	align-items: center;
+	span{
+		display: flex;
+		align-items: center;
+		gap: 15px;
+	}
+    .el-icon-back {
+	font-size: 20px;
+	padding: 0 15px;
+}
+}
+.wpf_next {
+	display: inline-flex;
+	align-items: center;
+	span{
+		display: flex;
+		align-items: center;
+		gap: 15px;
+	}
+	.el-icon-right {
+		font-size: 20px;
+		padding: 0 15px;
+	}
+}

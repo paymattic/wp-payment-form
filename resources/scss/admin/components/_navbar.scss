@@ -1,0 +1,142 @@
+.wppayform_main_nav {
+    .wpf-navbar-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 20px;
+        gap: 23px;
+        background-color: $wpf-background;
+        font-family: $wpf-font-family;
+        margin-left: -20px;
+
+
+        .wpf_navbar_left {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            font-size: $wpf-medium-font-size;
+            font-weight: 600;
+            line-height: 20px;
+
+            img {
+                width: 60%;
+                // padding-right: 6%;
+            }
+        }
+
+        .wpf_navbar_menu {
+            display: flex;
+            gap: 10px;
+            font-size: $wpf-medium-font-size;
+            font-weight: 500;
+            line-height: 24px;
+            color: $wpf-text-color;
+            font-family: $wpf-font-family;
+            align-items: center;
+            font-style: normal;
+
+            .ninja-tab {
+                text-decoration: none;
+                padding: 8px 16px;
+                border-radius: $--border-radius-base;
+                border: none;
+                color: $wpf-text-color;
+
+                &:focus,
+                &:hover {
+                    background-color: $wpf-primary-50;
+                    color: $wpf-active;
+                    transition: $wpf-transition;
+                    box-shadow: none;
+                }
+
+                &.ninja-tab-active {
+                    background-color: $wpf-primary-50;
+                    color: $wpf-active;
+                }
+
+                &.wpf_buy_pro_tab {
+                    background: #F5F6F7;
+                    padding: 10px 16px !important;
+                    float: right;
+                    font-size: $wpf-medium-font-size;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 8px;
+
+                    &:focus,
+                    &:hover {
+                        background-color: $wpf-primary-50;
+                        color: $wpf-active;
+                        transition: $wpf-transition;
+                        box-shadow: none;
+
+                        .wpf_pro_link {
+                            color: $wpf-active;
+                        }
+                    }
+
+                    .wpf_pro_link {
+                        padding: 0 5px;
+                        text-decoration: none;
+                        color: var(--System-Dark, #2F3448);
+                        font-family: Inter;
+                        font-size: 15px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: 24px;
+                    }
+                }
+                a {
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+}
+
+
+.toggle-menu {
+    display: none;
+    font-size: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .wpf-navbar-content {
+        padding: 0px 20px !important;
+    }
+    .wpf_navbar_menu {
+        display: none !important;
+            &.show {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                position: absolute;
+                padding: 15px;
+                top: 60px;
+                right: 1px;
+                z-index: 99000;
+                font-size: 13px !important;
+                background: $wpf-background;
+                border: 1px solid #EAECF0;
+            }
+            .ninja-tab {
+                padding: 6px 12px !important;
+            }
+        }
+        .toggle-menu {
+            display: block;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .wpf_navbar_menu {
+                &.show {
+                    top: 107px;
+                }
+        }
+    }

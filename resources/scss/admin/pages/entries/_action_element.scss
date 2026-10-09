@@ -1,0 +1,128 @@
+.wpf_entry_actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-top: $--border-color-secondary;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    .wpf_bulk_action {
+        background: $wpf-background;
+        border: $--border-base;
+        border-radius: $--border-radius-base;
+        display: flex;
+        align-items: center;
+
+        .custom_select {
+            .el-input__inner {
+                border: none !important;
+                height: 36px !important;
+                width: 144px;
+            }
+        }
+
+        .button_action {
+            border: none;
+            border-left: $--border-base;
+            border-radius: 0 8px 8px 0;
+            margin: 0;
+            font-family: $wpf-font-family;
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 500;
+            background: #F9FAFB;
+            padding: 10px 16px;
+            cursor: pointer;
+        }
+    }
+
+    .wpf_modules_forms {
+        background: $wpf-background;
+        border: $--border-base;
+        border-radius: $--border-radius-base;
+        display: flex;
+        align-items: center;
+        padding: 1px 0;
+
+        .custom_select {
+            padding: 0 3px;
+
+            .el-input {
+                width: 200px;
+                .el-input__inner {
+                    border: none !important;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    width: 200px;
+                    height: 36px;
+                }
+            }
+        }
+
+        .button_action {
+            border: none;
+            border-left: $--border-base;
+            border-radius: 0 8px 8px 0;
+            margin: 0;
+            font-family: $wpf-font-family;
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 500;
+            background: #F9FAFB;
+            padding: 10px 16px;
+            cursor: pointer;
+        }
+    }
+
+    .payform_filter_actions {
+        font-family: $wpf-font-family;
+        border-radius: $--border-radius-base;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .wpf_view_entries {
+        a {
+            color: #565865;
+            font-family: "Inter", sans-serif;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px;
+            text-decoration: none;
+            padding: 10px 10px;
+            border-radius: 0 8px 8px 0;
+            border-left: $--border-base;
+            background: #F9FAFB;
+        }
+    }
+
+    .wpf_entry_status {
+
+        .el-dropdown {
+            .el-button {
+                padding: 10px 11px !important;
+
+                span {
+                    .icon {
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .wpf_entry_actions {
+        .payform_filter_actions {
+            justify-content: flex-start !important;
+        }
+    }
+}

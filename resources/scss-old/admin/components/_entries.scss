@@ -1,0 +1,101 @@
+
+.wpf_report_cards {
+    display: flex;
+    flex-wrap: wrap;
+    background: #f5f7fa;
+    border: 1px solid #fff;
+
+    .wpf_report_card {
+        flex: 1;
+
+        @media screen and (max-width: 769px) {
+            flex: auto;
+            margin-bottom: 20px;
+        }
+
+        cursor: pointer;
+        border-right: 1px solid #9ca1ac;
+
+        &.wpf_active_card {
+            background: white;
+            box-shadow: 0px 1px 1px 0px #c6d0d8;
+        }
+
+        &.card_type_ {
+            border-top: 2px solid #fff;
+        }
+
+        &.card_type_paid {
+            border-top: 2px solid #8BC34A;
+        }
+
+        &.card_type_pending {
+            border-top: 2px solid #FFEB3B;
+        }
+
+        &.card_type_processing {
+            border-top: 2px solid #03A9F4;
+        }
+
+        &.card_type_failed {
+            border-top: 2px solid #FF5722;
+        }
+
+        &.card_type_refunded {
+            border-top: 2px solid #000;
+        }
+
+        &:last-child {
+            border-right: 0;
+        }
+
+        .wpf_report_header {
+            padding: 15px 15px 0px 15px;
+            font-size: 15px;
+
+            @media screen and (max-width: 769px) {
+                padding: 0px 10px;
+                font-size: 11px;
+            }
+        }
+
+        .wpf_report_body {
+            padding: 15px;
+
+            @media screen and (max-width: 769px) {
+                padding: 5px 10px;
+            }
+        }
+
+        .wpf_report_line {
+            font-size: 18px;
+            line-height: 30px;
+
+            @media screen and (max-width: 769px) {
+                font-size: 10px;
+                line-height: 18px;
+            }
+        }
+    }
+}
+
+
+.wpf_entry_actions {
+    padding: 15px 0px;
+
+    .wpf_entry_action {
+        display: inline-block;
+        margin-right: 20px;
+        margin-left: 5px;
+
+        .item_title {
+            color: #000 !important;
+            font-weight: 400;
+            margin-bottom: 6px;
+        }
+
+        label {
+            display: grid;
+        }
+    }
+}

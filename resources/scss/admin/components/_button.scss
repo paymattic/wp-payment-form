@@ -1,0 +1,86 @@
+.el-button {
+    font-family: $wpf-font-family;
+    font-style: normal;
+    font-weight: $wpf-large-font-weight;
+    line-height: 20px;
+    font-size: $wpf-medium-font-size;
+    padding: 10px 18px;
+
+    &.pop-over-btn{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #F5F6F7 !important;
+        color: #2F3448 !important;
+        border: 1px solid #F5F6F7 !important;
+        color: $wpf-system-dark;
+        font-family: $wpf-font-family;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+        padding: 8px 12px;
+    }
+
+    &.el-button--primary,
+    &.el-button--success,
+    &.el-button--info {
+        span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+
+            .icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+
+    &.el-button--default {
+        // background-color: #F5F6F7;
+        border-radius: 8px;
+        border: $--border-base;
+        background: $wpf-background;
+    }
+
+    &.el-button--button {
+        color: #FFB380 !important;
+
+        &:hover {
+            color: #FF7518 !important;
+            border-color: $border-color-hover !important;
+            background-color: #FFF9F5 !important;
+        }
+    }
+
+    &.el-button--mini {
+        padding: 5px 10px;
+    }
+    &.el-button--small {
+        padding: 8px 15px;
+    }
+    &.el-button--medium {
+        padding: 10px 18px;
+    }
+}
+
+.el-button--success:hover, .el-button--success:focus{
+    background: var(--Gray-100, #ebecee);  
+    border: 1px solid var(--Gray-100, #ebecee) !important;
+    color: var(--System-Dark, #2F3448) !important;
+}
+
+.el-message-box__btns {
+    .el-button {
+        &.el-button--default {
+            background: none !important;
+        }
+        &.el-button--primary {
+            background: $wpf-active !important;
+            color: #fff !important;
+        }
+    }
+}

@@ -1,0 +1,78 @@
+
+.wpf_leaderboard_stats {
+	display: flex;
+	padding: 20px;
+	flex-direction: column;
+	border-radius: 8px;
+	background: #F3FAF8;
+	border: 1px solid #D1EAE4;
+	margin-top: 20px;
+    .wpf_leaderboard_stats_content {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 20px 20px 20px;
+        .wpf_leaderboard_stats_raised, 
+        .wpf_leaderboard_stats_count,
+        .wpf_leaderboard_stats_goal  {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            p {
+                color: #137A5F;
+                text-align: center;
+                font-family: $wpf-font-family;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 28px;
+                margin: 0;
+            }
+            h4 {
+                color: #137A5F;
+                font-family: $wpf-font-family;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 20px;
+                margin: 0;
+            }
+        }
+    }
+    .wpf_donation_percent {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        align-self: stretch;
+        border-radius: 20px;
+        background: #D1EAE4;
+        p {
+            display: flex;
+            color: #FFF;
+            font-family: $wpf-font-family;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 12px;
+            border-radius: 20px;
+            background: #189877;
+            padding: 3px 12px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 0;
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .wpf_leaderboard_stats_content {
+        padding: 0 0 20px 0 !important;
+        .wpf_raised_amount {
+            font-size: 16px !important;
+        }
+        .wpf_donation_goal {
+            font-size: 16px !important;
+        }
+    }
+}

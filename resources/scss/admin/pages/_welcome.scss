@@ -1,0 +1,101 @@
+.ninja_intro_welcome {
+    // max-width: 600px;
+    max-width: 480px;
+    margin: 70px auto 0px;
+    background: white;
+    text-align: center;
+    border-radius: 8px;
+
+    .ninja_intro_header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 8px 8px 0px 0px;
+        background: var(--Primary-Color-Primary-50, #FFF2EF);
+        box-shadow: 0px 1px 2px 0px rgba(10, 13, 20, 0.03);
+        padding: 30px;
+
+        .ninja_intro_logo {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            .circle_icon {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                > .icon {
+                    display: flex;
+                    padding: 16px;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 16px;
+                    border-radius: var(--radius-full, 999px);
+                    background: linear-gradient(180deg, rgba(255, 127, 92, 0.10) 0%, rgba(255, 127, 92, 0.00) 100%);
+                }
+                .logo_icon {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    .icon {
+                        & svg {
+                            width: 50px;
+                            height: 50px;
+                            border-radius: 60%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    h2 {
+        margin: 0;
+        color: var(--System-Dark, #2F3448);
+        text-align: center;
+        font-family: Inter;
+        font-size: 26px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 34px;
+        padding: 10px 0 10px 0;
+    }
+    p {
+        color: var(--System-Mid, #565865);
+        text-align: center;
+        font-family: Inter;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+        margin: 0;
+        padding: 0 20px;
+    }
+
+    .ninja_actions {
+        padding-top: 20px;
+    }
+
+    .ninja_docs {
+        text-align: left;
+        padding: 30px;
+        ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            li {
+                display: flex;
+                gap: 8px;
+                a {
+                    font-family: Inter;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 20px;
+                    text-decoration-line: underline;
+                    color: #323DA5;
+                }
+            }
+        }
+    }
+}

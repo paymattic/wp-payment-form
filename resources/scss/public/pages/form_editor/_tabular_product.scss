@@ -1,0 +1,74 @@
+.wpf_regular_table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 14px;
+    border: $--border-base;
+
+    th,
+    td {
+        border-bottom: $--border-base;
+        padding: 10px 12px 10px 15px;
+        border-right: $--border-base;
+
+        &:last-child {
+            border-right: none;
+        }
+    }
+    
+    th {
+        text-align: left;
+        background-color: #F5F6F7;
+        color: $wpf-system-dark;
+        font-family: $wpf-font-family;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 20px;
+    }
+
+    td {
+        overflow: hidden;
+        color: $wpf-system-dark;
+        text-overflow: ellipsis;
+        font-family: $wpf-font-family;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+
+        input {
+            width: 110px !important;
+            height: 35px !important;
+        }
+    }
+
+    tfoot td {
+        border-bottom: none !important;
+    }
+
+    .wpf_tabular_qty,
+    .wpf_tabular_price {
+        width: 130px;
+    }
+
+    th.wpf_subtotal_th {
+      text-align: right;
+    }
+
+    .wpf_tabular_product_photo {
+      width: 80px;
+      padding: 15px 17px 15px 17px;
+
+      img {
+        max-width: 100%;
+        border-radius: 4px;
+        height: 40px;
+        object-fit: cover;
+        aspect-ratio: 2/2;
+      }
+    }
+
+  }

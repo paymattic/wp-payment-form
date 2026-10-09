@@ -1,0 +1,265 @@
+.wpf-setup_container {
+    padding: 20px;
+    .wpf-setup_wrapper {
+        max-width: 1280px;
+        margin: 0 auto;
+        margin-top: 60px;
+        .header{
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            text-align: center;
+            h3 {
+                @include h3;
+            }
+            p {
+                @include p;
+            }
+            
+        }
+        .wpf-choose-form-card-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            // align-items: center;
+            text-align: center;
+            justify-content: center;
+            padding-top: 30px;
+            width: 940px;
+            margin-left: auto;
+            margin-right: auto;
+            .wpf-choose-form-card {
+
+                border-radius: 12px;
+                width: 16%;
+                min-width: 210px;
+                transition: transform 0.3s ease-in-out;
+                cursor: pointer;
+                
+                .wpf-form-type-icon {
+                    border: 1.5px solid var(--Gray-Outline, #D6DAE1);
+                    background: var(--Gray-25, #F9FAFB);
+                    padding: 20px  1px;
+                    border-radius: 12px;
+                    height: 200px;
+                    display: grid;
+                    place-items: center;
+                    transition: 0.3s;
+                }
+                .wpf-form-type-details {
+                    padding: 20px 0;
+                    .wpf-choose-form-card-title {
+                        @include h4;
+                    }
+                    .wpf-choose-form-card-description {
+                        @include p;
+                    }
+                
+                }
+
+                &:hover {
+                    transform: translateY(-8px);
+                    .wpf-form-type-icon {
+                        border: 2px solid var(--Secondary-Active, #6B3CEB);
+                        background: var(--Secondary-25, #F8F5FE);
+                    }
+                    .wpf-choose-form-card-title {
+                        color: var(--Secondary-Active, #6B3CEB);
+                    }
+                }
+            }
+            // .wpf-choose-form-card {
+            //     width: 200px;
+            //     height: 200px;
+            //     border-radius: 8px;
+            //     border: 1px solid #8D8F95;
+            //     display: flex;
+            //     justify-content: center;
+            //     align-items: center;
+            //     cursor: pointer;
+            //     transition: all 0.3s ease;
+            //     &:hover {
+            //         border-color: #FFB380;
+            //     }
+            //     .wpf-choose-form-card-content {
+            //         text-align: center;
+            //         .wpf-choose-form-card-title {
+            //             font-size: 15px;
+            //             font-weight: 500;
+            //             color: #303133;
+            //         }
+            //         .wpf-choose-form-card-description {
+            //             font-size: 12px;
+            //             font-weight: 300;
+            //             color: #606266;
+            //         }
+            //     }
+            // }
+        }
+        .wpf-setup_body {
+            background-color: $wpf-background;
+            border-radius: $--border-radius-base;
+            margin-top: -30px;
+            .wpf-demo_forms_modal {
+                .wpf-pay_form_modal_body{
+                    .choose_form_action_navigations {
+                        border-radius: 8px 8px 0px 0px;
+                        border-bottom: 1px solid #EAECF0;
+                        position: sticky;
+                        top: 0;
+                        z-index: 1;
+                        background: #fff;
+                        .wpf-body-title {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            justify-content: space-between;
+                            padding: 4px 18px;
+                            h3 {
+                                display: flex;
+                                align-items: center;
+                                gap: 6px;
+                            }
+                            .choose-form-close-btn {
+                                width: 36px;
+                                height: 36px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                font-size: 18px;                            
+                            }
+                        }
+                    }
+                    .form-template-wrapper {
+                        display: flex;
+                        .form-template-sidebar {
+                            min-width: 180px;
+                            border-right: 1px solid #EAECF0;
+                            padding: 10px;
+                            position: sticky;
+                            top: 60px;
+                            height: 100vh;
+
+                            .category-title {
+                                color: $--color-text-secondary;
+                                font-size: 12px;
+                            }  
+                            // .all-category {
+                            //     li {
+                            //         padding: 8px 12px;
+                            //         align-items: center;
+                            //         border-radius: 8px;
+                            //         font-weight: 500;
+                            //         &:hover {
+                            //             cursor: pointer;
+                            //             color: $wpf-active;
+                            //         }
+                            //         &.active {
+                            //             background: $wpf-active;
+                            //             color: $wpf-text-white;
+                            //         }
+                            //     }
+                            // }
+                            // start new
+                            .el-menu-vertical-demo {
+                                border-right: none !important;
+                                .el-menu-item {
+                                    height: 42px !important;
+                                    line-height: 42px !important;
+                                    border-radius: 8px;
+                                    font-size: 15px !important;
+                                    font-weight: 500 !important;
+                                    color: $--color-text-primary !important;
+                                    display: flex;
+                                    min-width: 170px !important;
+                                    &:hover {
+                                        background: $wpf-background !important;
+                                        color: $--color-primary !important;
+                                    }
+                                    &:focus, &.is-active {
+                                        background: $wpf-active !important;
+                                        color: $wpf-text-white !important;
+                                    }
+                                }
+                                .el-submenu__title {
+                                    height: 42px !important;
+                                    line-height: 42px !important;
+                                    border-radius: 8px;
+                                    font-size: 15px !important;
+                                    font-weight: 500 !important;
+                                    color: $--color-text-primary !important;
+                                    display: flex;
+                                    margin-bottom: 8px;
+                                    &:hover {
+                                        background: $wpf-background !important;
+                                        color: $--color-primary !important;
+                                    }
+                                    .el-submenu__icon-arrow {
+                                        font-size: 13px;
+                                        color: $--color-text-secondary !important;
+                                        font-weight: 600;
+                                    }
+                                }
+                                .el-menu-item-group {
+                                    .el-menu-item-group__title {
+                                        padding: 0 !important;
+                                    }
+                                    // .el-menu-item {
+                                    //     padding-left: 22px !important;
+                                    // }
+                                }
+                            }
+                            .wpf_suggest_template_wrapper {
+                                padding-left: 20px;
+                                .wpf_suggest_template_link {
+                                    display: inline-flex;
+                                    gap: 3px;
+                                    color: #303133;
+                                    height: 42px;
+                                    line-height: 40px;
+                                    border-radius: 8px;
+                                    font-size: 15px;
+                                    font-weight: 500;
+                                    &:focus {
+                                        outline: none;
+                                        box-shadow: none;
+                                    }
+                                }
+                            }
+                        }
+                        .wpf-choose-form_group_container {
+                            .wpf-choose-form_group {
+                                padding: 0px 20px;
+                                .form_template_group_title {
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: space-between;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.wpf-form-search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    width: calc(100% - 40px);
+    margin-left: 20px;
+    input {
+        height: 44px !important;
+        border: $--border-base !important;
+        padding-left: 34px !important;
+        width: calc(100% - 40px);
+        border-radius: 8px !important;
+    }
+    span {
+        font-size: 18px;
+        left: 10px !important;
+        top: 2px !important;
+    }
+}

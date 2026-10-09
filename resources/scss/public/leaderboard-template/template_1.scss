@@ -1,0 +1,1010 @@
+@import "./variables.scss";
+
+.wpf-leaderboard-loader {
+    .loader {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: inline-block;
+        border-top: 3px solid #FFF;
+        border-right: 3px solid transparent;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+        position: absolute;
+        top: 470px;
+        left: 50%;
+    }
+
+    .show {
+        display: block;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    @keyframes rotation {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+}
+
+.wpf-leaderboard-temp-one {
+    max-width: 1200px !important;
+    background: radial-gradient(#002c6b, #04173f);
+    border-radius: 5px;
+    width: 100%;
+
+    .wpf-leaderboard {
+        padding: 20px;
+
+        .wpf-user-column {
+            max-width: 880px;
+            margin: 0 auto;
+            border-radius: 5px;
+            padding: 20px 48px 20px 38px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+
+            .wpf-top-donor-card-wrapper {
+                .wpf-top-donor-cards {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    justify-content: center;
+
+                    .wpf-top-donor-card {
+                        background: #FFF;
+                        // background: linear-gradient(#0651bc, #04173f, #9d8060);
+                        // box-shadow: 0px 0px 10px #00000029;
+                        border: $--border-base;
+                        color: #fff;
+                        border-radius: 8px;
+                        padding: 30px;
+                        display: flex;
+                        gap: 20px;
+                        position: relative;
+
+                        .info {
+                            padding-top: 24px;
+                            text-align: center;
+                        }
+
+                        .wpf_top_badge_wrapper {
+                            position: absolute;
+                            top: 20px;
+                            left: 20px;
+                            .wpf-user-serial{
+                                width: 38px;
+                                height: 38px;
+                                position: relative;
+                                &.wpf-user-serial-badge-2 {
+                                    color: #C0C0C0;
+                                }
+                                &.wpf-user-serial-badge-3 {
+                                    color: #CD7F32;
+                                }
+                                &.wpf-user-serial-badge-1 {
+                                    color: #FFD700;
+                                }
+                                .wpf-user-serial-text {
+                                    position: absolute;
+                                    left: 14px;
+                                    color: #fff;
+                                    top: 8px;
+                                    font-size: 18px;
+                                    font-weight: 600;
+                                }
+                                &.wpf-user-serial-badge-1 .wpf-user-serial-text {
+                                    left: 16px;
+                                }
+                            }
+
+                        }
+                        .wpf-user-avatar {
+                            img {
+                                border-radius: 50%;
+                                max-width: 100px;
+                            }
+                        }
+
+                        .wpf-user-name {
+                            @include text($size: 18px, $weight: 600, $lineHeight: 28px);
+                            margin-top: 12px;
+                        }
+                        .wpf-user-amount {
+                            display: flex;
+                            padding: 12px 20px;
+                            flex-direction: column;
+                            justify-content: center;
+                            background: $wpf-gray-50;
+                            border-radius: 8px;
+                            min-width: 200px;
+                            margin-top: 6px;
+                            .wpf-user-amount-text {
+                                @include text($size: 14px, $weight: 400, $lineHeight: 20px);
+                            }
+                            // .wpf-text-currency, .wpf-text-amount {
+                            //     @include text($size: 18px, $weight: 600, $lineHeight: 28px, $color: $wpf-system-dark);
+                            // }
+                        }
+                    }
+
+                    .card-2,
+                    .card-3 {
+                        transform: scale(0.9);
+                    }
+
+                    .card-1 {
+                        order: 2;
+                    }
+
+                    .card-2 {
+                        order: 1;
+                    }
+
+                    .card-3 {
+                        order: 3;
+                    }
+
+                }
+            }
+            .wpf_total_raised_amount {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                margin-top: 30px;
+            }
+            .all_donor_section {
+                border: $--border-base;
+                border-radius: 8px;
+                margin-top: 20px;
+                .wpf-donor-filter-section {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    gap: 40px;
+                    border-bottom: $--border-base;
+                    padding: 12px 16px;
+    
+                    .wpf-search-section {
+                        position: relative;
+    
+                        .wpf-search-input {
+                            background: #ffffff1f;
+                            border: none;
+                            border-radius: 5px;
+                            padding: 10px;
+                            color: #fff;
+                            font-size: 14px;
+                            font-weight: 300;
+                            min-width: 200px;
+                            padding-left: 32px;
+    
+                            &:focus {
+                                outline: none;
+                            }
+                        }
+    
+                        .wpf-search-icon {
+                            font-size: 20px;
+                            color: #ffffff75;
+                            position: absolute;
+                            left: 4px;
+                            top: 6px;
+                            font-size: 26px;
+                        }
+                    }
+    
+                    .filter-radio-button {
+                        display: flex;
+                        gap: 6px;
+                        align-items: center;
+                        justify-content: center;
+    
+                        .wpf-radio-button {
+                            position: relative;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 6px;
+    
+                            .wpf-filter-icon {
+                                position: absolute;
+                                left: 2px;
+                                top: 10px;
+                                font-size: 14px;
+                                font-weight: 300;
+                                color: #fff;
+                            }
+    
+                            input[type="radio"] {
+                                display: none;
+                            }
+    
+                            label {
+                                font-size: 14px;
+                                font-weight: 300;
+                                color: #fff;
+                                cursor: pointer;
+                                padding: 6px;
+                                padding-left: 22px;
+                                border-radius: 5px;
+                                background: #ffffff1f;
+                                transition: all 0.3s ease;
+    
+                                &:hover {
+                                    background: #ffffff3f;
+                                }
+                            }
+    
+                            input[type="radio"]:checked+label {
+                                background: #ffffff3f;
+                            }
+                        }
+                    }
+                }
+                .wpf-user {
+                    // padding: 0px 20px;
+
+                    .wpf-user-row {
+                        &.wpf-all-forms-user {
+                            grid-template-columns: 10% 45% 30% 15%;
+                        }
+                        box-sizing: border-box;
+                        display: grid;
+                        justify-content: space-between;
+                        align-items: center;
+                        min-height: 50px;
+                        margin: 0px auto;
+                        width: 100%;
+                        grid-template-columns: 10% 30% 30% 20% 10%;
+                        color: var(--System-Dark, #2F3448);
+                        font-family: $wpf-font-family;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 20px;
+                        border-bottom: 1px solid #f1efef !important;
+                        padding: 10px 20px;
+
+                        .wpf-user-avatar-name {
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+
+                            img {
+                                border-radius: 50%;
+                                width: 46px;
+                                height: 46px;
+                                object-fit: cover;
+                            }
+                        }
+
+                        .wpf-user-serial {
+                            flex: 1;
+
+                            .wpf-user-serial-text {
+                                // font-size: 30px;
+                                // font-weight: 500;
+                                // color: #ffffffbf;
+                                // margin: 0;
+                                // padding: 0;
+                                // line-height: 36px;
+                            }
+                        }
+
+                        // .wpf-user-name {
+                        //     flex: 1;
+                        //     font-size: 16px;
+                        //     color: #fff;
+                        //     font-weight: 500;
+                        // }
+
+                        .wpf-user-amount {
+                            // flex: 2;
+                            // font-size: 14px;
+                            // font-weight: 300;
+                            // color: #fff;
+                            // display: flex;
+                            // justify-content: flex-end;
+                            // gap: 2px;
+                            // align-items: center;
+
+                            // .wpf-text-amount,
+                            // .wpf-text-currency {
+                            //     font-size: 24px;
+                            //     font-weight: 300;
+                            //     // color: #ffffffbf;
+                            //     margin: 0;
+                            //     padding: 0;
+                            //     line-height: 28px;
+                            // }
+
+                            // .wpf-text-currency {
+                            //     font-size: 32px;
+                            // }
+                        }
+                    }
+                }
+
+                .wpf-no-donor-found {
+                    text-align: center;
+                    padding: 10px;
+                    color: #fff;
+                }
+
+                .wpf-leaderboard-load-more-wrapper {
+                    text-align: center;
+                    margin: 20px 0;
+
+                    .wpf-load-more {
+                        padding: 10px;
+                        background: radial-gradient(#002c6b, #0651bc);
+                        border: none;
+                        border-radius: 5px;
+                        color: #fff;
+                        cursor: pointer;
+                    }
+
+                    .disabled {
+                        opacity: 0.5;
+                        cursor: not-allowed;
+                        pointer-events: none;
+                    }
+                }
+            }
+            .wpf_donor_table_header {
+                display: grid;
+                grid-template-columns: 10% 30% 30% 20% 10%;
+                padding: 20px;
+                border-bottom: 1px solid var(--Neutral-Neutral-Variant-Neutral-Variant-200, #EAECF0);
+                background: var(--Gray-Neutral, #FAFAFA);
+                &.wpf-all-forms-user {
+                    grid-template-columns: 10% 45% 30% 15%;
+                }
+                .wpf-donor-table-header-cell {
+                    color: var(--System-Dark, #2F3448);
+                    font-family: Inter;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 20px;
+                }
+            }
+        }
+    }
+    @media (max-width: 1025px) {
+        .wpf-leaderboard {
+            padding: 10px;
+
+            .wpf-user-column {
+                padding: 0;
+
+                .wpf-donor-filter-section {
+                    order: 1;
+                    margin-bottom: 10px;
+                    flex-wrap: wrap;
+                    gap: 10px;
+
+                    .wpf-search-section {
+                        width: calc(100% - 21px);
+
+                        .wpf-search-input {
+                            width: calc(100% - 21px);
+                        }
+                    }
+                }
+
+                .wpf-user {
+                    order: 3;
+                    padding-top: 0;
+
+                    .wpf-user-row {
+                        // box-sizing: border-box;
+                        // padding: 10px;
+                        // gap: 4px;
+                        // margin: 10px 0;
+                        // background: #ffffff1f;
+
+                        .wpf-user-avatar {
+                            text-align: center;
+                            margin-top: 0px;
+                            width: 50px;
+                            height: 50px;
+                            flex: none;
+
+                            img {
+                                width: 50px;
+                                height: 50px;
+                            }
+                        }
+
+                        .wpf-user-name {
+                            // text-align: center;
+                            // font-size: 18px;
+                            // flex: 3;
+                        }
+
+                        .wpf-user-serial {
+                            // position: absolute;
+                            // display: none;
+                        }
+
+                        .wpf-user-amount {
+                            flex: none;
+                            // text-align: center;
+
+                            .wpf-user-amount-text {
+                                display: none;
+                            }
+
+                            // .wpf-text-amount {
+                            //     font-weight: 500;
+                            //     color: #ffffffbf;
+                            //     margin: 0;
+                            //     padding: 0;
+                            //     font-size: 16px;
+                            // }
+                        }
+                    }
+                }
+
+                .wpf-leaderboard-loader {
+                    .loader {
+                        top: 470px;
+                    }
+                }
+
+                .wpf-top-donor-card-wrapper {
+
+                    // order: 2;
+                    .wpf-top-donor-cards {
+                        .wpf-top-donor-card {
+                            padding: 8px;
+                            background: #fff;
+                            position: relative;
+                            display: block;
+                            // &:last-child {
+                            //     margin-bottom: 0;
+                            // }
+                            position: relative;
+
+                            .info {
+                                .wpf-user-avatar {
+                                    text-align: center;
+                                    margin-top: 0px;
+
+                                    height: 50px;
+
+                                    img {
+                                        width: 50px;
+                                        height: 50px;
+                                    }
+                                }
+
+                                .wpf-user-name {
+                                    text-align: center;
+                                    font-size: 18px;
+                                    flex: 3;
+                                }
+
+                                .wpf-user-amount {
+                                    flex: none;
+
+                                    // .wpf-text-amount {
+                                    //     font-weight: 500;
+                                    //     color: #ffffffbf;
+                                    //     margin: 0;
+                                    //     padding: 0;
+                                    //     font-size: 16px;
+                                    // }
+                                }
+                            }
+
+                            .wpf-user-serial {
+                                .wpf-user-serial-text {
+                                    // font-size: 30px;
+                                    // line-height: 20px;
+                                    // position: absolute;
+                                }
+                            }
+                        }
+
+                        // .card-1 {
+                        //     order: 4;
+                        // }
+                    }
+                }
+
+                .wpf-leaderboard-load-more-wrapper {
+                    order: 4;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 766px) {
+        .wpf-leaderboard {
+            padding: 10px;
+            .wpf-user-column {
+                padding: 0px;
+                .wpf-top-donor-cards {
+                    grid-template-columns: repeat(1, 1fr) !important;
+                    .wpf-top-donor-card {
+                        padding: 0px !important;
+                        gap: 10px !important;
+                        margin-bottom: 10px;
+                    }
+                    .card-2,
+                    .card-3 {
+                        transform: scale(1) !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .wpf-donor-filter-section {
+        order: 1;
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        .wpf-search-section {
+            width: calc(100% - 21px);
+
+            .wpf-search-input {
+                width: calc(100% - 21px);
+            }
+        }
+    }
+}
+@media (max-width: 480px) {
+    .wpf-radio-button {
+        label {
+            font-size: 12px !important;
+        }
+    }
+    .wpf_donor_table_header{
+        grid-template-columns: 50% 30% 20% !important;
+        &.wpf-all-forms-user {
+            grid-template-columns: 50% 36% 14% !important;
+        }
+        .wpf-donor-table-header-cell {
+            font-size: 12px !important;
+            &.wpf-table-header-serial,
+            &.wpf-user-donations {
+                display: none;
+            }
+        }
+    }
+    .wpf-user-row {
+        grid-template-columns: 50% 30% 20% !important;
+        font-size: 12px !important;
+        &.wpf-all-forms-user {
+            grid-template-columns: 50% 30% 20% !important;
+        }
+        .wpf-user-serial,
+        .wpf-user-donations {
+            display: none;
+        }
+        .wpf-user-amount {
+            text-align: center !important;
+        }
+    }
+    
+  }
+.wpf-bg-white {
+    background: #fff;
+
+    .wpf-leaderboard-loader {
+        .loader {
+            border-top: 3px solid #000 !important;
+        }
+    }
+
+    .wpf-search-input {
+        background: #fff;
+        border: 1px solid #e5e5e5 !important;
+        border-radius: 8px;
+        color: #0d1647 !important;
+    }
+
+    .wpf-search-icon {
+        color: #0d1647 !important;
+    }
+
+    .wpf-filter-section {
+        .wpf-radio-button {
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+
+            .wpf-filter-icon {
+                color: #0d1647 !important;
+            }
+
+            label {
+                color: #0d1647 !important;
+            }
+        }
+    }
+
+    .wpf-top-donor-card {
+        background: #fff !important;
+        color: #0d1647 !important;
+        border-radius: 8px;
+
+        .wpf-user-serial-text {
+            // color: #0d1647 !important;
+        }
+
+        .wpf-user-name {
+            color: #0d1647 !important;
+        }
+    }
+
+    .wpf-user-row {
+        // border: 1px solid rgb(241, 239, 239) !important;
+        // background: #607d8b1a !important;
+
+        // .wpf-user-serial-text,
+        // .wpf-user-name,
+        // .wpf-user-amount-text,
+        // .wpf-text-amount,
+        // .wpf-text-currency {
+        //     color: #0d1647 !important;
+        // }
+    }
+
+    .wpf-load-more {
+        background: gray !important;
+        border: 1px solid #e5e5e5 !important;
+        border-radius: 8px;
+    }
+}
+
+.wpf-donor-template-not-found__content {
+    text-align: center;
+    padding: 10px;
+    color: rgb(21, 3, 3);
+    border: 1px solid rgb(223, 218, 218);
+}
+
+.wpf-leaderboard-temp-three {
+    max-width: 1200px !important;
+    background: transparent;
+    border-radius: 5px;
+    width: 100%;
+    position: relative;
+
+    .wpf-leaderboard-loader .loader {
+        border-top: 3px solid #0e0d0d;
+        top: 200px;
+    }
+
+    .wpf-leaderboard-load-more-wrapper {
+        text-align: center;
+        margin-top: 40px;
+
+        .wpf-load-more {
+            padding: 10px;
+            background: gray;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+    }
+
+    .wpf-donor-filter-section {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+        margin-top: 30px;
+
+        .wpf-search-section {
+            position: relative;
+
+            .wpf-search-input {
+                border: none;
+                padding: 10px;
+                font-size: 14px;
+                font-weight: 300;
+                min-width: 200px;
+                padding-left: 32px;
+
+                background: #fff;
+                border: 1px solid #e5e5e5 !important;
+                border-radius: 8px;
+                color: #0d1647 !important;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            .wpf-search-icon {
+                font-size: 20px;
+                color: #0d1647 !important;
+                position: absolute;
+                left: 4px;
+                top: 6px;
+                font-size: 26px;
+            }
+        }
+
+        .filter-radio-button {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            justify-content: center;
+
+            .wpf-radio-button {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 6px;
+                background: #fff;
+                border: 1px solid #e5e5e5;
+                border-radius: 8px;
+
+                .wpf-filter-icon {
+                    position: absolute;
+                    left: 2px;
+                    top: 10px;
+                    font-size: 14px;
+                    font-weight: 300;
+                    color: #fff;
+                    color: #0d1647 !important;
+                }
+
+                input[type="radio"] {
+                    display: none;
+                }
+
+                label {
+                    font-size: 14px;
+                    color: #0d1647 !important;
+                    font-weight: 300;
+                    color: #fff;
+                    cursor: pointer;
+                    padding: 6px;
+                    padding-left: 22px;
+                    border-radius: 5px;
+                    background: #ffffff1f;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        background: #ffffff3f;
+                    }
+                }
+
+                input[type="radio"]:checked+label {
+                    background: #ffffff3f;
+                }
+            }
+        }
+    }
+
+    .wpf_total_raised_amount {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-top: 30px;
+    }
+
+    .wpf-donor-card-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        padding-top: 20px;
+
+        .wpf-donor-list {
+            background: #fff !important;
+            color: #0d1647 !important;
+            border-radius: 8px;
+            border: 1px solid #e5e5e5;
+            text-align: center;
+            padding: 10px;
+            width: calc(100% / 4 - 58px);
+            min-width: 240px;
+
+            &.three {
+                display: flex;
+                padding: 20px;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+                border-radius: 8px;
+                border: 1px solid var(--Gray-Outline, #D6DAE1);
+                background: var(--White, #FFF);
+            }
+
+            .wpf-donor-image {
+                margin-top: 20px;
+
+                img {
+                    border-radius: 50%;
+                }
+            }
+
+            .wpf-donor-info {
+                width: 100%;
+
+                .wpf-donor-name {
+                    h3 {
+                        font-size: 22px;
+                        font-weight: 500;
+                        margin: 0;
+                        padding: 0;
+                    }
+
+                    &.three {
+                        h3 {
+                            color: var(--System-Dark, #2F3448);
+                            text-align: center;
+                            /* Headline/Title/H6-Title */
+                            font-family: Inter;
+                            font-size: 18px;
+                            font-style: normal;
+                            font-weight: 600;
+                            line-height: 28px;
+                        }
+                    }
+                }
+
+                .wpf-donor-amount {
+                    font-size: 18px;
+                    font-weight: 500;
+                    display: flex;
+                    gap: 20px;
+                    justify-content: center;
+
+                    p {
+                        margin: 0;
+                        padding: 0;
+                        line-height: 32px;
+                    }
+
+                    span {
+                        color: #ff9000;
+                        font-weight: 700;
+                        font-size: 20px;
+                    }
+
+                    &.three {
+                        margin-top: 20px;
+                        display: flex;
+                        padding: 10px 20px;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 8px;
+                        background: var(--Gray-50, #F5F6F7);
+                        gap: 0px;
+
+                        p {
+                            color: var(--System-Mid, #565865);
+                            font-size: 14px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: 20px;
+                        }
+
+                        span {
+                            color: var(--System-Dark, #2F3448);
+                            font-size: 18px;
+                            font-style: normal;
+                            font-weight: 600;
+                            line-height: 28px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 550px) {
+        .wpf-donor-card-wrapper {
+            gap: 10px;
+
+            .wpf-donor-list {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                min-width: 300px;
+
+                // .three {
+                //     display: flex;
+                //     padding: 20px;
+                //     flex-direction: column;
+                //     justify-content: center;
+                //     align-items: center;
+                //     flex: 1 0 0;
+                //     border-radius: 8px;
+                //     border: 1px solid var(--Gray-Outline, #D6DAE1);
+                //     background: var(--White, #FFF);
+
+                //     .wpf-donor-image {
+                //         img {
+                //             width: 80px;
+                //             height: 80px;
+                //         }
+                //     }
+                // }
+
+                .wpf-donor-image {
+                    margin-top: 20px;
+
+                    img {
+                        border-radius: 50%;
+                        width: 40px;
+                        height: 40px;
+                    }
+                }
+
+                &.three {
+                    .wpf-donor-image {
+                        margin-top: 20px;
+
+                        img {
+                            width: 80px;
+                            height: 80px;
+                        }
+                    }
+                }
+
+                .wpf-donor-info {
+                    display: flex;
+                    gap: 10px;
+
+                    .wpf-donor-amount {
+                        p {
+                            display: none;
+                        }
+                    }
+
+                    &.temp-three {
+                        display: block;
+
+                        .wpf-donor-name {
+                            border: none;
+                        }
+
+                        .wpf-donor-amount {
+                            p {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .wpf-no-donor-found {
+        text-align: center;
+        padding: 10px;
+        color: rgb(21, 3, 3);
+        // border: 1px solid rgb(223, 218, 218);
+    }
+}

@@ -1,0 +1,58 @@
+.el-checkbox {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    .el-checkbox__input {
+
+        .el-checkbox__inner {
+            padding: 7px !important;
+            border-radius: 4px !important;
+
+            &::after {
+                content: "";
+                border-top: 0;
+                height: 7px;
+                left: 5px;
+                top: 1px;
+                width: 3px;
+                transform-origin: center;
+                border: 2px solid #FFFFFF !important;
+                border-top: 0 !important;
+                border-left: 0 !important;
+            }
+        }
+
+        &.is-checked {
+
+            .el-checkbox__inner {
+                padding: 7px !important;
+                border-radius: 4px !important;
+                background-color: #FF7F5C !important;
+                border-color: #FF7F5C !important;
+
+                &::after {
+                    content: "";
+                    border-top: 0;
+                    height: 7px;
+                    left: 5px;
+                    top: 1px;
+                    width: 3px;
+                    transform-origin: center;
+                    border: 2px solid #FFFFFF !important;
+                    border-top: 0 !important;
+                    border-left: 0 !important;
+                }
+            }
+        }
+    }
+
+    .el-checkbox__label {
+        color: $--text-color;
+        font-family: $wpf-font-family;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+    }
+}

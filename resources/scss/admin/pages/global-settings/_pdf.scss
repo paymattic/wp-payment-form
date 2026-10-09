@@ -1,0 +1,155 @@
+.pdf_global_settings_body{
+    @include flex-container($gap: 20px, $align: flex-start); width: 100%;
+    .wpf_pdf_components {
+        width: 100%;
+        .pdf-row{
+            @include flex-container($direction: row);
+            flex-wrap: wrap;
+            align-self: stretch;
+            // .el-col-md-11 {
+            //     width: 48.833%;
+            // }
+            .el-col-md-7 {
+                width: 31.8%;
+            }
+            .pdf-column{
+                @include flex-container($align: flex-start);
+                .pdf-label{
+                    width: max-content;
+                    @include flex-container($direction: row, $align: center, $gap: 8px);
+                    color: $wpf-system-dark;
+                    font-family: $wpf-font-family;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 20px;
+
+                    p {
+                        margin: 0;
+                        padding-bottom: 10px;
+                    }
+                }
+                .el-select {
+                    width: 100%;
+                    padding: 0;
+                    .el-input {
+                        width: 100%;
+                    }
+                }
+                .el-input-number{
+                    .el-input {
+                        width: 100%;
+                    }
+
+                    &.el-input-number--medium {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        .wpf_pdf_input{
+            input[type="text"]:focus{
+                box-shadow: 0 0 0 0px !important;
+                outline: 0px !important;
+            }
+            @include flex-container($direction: row);
+            height: 40px;
+            padding: 0 8px;
+            align-self: stretch;
+            border-radius: 8px;
+            border: 1px solid var(--Gray-Outline, #D6DAE1) !important;
+            background: var(--White, #FFF) !important;
+            margin-right: 2px;
+            .el-input{
+                .el-input__inner{
+                    border-width: 0px !important;
+                }
+            }
+            .el-color-picker {
+                display: flex;
+                position: relative;
+                line-height: normal;
+                height: 36px;
+                align-items: center;
+
+                .el-color-picker__trigger {
+                    display: flex;
+                    height: 30px;
+                    width: 30px;
+                }
+            }
+        }
+
+        .el-input__inner {
+            border: $--border-base ;
+
+            &:focus {
+                box-shadow: none;
+                border-color: $--border-color-base;
+            }
+        }
+    }
+}
+
+.wpf_pdf_radio-group{
+    @include flex-container($direction: row);
+    align-content: flex-start;
+    .radio-group-item{
+        @include flex-container($direction: row, $gap: 10px, $align: center, $justify: center);
+        padding: 8px 16px;
+        gap: 10px;
+        border-radius: 8px;
+        background: var(--White, #FFF);
+        border: 1px dashed var(--Gray-300, #C1C7D1);
+        &.is-checked{
+            border: 1px dotted $wpf-active !important;
+        }
+    }
+}
+
+.wpf_pdf_settings_title {
+	color: #2F3448;
+	font-family: "Inter", sans-serif;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 28px;
+}
+
+.wpf_pdf_settings_body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #F9FAFB;
+    border-radius: 8px;
+    padding: 50px 0;
+
+    .wpf_pdf_download_icon {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+
+            svg {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    p {
+        color: #696778;
+        font-family: $wpf-font-family;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+    }
+}
